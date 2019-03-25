@@ -9,6 +9,7 @@ public class Buffaloid : MonoBehaviour
     public float separation_radius;
 
     private Rigidbody2D rb;
+    private Vector2 move;
 
     // Start is called before the first frame update
     void Start()
