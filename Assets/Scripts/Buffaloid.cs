@@ -18,31 +18,50 @@ public class Buffaloid : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    //returns vector pointing away from average concentration of nearby objects,
+    //or a zero vector if no nearby objects
     Vector2 getAvoid()
-    {
-
+    { 
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, separation_radius);
-        Debug.Log(hitColliders.Length);
 
-        if (hitColliders.Length > 0)
+        //if more nearby objects than self
+        if (hitColliders.Length > 1)
         {
-            Debug.Log("object within radius");
-            //transform.up = hitColliders[0].gameObject.transform.position - transform.position;
-            return Vector2.MoveTowards(transform.position, hitColliders[0].gameObject.transform.position, -1 * moveSpeed * Time.deltaTime);
+            Debug.Log("objects within radius: " + hitColliders.Length);
+
+            //compute average avoid vector
+            Vector2 average = Vector2.zero;
+            for (int i = 0; i < hitColliders.Length; i++)
+            {
+                //if object is not self
+                if( hitColliders[i].gameObject.transform.root != transform)
+                {
+                    average += (Vector2)hitColliders[i].gameObject.transform.position;
+                }
+            }
+            return Vector2.MoveTowards(transform.position, average, -1 * moveSpeed * Time.deltaTime);
         }
         else
         {
-            return transform.position;
+            //return transform.position;
+            return Vector2.zero;
         }
     }
 
-
+    //moves object towards
     void moveObject(Vector2 mv)
     {
-        Vector2 direction = (Vector3)mv - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.down);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+        Debug.Log("mv vector: " + mv);
+        //Vector2 direction = (Vector3)mv - transform.position;
+        //Debug.Log("direction vector: "  + direction);
+
+        //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        //Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.back);
+        //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+        //float angle = Mathf.Atan2( mv.y, mv.x) * Mathf.Rad2Deg;
+        //float angle = 
+        //float euler_z = angle - transform.rotation.z;
+        //transform.Rotate(0, 0, euler_z);
         transform.position = mv;
     }
 
@@ -50,7 +69,13 @@ public class Buffaloid : MonoBehaviour
     void Update()
     {
         Vector2 avoidDir = getAvoid();
+        Debug.Log("avoid dir: " + avoidDir);
+
         move = avoidDir;
-        moveObject(move);
+
+        if(move != Vector2.zero)
+        {
+            moveObject(move);
+        }
     }
 }
