@@ -5,17 +5,22 @@ using UnityEngine;
 public class Buffaloid : MonoBehaviour
 {
 
-    public float moveSpeed;
+    public float maxSpeed;
+    public float timeZeroToMax;
     public float rotationSpeed;
     public float separation_radius;
 
     private Rigidbody2D rb;
     private Vector2 move;
+    private float forwardVelocity;
+    private float acceleration;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        acceleration = maxSpeed / timeZeroToMax;
+        forwardVelocity = 0f;
     }
 
     //returns vector pointing away from average concentration of nearby objects,
@@ -40,7 +45,7 @@ public class Buffaloid : MonoBehaviour
                 }
             }
 
-            //get inverted angle relative to self
+            //get inverted vector relative to self
             Vector2 averageInverted = ((Vector2)transform.position - average) + (Vector2)transform.position;
             return averageInverted;
         }
@@ -51,7 +56,7 @@ public class Buffaloid : MonoBehaviour
         }
     }
 
-    //moves object towards
+    //moves object towards vector
     void moveObject(Vector2 mv)
     {
         //Vector2 direction = (Vector3)mv - transform.position;
@@ -64,7 +69,26 @@ public class Buffaloid : MonoBehaviour
         //float angle = 
         //float euler_z = angle - transform.rotation.z;
         //transform.Rotate(0, 0, euler_z);
-        transform.position = Vector2.MoveTowards(transform.position, mv, moveSpeed * Time.deltaTime);
+        float step = maxSpeed * Time.deltaTime;
+
+        if (move != Vector2.zero)
+        {
+            forwardVelocity += acceleration * Time.deltaTime;
+            forwardVelocity = Mathf.Min(forwardVelocity, maxSpeed);
+            transform.position = Vector2.MoveTowards(transform.position, mv, forwardVelocity * Time.deltaTime);
+
+
+            Debug.Log("currRot: " + transform.eulerAngles.z);
+            Debug.Log("transform up: " + transform.up);
+            Debug.Log("mv: " + mv);
+            Debug.Log("relative vector: " + (mv - (Vector2)transform.position));
+            Debug.Log("vector angle: " + Vector2.Angle(mv - (Vector2)transform.position, transform.up));
+            float targetDegree = Vector2.Angle(mv - (Vector2)transform.position, transform.up) + transform.eulerAngles.z;
+            Debug.Log("target degree: " + targetDegree);
+            float rotDegree = Mathf.LerpAngle(transform.eulerAngles.z, targetDegree, 2 * Time.deltaTime);
+            Debug.Log("rotDegree: " + rotDegree);
+            transform.eulerAngles = new Vector3(0, 0, rotDegree);
+        }
     }
 
     // Update is called once per frame
@@ -75,9 +99,6 @@ public class Buffaloid : MonoBehaviour
 
         move = avoidDir;
 
-        if(move != Vector2.zero)
-        {
-            moveObject(move);
-        }
+        moveObject(move);
     }
 }
