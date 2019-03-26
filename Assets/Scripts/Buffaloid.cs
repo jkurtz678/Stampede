@@ -39,7 +39,10 @@ public class Buffaloid : MonoBehaviour
                     average += (Vector2)hitColliders[i].gameObject.transform.position;
                 }
             }
-            return Vector2.MoveTowards(transform.position, average, -1 * moveSpeed * Time.deltaTime);
+
+            //get inverted angle relative to self
+            Vector2 averageInverted = ((Vector2)transform.position - average) + (Vector2)transform.position;
+            return averageInverted;
         }
         else
         {
@@ -51,7 +54,6 @@ public class Buffaloid : MonoBehaviour
     //moves object towards
     void moveObject(Vector2 mv)
     {
-        Debug.Log("mv vector: " + mv);
         //Vector2 direction = (Vector3)mv - transform.position;
         //Debug.Log("direction vector: "  + direction);
 
@@ -62,7 +64,7 @@ public class Buffaloid : MonoBehaviour
         //float angle = 
         //float euler_z = angle - transform.rotation.z;
         //transform.Rotate(0, 0, euler_z);
-        transform.position = mv;
+        transform.position = Vector2.MoveTowards(transform.position, mv, moveSpeed * Time.deltaTime);
     }
 
     // Update is called once per frame
