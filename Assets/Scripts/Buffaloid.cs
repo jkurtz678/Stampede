@@ -5,7 +5,8 @@ using UnityEngine;
 public class Buffaloid : MonoBehaviour
 {
 
-    public float speed;
+    public float moveSpeed;
+    public float rotationSpeed;
     public float separation_radius;
 
     private Rigidbody2D rb;
@@ -26,8 +27,8 @@ public class Buffaloid : MonoBehaviour
         if (hitColliders.Length > 0)
         {
             Debug.Log("object within radius");
-            transform.right = hitColliders[0].gameObject.transform.position - transform.position;
-            return Vector2.MoveTowards(transform.position, hitColliders[0].gameObject.transform.position, -1 * speed * Time.deltaTime);
+            //transform.up = hitColliders[0].gameObject.transform.position - transform.position;
+            return Vector2.MoveTowards(transform.position, hitColliders[0].gameObject.transform.position, -1 * moveSpeed * Time.deltaTime);
         }
         else
         {
@@ -35,11 +36,21 @@ public class Buffaloid : MonoBehaviour
         }
     }
 
+
+    void moveObject(Vector2 mv)
+    {
+        Vector2 direction = (Vector3)mv - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.down);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+        transform.position = mv;
+    }
+
     // Update is called once per frame
     void Update()
     {
         Vector2 avoidDir = getAvoid();
         move = avoidDir;
-        transform.position = move;
+        moveObject(move);
     }
 }
