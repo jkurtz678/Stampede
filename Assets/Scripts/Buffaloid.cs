@@ -32,7 +32,7 @@ public class Buffaloid : MonoBehaviour
         //if more nearby objects than self
         if (hitColliders.Length > 1)
         {
-            Debug.Log("objects within radius: " + hitColliders.Length);
+            //Debug.Log("objects within radius: " + hitColliders.Length);
 
             //compute average avoid vector
             Vector2 average = Vector2.zero;
@@ -59,56 +59,41 @@ public class Buffaloid : MonoBehaviour
     //moves object towards vector
     void moveObject(Vector2 mv)
     {
-        //Vector2 direction = (Vector3)mv - transform.position;
-        //Debug.Log("direction vector: "  + direction);
-
-        //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        //Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.back);
-        //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
-        //float angle = Mathf.Atan2( mv.y, mv.x) * Mathf.Rad2Deg;
-        //float angle = 
-        //float euler_z = angle - transform.rotation.z;
-        //transform.Rotate(0, 0, euler_z);
         float step = maxSpeed * Time.deltaTime;
+        Debug.Log("accel: " + acceleration);
+        Debug.Log("forwardVelocity: " + forwardVelocity);
 
+        //if buffaloid is moving to a point
         if (move != Vector2.zero)
         {
+            //velocity handling
             forwardVelocity += acceleration * Time.deltaTime;
             forwardVelocity = Mathf.Min(forwardVelocity, maxSpeed);
-            transform.position = Vector2.MoveTowards(transform.position, mv, forwardVelocity * Time.deltaTime);
+            Debug.Log("trans.pos:" + transform.position);
+            Debug.Log("trans.up:" + transform.up);
+            transform.position = Vector2.MoveTowards(transform.position, transform.up + transform.position, forwardVelocity * Time.deltaTime);
 
-
-            //Debug.Log("transform up: " + transform.up);
-            //Debug.Log("mv: " + mv);
-            //Debug.Log("relative vector: " + (mv - (Vector2)transform.position));
-            //Debug.Log("vector angle: " + Vector2.Angle(mv - (Vector2)transform.position, transform.up));
-            Debug.Log("trans.z: " + transform.eulerAngles.z);
-
+            //rotation handling, might make separate functions
             float currRot = transform.eulerAngles.z;
             if (currRot > 180f )
             {
                 currRot -= 360.0f;
             }
-            Debug.Log("currRot: " + currRot);
 
-            Debug.Log("mv: " + mv);
-
-
-            Debug.Log("trans.pos: " + (Vector2)transform.position);
-            Debug.Log("trans.up: " + transform.up);
-            Debug.Log("vec.angle: " + Vector2.SignedAngle(mv - (Vector2)transform.position, transform.up));
             float targetDegree = currRot - Vector2.SignedAngle(mv - (Vector2)transform.position, transform.up);
-            Debug.Log("target degree: " + targetDegree);
-
 
             float rotDegree = 0;
-            //if( targetDegree > transform.eulerAngles.z)
-            rotDegree = Mathf.LerpAngle(currRot, targetDegree, 1 * Time.deltaTime);
-            
-
-
-            Debug.Log("rotDegree: " + rotDegree);
+            rotDegree = Mathf.LerpAngle(currRot, targetDegree, rotationSpeed * Time.deltaTime);
             transform.eulerAngles = new Vector3(0, 0, rotDegree);
+        }
+        //deccelerate
+        else
+        {
+            Debug.Log("Decellerating...");
+
+            forwardVelocity -= acceleration * Time.deltaTime;
+            forwardVelocity = Mathf.Max(0, forwardVelocity);
+            transform.position = Vector2.MoveTowards(transform.position, transform.up + transform.position, forwardVelocity * Time.deltaTime);
         }
     }
 
