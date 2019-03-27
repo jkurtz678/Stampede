@@ -78,14 +78,35 @@ public class Buffaloid : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, mv, forwardVelocity * Time.deltaTime);
 
 
-            Debug.Log("currRot: " + transform.eulerAngles.z);
-            Debug.Log("transform up: " + transform.up);
+            //Debug.Log("transform up: " + transform.up);
+            //Debug.Log("mv: " + mv);
+            //Debug.Log("relative vector: " + (mv - (Vector2)transform.position));
+            //Debug.Log("vector angle: " + Vector2.Angle(mv - (Vector2)transform.position, transform.up));
+            Debug.Log("trans.z: " + transform.eulerAngles.z);
+
+            float currRot = transform.eulerAngles.z;
+            if (currRot > 180f )
+            {
+                currRot -= 360.0f;
+            }
+            Debug.Log("currRot: " + currRot);
+
             Debug.Log("mv: " + mv);
-            Debug.Log("relative vector: " + (mv - (Vector2)transform.position));
-            Debug.Log("vector angle: " + Vector2.Angle(mv - (Vector2)transform.position, transform.up));
-            float targetDegree = Vector2.Angle(mv - (Vector2)transform.position, transform.up) + transform.eulerAngles.z;
+
+
+            Debug.Log("trans.pos: " + (Vector2)transform.position);
+            Debug.Log("trans.up: " + transform.up);
+            Debug.Log("vec.angle: " + Vector2.SignedAngle(mv - (Vector2)transform.position, transform.up));
+            float targetDegree = currRot - Vector2.SignedAngle(mv - (Vector2)transform.position, transform.up);
             Debug.Log("target degree: " + targetDegree);
-            float rotDegree = Mathf.LerpAngle(transform.eulerAngles.z, targetDegree, 2 * Time.deltaTime);
+
+
+            float rotDegree = 0;
+            //if( targetDegree > transform.eulerAngles.z)
+            rotDegree = Mathf.LerpAngle(currRot, targetDegree, 1 * Time.deltaTime);
+            
+
+
             Debug.Log("rotDegree: " + rotDegree);
             transform.eulerAngles = new Vector3(0, 0, rotDegree);
         }
@@ -95,7 +116,7 @@ public class Buffaloid : MonoBehaviour
     void Update()
     {
         Vector2 avoidDir = getAvoid();
-        Debug.Log("avoid dir: " + avoidDir);
+        //Debug.Log("avoid dir: " + avoidDir);
 
         move = avoidDir;
 
