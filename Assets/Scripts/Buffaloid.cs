@@ -66,16 +66,9 @@ public class Buffaloid : MonoBehaviour
         //if buffaloid is moving to a point
         if (move != Vector2.zero)
         {
-            //velocity handling
-            forwardVelocity += acceleration * Time.deltaTime;
-            forwardVelocity = Mathf.Min(forwardVelocity, maxSpeed);
-            Debug.Log("trans.pos:" + transform.position);
-            Debug.Log("trans.up:" + transform.up);
-            transform.position = Vector2.MoveTowards(transform.position, transform.up + transform.position, forwardVelocity * Time.deltaTime);
-
             //rotation handling, might make separate functions
             float currRot = transform.eulerAngles.z;
-            if (currRot > 180f )
+            if (currRot > 180f)
             {
                 currRot -= 360.0f;
             }
@@ -85,16 +78,48 @@ public class Buffaloid : MonoBehaviour
             float rotDegree = 0;
             rotDegree = Mathf.LerpAngle(currRot, targetDegree, rotationSpeed * Time.deltaTime);
             transform.eulerAngles = new Vector3(0, 0, rotDegree);
+
+            //move speed based on rotation
+            float rotSpeedRatio = 0;
+            float rotDistanceAngle = Mathf.Abs( Mathf.Abs(targetDegree) - Mathf.Abs(currRot) );
+            Debug.Log("rotDistanceAngle " + rotDistanceAngle);
+            //velocity handling
+            if (rotDistanceAngle < 90){
+                rotSpeedRatio = 1 - (rotDistanceAngle / 90);
+                Debug.Log("rotspeedratio: " + rotSpeedRatio);
+                Accelerate(rotSpeedRatio);
+            }
+            else
+            {
+                Decelerate();
+            }
         }
-        //deccelerate
+        //decelerate
         else
         {
-            Debug.Log("Decellerating...");
-
-            forwardVelocity -= acceleration * Time.deltaTime;
-            forwardVelocity = Mathf.Max(0, forwardVelocity);
-            transform.position = Vector2.MoveTowards(transform.position, transform.up + transform.position, forwardVelocity * Time.deltaTime);
+            Decelerate();
         }
+    }
+
+    //acelerates this buffaloid game object, moving it in a forward direction
+    //rotSpeedRatio : float between 0 - 1 that is multiplied with acceleration
+    void Accelerate(float rotSpeedRatio) 
+    {
+        forwardVelocity += rotSpeedRatio * acceleration * Time.deltaTime;
+        forwardVelocity = Mathf.Min(forwardVelocity, maxSpeed);
+        Debug.Log("trans.pos:" + transform.position);
+        Debug.Log("trans.up:" + transform.up);
+        transform.position = Vector2.MoveTowards(transform.position, transform.up + transform.position, forwardVelocity * Time.deltaTime);
+    }
+
+    //decelerates this buffaloid game object, moving it in a forward direction
+    void Decelerate()
+    {
+        Debug.Log("Decelerating...");
+
+        forwardVelocity -= acceleration * Time.deltaTime;
+        forwardVelocity = Mathf.Max(0, forwardVelocity);
+        transform.position = Vector2.MoveTowards(transform.position, transform.up + transform.position, forwardVelocity * Time.deltaTime);
     }
 
     // Update is called once per frame
