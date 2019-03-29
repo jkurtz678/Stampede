@@ -84,15 +84,11 @@ public class Buffaloid : MonoBehaviour
             float rotDistanceAngle = Mathf.Abs( Mathf.Abs(targetDegree) - Mathf.Abs(currRot) );
             Debug.Log("rotDistanceAngle " + rotDistanceAngle);
             //velocity handling
-            if (rotDistanceAngle < 90){
-                rotSpeedRatio = 1 - (rotDistanceAngle / 90);
-                Debug.Log("rotspeedratio: " + rotSpeedRatio);
-                Accelerate(rotSpeedRatio);
-            }
-            else
-            {
-                Decelerate();
-            }
+            rotSpeedRatio = 1 - (rotDistanceAngle / 180);
+            Debug.Log("rotspeedratio: " + rotSpeedRatio);
+            Accelerate(rotSpeedRatio);
+          
+         
         }
         //decelerate
         else
