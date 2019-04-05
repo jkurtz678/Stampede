@@ -119,6 +119,7 @@ MonoBehaviour:
   timeZeroToMax: 1.5
   rotationSpeed: 0.5
   separation_radius: 2
+  edge_separation: 350
 --- !u!60 &8628774108898105816
 PolygonCollider2D:
   m_ObjectHideFlags: 0

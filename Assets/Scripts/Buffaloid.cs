@@ -9,6 +9,7 @@ public class Buffaloid : MonoBehaviour
     public float timeZeroToMax;
     public float rotationSpeed;
     public float separation_radius;
+    public float edge_separation;
 
     private Rigidbody2D rb;
     private Vector2 move;
@@ -46,6 +47,8 @@ public class Buffaloid : MonoBehaviour
             }
 
             //get inverted vector relative to self
+            Debug.Log("average avoid: " + average);
+            Debug.Log("transpos: " + transform.position );
             Vector2 averageInverted = ((Vector2)transform.position - average) + (Vector2)transform.position;
             return averageInverted;
         }
@@ -56,12 +59,37 @@ public class Buffaloid : MonoBehaviour
         }
     }
 
+    //
+    Vector2 getAvoidEdges()
+    {
+
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(this.transform.position);
+
+        Debug.Log("screen pos: " + screenPos);
+
+        if (screenPos.x < edge_separation || screenPos.y < edge_separation ||
+         screenPos.x > Screen.width - edge_separation || screenPos.y > Screen.height - edge_separation)
+        {
+            Debug.Log("off screen");
+            Vector2 avoidEdgeVector = -1 * (Vector2)transform.position;
+            Debug.Log("edge move vector: " + avoidEdgeVector);
+            return avoidEdgeVector;
+        }
+        else
+        {
+            Debug.Log("on screen");
+            return Vector2.zero;
+        }
+    }
+
     //moves object towards vector
     void moveObject(Vector2 mv)
     {
+
+
         float step = maxSpeed * Time.deltaTime;
-        Debug.Log("accel: " + acceleration);
-        Debug.Log("forwardVelocity: " + forwardVelocity);
+        //Debug.Log("accel: " + acceleration);
+        //Debug.Log("forwardVelocity: " + forwardVelocity);
 
         //if buffaloid is moving to a point
         if (move != Vector2.zero)
@@ -88,7 +116,6 @@ public class Buffaloid : MonoBehaviour
             Debug.Log("rotspeedratio: " + rotSpeedRatio);
             Accelerate(rotSpeedRatio);
           
-         
         }
         //decelerate
         else
@@ -122,9 +149,10 @@ public class Buffaloid : MonoBehaviour
     void Update()
     {
         Vector2 avoidDir = getAvoid();
+        Vector2 edgeAvoidDir = getAvoidEdges();
         //Debug.Log("avoid dir: " + avoidDir);
 
-        move = avoidDir;
+        move = avoidDir + edgeAvoidDir;
 
         moveObject(move);
     }
