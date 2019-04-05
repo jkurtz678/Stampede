@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8628774108898105816}
   m_Layer: 0
   m_Name: Buffaloid
-  m_TagString: Untagged
+  m_TagString: Buffaloid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,6 +120,7 @@ MonoBehaviour:
   rotationSpeed: 0.5
   separation_radius: 2
   edge_separation: 350
+  friend_radius: 3
 --- !u!60 &8628774108898105816
 PolygonCollider2D:
   m_ObjectHideFlags: 0
