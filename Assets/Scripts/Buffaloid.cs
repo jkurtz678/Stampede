@@ -173,6 +173,31 @@ public class Buffaloid : MonoBehaviour
         return friends;
     }
 
+    private Vector2 getAlignment(List<GameObject> friends)
+    {
+        List<Transform> positions = new List<Transform>();
+        for (int i = 0; i < friends.Count; i++)
+        {
+            positions.Add(friends[i].gameObject.transform);
+        }
+
+        Vector2 avg_dir = GetMeanDir(positions);
+        return avg_dir;
+    }
+
+    private Vector2 GetMeanDir(List<Transform> transforms)
+    {
+        if (transforms.Count == 0)
+            return Vector2.zero;
+
+        Vector2 avg_vec = Vector2.zero;
+        foreach (Transform pos in transforms)
+        {
+            avg_vec += (Vector2)pos.up;
+        }
+        return avg_vec.normalized;
+    }
+
     //gets average position of a list of transforms
     private Vector2 GetMeanPos(List<Transform> transforms)
     {
@@ -232,17 +257,18 @@ public class Buffaloid : MonoBehaviour
         //Debug.Log("avoid dir: " + avoidDir);
 
         Vector2 cohesionDir = getCohesion(friends);
-
+        Vector2 alignmentDir = getAlignment(friends);
 
         Debug.Log("avoid dir: " + avoidDir );
         //Debug.Log("edge avoid dir: " + edgeAvoidDir);
         //Debug.Log("cohesion dir: " + cohesionDir);
 
+        Debug.DrawRay(transform.position, alignmentDir, Color.white);
         Debug.DrawRay(transform.position, avoidDir, Color.red);
         Debug.DrawRay(transform.position, edgeAvoidDir, Color.magenta);
         Debug.DrawRay(transform.position, cohesionDir, Color.green);
 
-        move = (2 * avoidDir) + (3 * edgeAvoidDir)+ cohesionDir;
+        move = (2 * avoidDir) + (3 * edgeAvoidDir)+ cohesionDir + alignmentDir;
         //move = avoidDir + edgeAvoidDir;
 
         Debug.DrawRay(transform.position, move, Color.blue);

@@ -116,9 +116,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 2
-  timeZeroToMax: 1.5
-  rotationSpeed: 0.5
-  separation_radius: 2
+  timeZeroToMax: 1
+  rotationSpeed: 1
+  separation_radius: 1
   edge_separation: 100
   friend_radius: 3
   forwardVelocity: 0
