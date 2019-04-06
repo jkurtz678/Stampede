@@ -69,7 +69,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1124962529
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300002, guid: a1c4aab276d534bc6900018c889e65b6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -119,8 +119,9 @@ MonoBehaviour:
   timeZeroToMax: 1.5
   rotationSpeed: 0.5
   separation_radius: 2
-  edge_separation: 350
+  edge_separation: 100
   friend_radius: 3
+  forwardVelocity: 0
 --- !u!60 &8628774108898105816
 PolygonCollider2D:
   m_ObjectHideFlags: 0

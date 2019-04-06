@@ -114,7 +114,7 @@ public class Buffaloid : MonoBehaviour
             //Debug.Log("rotDistanceAngle " + rotDistanceAngle);
             //velocity handling
             rotSpeedRatio = (0.5f - (rotDistanceAngle / 180)) * 2;
-            Debug.Log("rotspeedratio: " + rotSpeedRatio);
+            //Debug.Log("rotspeedratio: " + rotSpeedRatio);
             if(rotSpeedRatio > 0)
             {
                 Accelerate(rotSpeedRatio);
@@ -137,7 +137,7 @@ public class Buffaloid : MonoBehaviour
     //rotSpeedRatio : float between 0 - 1 that is multiplied with acceleration
     void Accelerate(float rotSpeedRatio) 
     {
-        Debug.Log("Accelerating...");
+        //Debug.Log("Accelerating...");
 
         forwardVelocity += rotSpeedRatio * acceleration * Time.deltaTime;
         forwardVelocity = Mathf.Min(forwardVelocity, maxSpeed);
@@ -149,13 +149,11 @@ public class Buffaloid : MonoBehaviour
     //decelerates this buffaloid game object, moving it in a forward direction
     void Decelerate(float rotSpeedRatio)
     {
-        Debug.Log("Decelerating...");
+        //Debug.Log("Decelerating...");
 
         forwardVelocity -= (rotSpeedRatio * -1) * acceleration * Time.deltaTime;
         forwardVelocity = Mathf.Max(0, forwardVelocity);
-
-        Debug.Log("forward velocity: " + forwardVelocity);
-
+        
         transform.position = Vector2.MoveTowards(transform.position, transform.up + transform.position, forwardVelocity * Time.deltaTime);
     }
 
@@ -167,7 +165,7 @@ public class Buffaloid : MonoBehaviour
 
         for (int i = 0; i < friendColliders.Length; i++)
         {
-            if (friendColliders[i].gameObject.tag == "Buffaloid")
+            if (friendColliders[i].gameObject.tag == "Boids" && friendColliders[i].gameObject.transform.root != transform)
             {
                 friends.Add(friendColliders[i].gameObject);
             }
@@ -197,7 +195,6 @@ public class Buffaloid : MonoBehaviour
     Vector2 getCohesion(List<GameObject> friends)
     {
 
-        Debug.Log("numFriends: " + friends.Count);
         if (friends.Count > 0)
         {
             Debug.Log("in pack");
@@ -207,11 +204,16 @@ public class Buffaloid : MonoBehaviour
                 positions.Add(friends[i].gameObject.transform);
             }
 
-            Vector2 avg = GetMeanPos(positions);
+            Debug.Log("num positions: " + positions.Count);
+            Debug.Log("first pos: " + positions[0]);
 
+            Vector2 avg = GetMeanPos(positions);
+            Debug.Log("calc avg: " + avg);
+
+            Vector2 relativeAvg = avg - (Vector2)transform.position;
             //Debug.DrawRay(transform.position, avg - (Vector2)transform.position, Color.green);
 
-            return avg.normalized;
+            return relativeAvg.normalized;
         }
         else
         {
@@ -227,20 +229,21 @@ public class Buffaloid : MonoBehaviour
 
         List<GameObject> friends = getFriends();
 
-        //Vector2 cohesionDir = getCohesion(friends);
-
         //Debug.Log("avoid dir: " + avoidDir);
 
+        Vector2 cohesionDir = getCohesion(friends);
+
+
         Debug.Log("avoid dir: " + avoidDir );
-        Debug.Log("edge avoid dir: " + edgeAvoidDir);
+        //Debug.Log("edge avoid dir: " + edgeAvoidDir);
         //Debug.Log("cohesion dir: " + cohesionDir);
 
         Debug.DrawRay(transform.position, avoidDir, Color.red);
         Debug.DrawRay(transform.position, edgeAvoidDir, Color.magenta);
-        //Debug.DrawRay(transform.position, cohesionDir, Color.green);
+        Debug.DrawRay(transform.position, cohesionDir, Color.green);
 
-        //move = avoidDir + edgeAvoidDir + cohesionDir;
-        move = avoidDir + edgeAvoidDir;
+        move = (2 * avoidDir) + (3 * edgeAvoidDir)+ cohesionDir;
+        //move = avoidDir + edgeAvoidDir;
 
         Debug.DrawRay(transform.position, move, Color.blue);
         Debug.Log("move dir: " + move);
