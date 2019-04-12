@@ -137,6 +137,11 @@ public class Buffaloid : MonoBehaviour
         }
     }
 
+    void ForceAccelerate(float rotSpeedRatio)
+    {
+        //rb.AddRelativeForce()
+    }
+
     //acelerates this buffaloid game object, moving it in a forward direction
     //rotSpeedRatio : float between 0 - 1 that is multiplied with acceleration
     void Accelerate(float rotSpeedRatio) 
