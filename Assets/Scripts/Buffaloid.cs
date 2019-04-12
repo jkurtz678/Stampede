@@ -12,6 +12,10 @@ public class Buffaloid : MonoBehaviour
     public float edge_separation;
     public float friend_radius;
     public float forwardVelocity;
+    public float avoidWeight;
+    public float avoidEdgeWeight;
+    public float alignWeight;
+    public float cohesionWeight;
 
     private Rigidbody2D rb;
     private Vector2 move;
@@ -268,7 +272,8 @@ public class Buffaloid : MonoBehaviour
         Debug.DrawRay(transform.position, edgeAvoidDir, Color.magenta);
         Debug.DrawRay(transform.position, cohesionDir, Color.green);
 
-        move = (2 * avoidDir) + (3 * edgeAvoidDir)+ cohesionDir + alignmentDir;
+        move = (avoidWeight * avoidDir) + (avoidEdgeWeight * edgeAvoidDir) 
+            + (cohesionWeight * cohesionDir) + (alignWeight * alignmentDir);
         //move = avoidDir + edgeAvoidDir;
 
         Debug.DrawRay(transform.position, move, Color.blue);
