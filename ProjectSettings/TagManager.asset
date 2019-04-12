@@ -3,8 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Boids
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -41,13 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Terain
-    uniqueID: 3248118057
-    locked: 0
-  - name: Boids
-    uniqueID: 1124962529
-    locked: 0
-  - name: Player
-    uniqueID: 1857471535
     locked: 0
