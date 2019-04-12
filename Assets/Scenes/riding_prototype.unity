@@ -121,6 +121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 155607653}
+  - component: {fileID: 155607654}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -142,6 +143,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &155607654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155607652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ab173eab8f552c4f92abe0ff256bf36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,7 +485,32 @@ PrefabInstance:
     - target: {fileID: 3465815255240526719, guid: 14aa4463f290ff94086909a48da6bee8,
         type: 3}
       propertyPath: boostSpeed
-      value: 5
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3465815255240526719, guid: 14aa4463f290ff94086909a48da6bee8,
+        type: 3}
+      propertyPath: revSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3465815255240526719, guid: 14aa4463f290ff94086909a48da6bee8,
+        type: 3}
+      propertyPath: slowdownSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3465815255240526719, guid: 14aa4463f290ff94086909a48da6bee8,
+        type: 3}
+      propertyPath: turnSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3465815255240526719, guid: 14aa4463f290ff94086909a48da6bee8,
+        type: 3}
+      propertyPath: acceleration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3465815255240526719, guid: 14aa4463f290ff94086909a48da6bee8,
+        type: 3}
+      propertyPath: steering
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3465815255240526708, guid: 14aa4463f290ff94086909a48da6bee8,
         type: 3}
