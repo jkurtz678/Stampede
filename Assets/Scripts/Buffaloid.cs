@@ -20,12 +20,17 @@ public class Buffaloid : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 move;
     private float acceleration;
+    private List<string> avoidTags;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         acceleration = maxSpeed / timeZeroToMax;
+        avoidTags = new List<string>();
+        avoidTags.Add("Player");
+        avoidTags.Add("Boids");
+        avoidTags.Add("Obstacle");
         //forwardVelocity = 0f;
     }
 
@@ -35,20 +40,27 @@ public class Buffaloid : MonoBehaviour
     { 
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, separation_radius);
 
+        List<Collider2D> avoidColliders = new List<Collider2D>();
+
+        for(int i = 0; i < hitColliders.Length; i++ )
+        {
+            if(avoidTags.Contains(hitColliders[i].tag) && hitColliders[i].gameObject.transform.root != transform)
+            {
+                avoidColliders.Add(hitColliders[i]);
+            }
+        }
+
+        Debug.Log("hit colliders: " + hitColliders.Length);
         //if more nearby objects than self
-        if (hitColliders.Length > 1)
+        if (avoidColliders.Count > 0)
         {
             //Debug.Log("objects within radius: " + hitColliders.Length);
 
             //compute average avoid vector
             Vector2 average = Vector2.zero;
-            for (int i = 0; i < hitColliders.Length; i++)
+            foreach (Collider2D collider in avoidColliders)
             {
-                //if object is not self
-                if( hitColliders[i].gameObject.transform.root != transform)
-                {
-                    average += (Vector2)hitColliders[i].gameObject.transform.position;
-                }
+                average += (Vector2)collider.gameObject.transform.position;
             }
 
             //get inverted vector relative to self
@@ -375,7 +387,7 @@ public class Buffaloid : MonoBehaviour
             + (cohesionWeight * cohesionDir) + (alignWeight * alignmentDir);
         //move = avoidDir + edgeAvoidDir;
 
-        Debug.DrawRay(transform.position, move, Color.blue);
+        //Debug.DrawRay(transform.position, move, Color.blue);
         //Debug.Log("move dir: " + move);
 
 

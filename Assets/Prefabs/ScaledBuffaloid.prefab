@@ -118,12 +118,12 @@ MonoBehaviour:
   maxSpeed: 10
   timeZeroToMax: 2
   rotationSpeed: 3
-  separation_radius: 0.5
-  edge_separation: 80
+  separation_radius: 0.8
+  edge_separation: 100
   friend_radius: 1
   forwardVelocity: 0
   avoidWeight: 10
-  avoidEdgeWeight: 3
+  avoidEdgeWeight: 4
   alignWeight: 1
   cohesionWeight: 0.05
 --- !u!60 &8628774108898105816
