@@ -89,8 +89,6 @@ public class Buffaloid : MonoBehaviour
     //moves object towards vector
     void moveObject(Vector2 mv)
     {
-
-
         float step = maxSpeed * Time.deltaTime;
         //Debug.Log("accel: " + acceleration);
         //Debug.Log("forwardVelocity: " + forwardVelocity);
@@ -98,48 +96,143 @@ public class Buffaloid : MonoBehaviour
         //if buffaloid is moving to a point
         if (move != Vector2.zero)
         {
-            //rotation handling, might make separate functions
-            float currRot = transform.eulerAngles.z;
-            if (currRot > 180f)
-            {
-                currRot -= 360.0f;
-            }
-
-            //float targetDegree = currRot - Vector2.SignedAngle(mv - (Vector2)transform.position, transform.up);
-            float targetDegree = currRot - Vector2.SignedAngle(mv, transform.up);
-
-            float rotDegree = 0;
-            rotDegree = Mathf.LerpAngle(currRot, targetDegree, rotationSpeed * Time.deltaTime);
-            transform.eulerAngles = new Vector3(0, 0, rotDegree);
-
-            //move speed based on rotation
-            float rotSpeedRatio = 0;
-            float rotDistanceAngle = Mathf.Abs( Mathf.Abs(targetDegree) - Mathf.Abs(currRot) );
-            //Debug.Log("rotDistanceAngle " + rotDistanceAngle);
-            //velocity handling
-            rotSpeedRatio = (0.5f - (rotDistanceAngle / 180)) * 2;
-            //Debug.Log("rotspeedratio: " + rotSpeedRatio);
-            if(rotSpeedRatio > 0)
-            {
-                Accelerate(rotSpeedRatio);
-            }
-            else
-            {
-                Decelerate(rotSpeedRatio);
-
-            }
-
+            float rotSpeedRatio = forceRotate(mv);
+            Debug.Log("rotspeedratio: " + rotSpeedRatio);
+            //if( rotSpeedRatio < .6)
+            //{
+            //    rotSpeedRatio = 0.6f;
+            //}
+            ForceAccelerate(rotSpeedRatio);
         }
         //decelerate
         else
         {
-            Decelerate(-1);
+            ForceAccelerate(-1);
         }
     }
 
+    float forceRotate(Vector2 mv) 
+    {
+        float currRot = transform.eulerAngles.z;
+        Debug.Log("currRot: " + currRot);
+
+        if (currRot > 180f)
+        {
+            currRot -= 360.0f;
+        }
+        float targetDegree = -1*Vector2.SignedAngle(mv, transform.up);
+
+        Debug.Log("currRot: " + currRot);
+        Debug.Log("targetDegree: " + targetDegree);
+        float horizontalAxis = 0f;
+        if (targetDegree < 0) {
+            horizontalAxis = -1;
+        }
+        else if (targetDegree > 0)
+        {
+            horizontalAxis = 1;
+        }
+
+        float direction = Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.up));
+        float mvDegree = -1 * Vector2.SignedAngle(mv, Vector2.up);
+        Debug.Log("direction: " + direction);
+        Debug.Log("targetDegree: " + targetDegree);
+        Debug.Log("currRot: " + currRot);
+        Debug.Log("mvDegree: " + mvDegree);
+
+
+        float rotationUnit = horizontalAxis * rotationSpeed * (rb.velocity.magnitude / 2.0f);
+        Debug.Log("rotationUnit: " + rotationUnit);
+        Debug.Log("diffRot: " + Mathf.Abs(currRot - targetDegree));
+
+        if (direction >= 0.0f)
+        { 
+            if ( Mathf.Abs(currRot - mvDegree) < rotationUnit)
+            {
+                Debug.Log("within turn distance");
+                rb.rotation = mvDegree;
+            }
+            else
+            {
+                rb.rotation += rotationUnit;
+            }
+            rb.AddTorque((horizontalAxis * rotationSpeed) * (rb.velocity.magnitude / 10.0f));
+        }
+        else
+        {
+           
+
+            if (Mathf.Abs(currRot - mvDegree) < rotationUnit)
+            {
+                Debug.Log("within turn distance");
+
+                rb.rotation = mvDegree;
+            }
+            else
+            {
+                rb.rotation -= rotationUnit;
+            }
+            rb.AddTorque((-horizontalAxis * rotationSpeed) * (rb.velocity.magnitude / 10.0f));
+        }
+
+        addDriftForce();
+
+        //move speed based on rotation
+        //Debug.Log("rotDistanceAngle " + rotDistanceAngle);
+        //velocity handling
+        float rotSpeedRatio = (1 - (Mathf.Abs(targetDegree) / 180));
+
+        return rotSpeedRatio;
+    }
+
+    void addDriftForce()
+    {
+        Vector2 forward = new Vector2(0.0f, 0.5f);
+        float steeringRightAngle;
+        if (rb.angularVelocity > 0)
+        {
+            steeringRightAngle = -90;
+        }
+        else
+        {
+            steeringRightAngle = 90;
+        }
+
+        Vector2 rightAngleFromForward = Quaternion.AngleAxis(steeringRightAngle, Vector3.forward) * forward;
+
+        Debug.DrawLine((Vector3)rb.position, (Vector3)rb.GetRelativePoint(rightAngleFromForward), Color.black);
+
+        float driftForce = Vector2.Dot(rb.velocity, rb.GetRelativeVector(rightAngleFromForward.normalized));
+
+        Vector2 relativeForce = (rightAngleFromForward.normalized * -1.0f) * (driftForce * 10.0f);
+
+
+        Debug.DrawLine((Vector3)rb.position, (Vector3)rb.GetRelativePoint(relativeForce), Color.grey);
+
+        rb.AddForce(rb.GetRelativeVector(relativeForce));
+    }
+
+    //acelerates this buffaloid game object with rigidbody forces, moving it in a forward direction
     void ForceAccelerate(float rotSpeedRatio)
     {
-        //rb.AddRelativeForce()
+
+        Vector2 speed = transform.up * acceleration;
+
+        if (rotSpeedRatio < 0 && rb.velocity.magnitude < speed.magnitude)
+        {
+            speed = Vector2.zero;
+        }
+
+        Debug.Log("speed vector: " + speed);
+        Debug.Log("rb vector: " + speed);
+        rb.AddForce(speed);
+
+        // prevent object from going over its max speed
+        if (rotSpeedRatio >= 0 && rb.velocity.magnitude > maxSpeed)
+        {
+            rb.velocity = rb.velocity.normalized * maxSpeed;
+        }
+
     }
 
     //acelerates this buffaloid game object, moving it in a forward direction
@@ -175,6 +268,7 @@ public class Buffaloid : MonoBehaviour
         for (int i = 0; i < friendColliders.Length; i++)
         {
             if (friendColliders[i].gameObject.tag == "Boids" && friendColliders[i].gameObject.transform.root != transform)
+            //if( friendColliders[i].gameObject.transform.root != transform)
             {
                 friends.Add(friendColliders[i].gameObject);
             }
@@ -231,18 +325,18 @@ public class Buffaloid : MonoBehaviour
 
         if (friends.Count > 0)
         {
-            Debug.Log("in pack");
+            //Debug.Log("in pack");
             List<Transform> positions = new List<Transform>();
             for(int i = 0; i < friends.Count; i++ )
             {
                 positions.Add(friends[i].gameObject.transform);
             }
 
-            Debug.Log("num positions: " + positions.Count);
-            Debug.Log("first pos: " + positions[0]);
+           //Debug.Log("num positions: " + positions.Count);
+            //Debug.Log("first pos: " + positions[0]);
 
             Vector2 avg = GetMeanPos(positions);
-            Debug.Log("calc avg: " + avg);
+            //Debug.Log("calc avg: " + avg);
 
             Vector2 relativeAvg = avg - (Vector2)transform.position;
             //Debug.DrawRay(transform.position, avg - (Vector2)transform.position, Color.green);
@@ -268,7 +362,7 @@ public class Buffaloid : MonoBehaviour
         Vector2 cohesionDir = getCohesion(friends);
         Vector2 alignmentDir = getAlignment(friends);
 
-        Debug.Log("avoid dir: " + avoidDir );
+        //Debug.Log("avoid dir: " + avoidDir );
         //Debug.Log("edge avoid dir: " + edgeAvoidDir);
         //Debug.Log("cohesion dir: " + cohesionDir);
 
@@ -282,7 +376,7 @@ public class Buffaloid : MonoBehaviour
         //move = avoidDir + edgeAvoidDir;
 
         Debug.DrawRay(transform.position, move, Color.blue);
-        Debug.Log("move dir: " + move);
+        //Debug.Log("move dir: " + move);
 
 
         moveObject(move);
