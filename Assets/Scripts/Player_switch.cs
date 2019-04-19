@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player_switch : MonoBehaviour
 {
+    public float ridingBoundary;
     private GameObject player_game_obj;
     private GameObject closestBoid;
     //False = standard, True = riding
@@ -20,18 +21,19 @@ public class Player_switch : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && controlType == false)
         {
-            controlType = true;
             closestBoid = FindClosestBoid();
-            
-            player_game_obj.transform.position = closestBoid.transform.position;
-            player_game_obj.transform.rotation = closestBoid.transform.rotation;
-            //Alter components of player and boid for force movement.
-            closestBoid.GetComponent<Buffaloid>().enabled = false;
-            closestBoid.GetComponent<Rigidbody2D>().isKinematic = true;
-            player_game_obj.GetComponent<Player>().enabled = false;
-            player_game_obj.GetComponent<Collider2D>().enabled = false;
-            player_game_obj.GetComponent<Player_riding>().enabled = true;
-            closestBoid.transform.parent = player_game_obj.transform;
+            if (RidingBoundary(closestBoid)){
+                controlType = true;
+                player_game_obj.transform.position = closestBoid.transform.position;
+                player_game_obj.transform.rotation = closestBoid.transform.rotation;
+                //Alter components of player and boid for force movement.
+                closestBoid.GetComponent<Buffaloid>().enabled = false;
+                closestBoid.GetComponent<Rigidbody2D>().isKinematic = true;
+                player_game_obj.GetComponent<Player>().enabled = false;
+                player_game_obj.GetComponent<Collider2D>().enabled = false;
+                player_game_obj.GetComponent<Player_riding>().enabled = true;
+                closestBoid.transform.parent = player_game_obj.transform;
+            }
         }
         else if(Input.GetKeyDown(KeyCode.E) && controlType == true)
         {
@@ -41,9 +43,21 @@ public class Player_switch : MonoBehaviour
             player_game_obj.GetComponent<Player>().enabled = true;
             closestBoid.GetComponent<Buffaloid>().enabled = true;
             closestBoid.GetComponent<Rigidbody2D>().isKinematic = false;
+            closestBoid.transform.parent = null;
         }
     }
 
+    public bool RidingBoundary(GameObject closest)
+    {
+       
+        Vector2 diff = closest.transform.position - transform.position;
+        if (diff.sqrMagnitude < ridingBoundary)
+        {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     //Lukas
     public GameObject FindClosestBoid()

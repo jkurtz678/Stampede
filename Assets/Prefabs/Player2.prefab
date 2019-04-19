@@ -111,6 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acceleration: 3
   steering: 3
+  maxSpeed: 5
   horAxis: P2_Horizontal
   verAxis: P2_Vertical
 --- !u!50 &3465815255240526708
