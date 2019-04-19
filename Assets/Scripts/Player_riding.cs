@@ -6,6 +6,7 @@ public class Player_riding : MonoBehaviour
 {
     public float acceleration;
     public float steering;
+    public float maxSpeed;
     private Rigidbody2D rb;
 
     void Start()
@@ -20,6 +21,11 @@ public class Player_riding : MonoBehaviour
 
         Vector2 speed = transform.up * (v * acceleration);
         rb.AddForce(speed);
+
+        if ( rb.velocity.magnitude > maxSpeed)
+        {
+            rb.velocity = rb.velocity.normalized * maxSpeed;
+        }
 
         float direction = Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.up));
         if (direction >= 0.0f)
