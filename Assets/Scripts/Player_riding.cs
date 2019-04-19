@@ -22,7 +22,7 @@ public class Player_riding : MonoBehaviour
     {
         float h = -Input.GetAxis(horAxis);
         float v = Input.GetAxis(verAxis);
-        Debug.Log(v);
+        //Debug.Log(v);
         Vector2 speed = transform.up * (v * acceleration);
         rb.AddForce(speed);
 
