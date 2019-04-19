@@ -94,8 +94,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 5
+  m_Mass: 4
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -115,14 +115,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49d6782c5b4b463aa6df147f8e27cfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 1.5
-  timeZeroToMax: 1
-  rotationSpeed: 1
-  separation_radius: 0.8
-  edge_separation: 100
+  maxSpeed: 14
+  timeZeroToMax: 2
+  rotationSpeed: 3
+  separation_radius: 1.2
+  edge_separation: 150
   friend_radius: 2.5
   forwardVelocity: 0
-  avoidWeight: 4
+  avoidWeight: 10
   avoidEdgeWeight: 3
   alignWeight: 1
   cohesionWeight: 0.05
