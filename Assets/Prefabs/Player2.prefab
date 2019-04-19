@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 3465815255240526706}
   - component: {fileID: 3465815255240526705}
-  - component: {fileID: 3465815255240526704}
+  - component: {fileID: 8480612434524418940}
   - component: {fileID: 3465815255240526719}
   - component: {fileID: 3465815255240526708}
   - component: {fileID: 3465815255240526707}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player2
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3465815255240526704
+--- !u!114 &8480612434524418940
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,11 +92,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3465815255240526718}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e6e066f415e34d44b1092a2670d6074, type: 3}
+  m_Script: {fileID: 11500000, guid: fa15c52b158b18a41bd68a0621dee4d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  agility: 0
+  agility: 5
 --- !u!114 &3465815255240526719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,8 +111,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acceleration: 3
   steering: 3
-  horAxis: P1_Horizontal
-  verAxis: P1_Vertical
+  horAxis: P2_Horizontal
+  verAxis: P2_Vertical
 --- !u!50 &3465815255240526708
 Rigidbody2D:
   serializedVersion: 4

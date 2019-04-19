@@ -6,6 +6,9 @@ public class Player_riding : MonoBehaviour
 {
     public float acceleration;
     public float steering;
+    public string horAxis;
+    public string verAxis;
+
     private Rigidbody2D rb;
 
     void Start()
@@ -15,8 +18,8 @@ public class Player_riding : MonoBehaviour
 
     void FixedUpdate()
     {
-        float h = -Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        float h = -Input.GetAxis(horAxis);
+        float v = Input.GetAxis(verAxis);
 
         Vector2 speed = transform.up * (v * acceleration);
         rb.AddForce(speed);

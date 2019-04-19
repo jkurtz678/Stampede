@@ -5,26 +5,31 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    public float speed;
-
+    // Normal Movements Variables
+    private float walkSpeed;
+    private float curSpeed;
+    private float maxSpeed;
+    private float sprintSpeed;
     private Rigidbody2D rb;
-    private Vector2 moveVelocity;
 
-    // Start is called before the first frame update
+    public float speed;
+    public float agility;
+
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        walkSpeed = (float)(speed + (agility / 5));
+        sprintSpeed = walkSpeed + (walkSpeed / 2);
+
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        moveVelocity = moveInput.normalized * speed; //normalized to make diagonal movement same speed
-    }
+        curSpeed = walkSpeed;
+        maxSpeed = curSpeed;
 
-    private void FixedUpdate()
-    {
-        rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
+        // Move senteces
+        rb.velocity = new Vector2(Mathf.Lerp(0, Input.GetAxis("P1_Horizontal") * curSpeed, 0.8f),
+                                             Mathf.Lerp(0, Input.GetAxis("P1_Vertical") * curSpeed, 0.8f));
     }
 }

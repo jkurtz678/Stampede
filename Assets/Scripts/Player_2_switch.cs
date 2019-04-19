@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_switch : MonoBehaviour
+public class Player_2_switch : MonoBehaviour
 {
     private GameObject player_game_obj;
     private GameObject closestBoid;
@@ -12,13 +12,13 @@ public class Player_switch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player_game_obj = GameObject.Find("Player");
+        player_game_obj = GameObject.Find("Player2");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && controlType == false)
+        if (Input.GetKeyDown(KeyCode.Space) && controlType == false)
         {
             controlType = true;
             closestBoid = FindClosestBoid();
@@ -28,17 +28,17 @@ public class Player_switch : MonoBehaviour
             //Alter components of player and boid for force movement.
             closestBoid.GetComponent<Buffaloid>().enabled = false;
             closestBoid.GetComponent<Rigidbody2D>().isKinematic = true;
-            player_game_obj.GetComponent<Player>().enabled = false;
+            player_game_obj.GetComponent<Player_2>().enabled = false;
             player_game_obj.GetComponent<Collider2D>().enabled = false;
             player_game_obj.GetComponent<Player_riding>().enabled = true;
             closestBoid.transform.parent = player_game_obj.transform;
         }
-        else if(Input.GetKeyDown(KeyCode.E) && controlType == true)
+        else if(Input.GetKeyDown(KeyCode.Space) && controlType == true)
         {
             controlType = false;
             player_game_obj.GetComponent<Player_riding>().enabled = false;
             player_game_obj.GetComponent<Collider2D>().enabled = true;
-            player_game_obj.GetComponent<Player>().enabled = true;
+            player_game_obj.GetComponent<Player_2>().enabled = true;
             closestBoid.GetComponent<Buffaloid>().enabled = true;
             closestBoid.GetComponent<Rigidbody2D>().isKinematic = false;
         }
