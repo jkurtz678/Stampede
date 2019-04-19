@@ -97,7 +97,7 @@ public class Buffaloid : MonoBehaviour
         if (move != Vector2.zero)
         {
             float rotSpeedRatio = forceRotate(mv);
-            Debug.Log("rotspeedratio: " + rotSpeedRatio);
+            //Debug.Log("rotspeedratio: " + rotSpeedRatio);
             //if( rotSpeedRatio < .6)
             //{
             //    rotSpeedRatio = 0.6f;
@@ -114,7 +114,7 @@ public class Buffaloid : MonoBehaviour
     float forceRotate(Vector2 mv) 
     {
         float currRot = transform.eulerAngles.z;
-        Debug.Log("currRot: " + currRot);
+        //Debug.Log("currRot: " + currRot);
 
         if (currRot > 180f)
         {
@@ -122,8 +122,8 @@ public class Buffaloid : MonoBehaviour
         }
         float targetDegree = -1*Vector2.SignedAngle(mv, transform.up);
 
-        Debug.Log("currRot: " + currRot);
-        Debug.Log("targetDegree: " + targetDegree);
+        //Debug.Log("currRot: " + currRot);
+        //Debug.Log("targetDegree: " + targetDegree);
         float horizontalAxis = 0f;
         if (targetDegree < 0) {
             horizontalAxis = -1;
@@ -135,21 +135,21 @@ public class Buffaloid : MonoBehaviour
 
         float direction = Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.up));
         float mvDegree = -1 * Vector2.SignedAngle(mv, Vector2.up);
-        Debug.Log("direction: " + direction);
-        Debug.Log("targetDegree: " + targetDegree);
-        Debug.Log("currRot: " + currRot);
-        Debug.Log("mvDegree: " + mvDegree);
+        //Debug.Log("direction: " + direction);
+        //Debug.Log("targetDegree: " + targetDegree);
+        //Debug.Log("currRot: " + currRot);
+        //Debug.Log("mvDegree: " + mvDegree);
 
 
         float rotationUnit = horizontalAxis * rotationSpeed * (rb.velocity.magnitude / 2.0f);
-        Debug.Log("rotationUnit: " + rotationUnit);
-        Debug.Log("diffRot: " + Mathf.Abs(currRot - targetDegree));
+        //Debug.Log("rotationUnit: " + rotationUnit);
+        //Debug.Log("diffRot: " + Mathf.Abs(currRot - targetDegree));
 
         if (direction >= 0.0f)
         { 
             if ( Mathf.Abs(currRot - mvDegree) < rotationUnit)
             {
-                Debug.Log("within turn distance");
+                //Debug.Log("within turn distance");
                 rb.rotation = mvDegree;
             }
             else
@@ -164,7 +164,7 @@ public class Buffaloid : MonoBehaviour
 
             if (Mathf.Abs(currRot - mvDegree) < rotationUnit)
             {
-                Debug.Log("within turn distance");
+                //Debug.Log("within turn distance");
 
                 rb.rotation = mvDegree;
             }
@@ -223,8 +223,8 @@ public class Buffaloid : MonoBehaviour
             speed = Vector2.zero;
         }
 
-        Debug.Log("speed vector: " + speed);
-        Debug.Log("rb vector: " + speed);
+        //Debug.Log("speed vector: " + speed);
+        //Debug.Log("rb vector: " + speed);
         rb.AddForce(speed);
 
         // prevent object from going over its max speed

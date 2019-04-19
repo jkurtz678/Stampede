@@ -15,14 +15,14 @@ public class Player_riding : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
         float h = -Input.GetAxis(horAxis);
         float v = Input.GetAxis(verAxis);
-
+        Debug.Log(v);
         Vector2 speed = transform.up * (v * acceleration);
         rb.AddForce(speed);
 
