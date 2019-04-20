@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BuffaloidState;
 
 public class Buffaloid : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class Buffaloid : MonoBehaviour
     public float alignWeight;
     public float cohesionWeight;
 
+    //state stuff
+    public bool switchState = false;
+    public StateMachine<Buffaloid> stateMachine { get; set; }
+    public Vector2 currentMove;
+
     private Rigidbody2D rb;
     private Vector2 move;
     private float acceleration;
@@ -32,6 +38,10 @@ public class Buffaloid : MonoBehaviour
         avoidTags.Add("Boids");
         avoidTags.Add("Obstacle");
         //forwardVelocity = 0f;
+
+        //state initialization
+        stateMachine = new StateMachine<Buffaloid>(this);
+        stateMachine.ChangeState(IdleState.Instance);
     }
 
     //returns vector pointing away from average concentration of nearby objects,
@@ -50,7 +60,7 @@ public class Buffaloid : MonoBehaviour
             }
         }
 
-        Debug.Log("hit colliders: " + hitColliders.Length);
+        //Debug.Log("hit colliders: " + hitColliders.Length);
         //if more nearby objects than self
         if (avoidColliders.Count > 0)
         {
@@ -99,7 +109,7 @@ public class Buffaloid : MonoBehaviour
     }
 
     //moves object towards vector
-    void moveObject(Vector2 mv)
+    public void moveObject(Vector2 mv)
     {
         float step = maxSpeed * Time.deltaTime;
         //Debug.Log("accel: " + acceleration);
@@ -387,10 +397,21 @@ public class Buffaloid : MonoBehaviour
             + (cohesionWeight * cohesionDir) + (alignWeight * alignmentDir);
         //move = avoidDir + edgeAvoidDir;
 
+        currentMove = move;
         //Debug.DrawRay(transform.position, move, Color.blue);
         //Debug.Log("move dir: " + move);
 
+        if(currentMove == Vector2.zero && stateMachine.currentState is PackState )
+        {
+            switchState = true;
+        }
+        else if(currentMove != Vector2.zero && stateMachine.currentState is IdleState )
+        {
+            switchState = true;
+        }
 
-        moveObject(move);
+        //moveObject(move);
+
+        stateMachine.Update();
     }
 }

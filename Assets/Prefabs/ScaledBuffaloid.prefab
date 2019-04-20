@@ -118,14 +118,14 @@ MonoBehaviour:
   maxSpeed: 10
   timeZeroToMax: 2
   rotationSpeed: 3
-  separation_radius: 0.8
+  separation_radius: 0.6
   edge_separation: 100
-  friend_radius: 1
+  friend_radius: 1.5
   forwardVelocity: 0
-  avoidWeight: 10
-  avoidEdgeWeight: 4
+  avoidWeight: 6
+  avoidEdgeWeight: 15
   alignWeight: 1
-  cohesionWeight: 0.05
+  cohesionWeight: 0.1
 --- !u!60 &8628774108898105816
 PolygonCollider2D:
   m_ObjectHideFlags: 0

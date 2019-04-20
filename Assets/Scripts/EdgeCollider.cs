@@ -20,18 +20,21 @@ public class EdgeCollider : MonoBehaviour
         Vector2[] colliderpoints;
 
         EdgeCollider2D upperEdge = new GameObject("upperEdge").AddComponent<EdgeCollider2D>();
+        upperEdge.tag = "edge";
         colliderpoints = upperEdge.points;
         colliderpoints[0] = new Vector2(lDCorner.x, rUCorner.y);
         colliderpoints[1] = new Vector2(rUCorner.x, rUCorner.y);
         upperEdge.points = colliderpoints;
 
         EdgeCollider2D lowerEdge = new GameObject("lowerEdge").AddComponent<EdgeCollider2D>();
+        lowerEdge.tag = "edge";
         colliderpoints = lowerEdge.points;
         colliderpoints[0] = new Vector2(lDCorner.x, lDCorner.y);
         colliderpoints[1] = new Vector2(rUCorner.x, lDCorner.y);
         lowerEdge.points = colliderpoints;
 
         EdgeCollider2D leftEdge = new GameObject("leftEdge").AddComponent<EdgeCollider2D>();
+        leftEdge.tag = "edge";
         colliderpoints = leftEdge.points;
         colliderpoints[0] = new Vector2(lDCorner.x, lDCorner.y);
         colliderpoints[1] = new Vector2(lDCorner.x, rUCorner.y);
@@ -40,6 +43,7 @@ public class EdgeCollider : MonoBehaviour
         EdgeCollider2D rightEdge = new GameObject("rightEdge").AddComponent<EdgeCollider2D>();
 
         colliderpoints = rightEdge.points;
+        rightEdge.tag = "edge";
         colliderpoints[0] = new Vector2(rUCorner.x, rUCorner.y);
         colliderpoints[1] = new Vector2(rUCorner.x, lDCorner.y);
         rightEdge.points = colliderpoints;
