@@ -6,6 +6,9 @@ using BuffaloidState;
 public class IdleState : State<Buffaloid>
 {
     private static IdleState _instance;
+    private float timer;
+    private bool idling;
+    private Vector2 randDir;
 
 
     //private constructor called from buffaloid
@@ -34,6 +37,8 @@ public class IdleState : State<Buffaloid>
     public override void EnterState(Buffaloid _owner)
     {
         Debug.Log("Entering Idle State");
+        timer = Random.Range(3f,8f);
+        idling = true;
     }
 
     public override void ExitState(Buffaloid _owner)
@@ -41,6 +46,24 @@ public class IdleState : State<Buffaloid>
         Debug.Log("Exiting Idle State");
 
     }
+
+    //called to switch between standing still and moving in random direction
+    void idleSwitch()
+    {
+        timer = Random.Range(8f, 15f);
+        if (idling)
+        {
+            idling = false;
+            randDir = Random.insideUnitCircle.normalized;
+            Debug.Log("moving in random direction: " + randDir);
+        }
+        else
+        {
+            idling = true;
+            Debug.Log("now idling and decelerating");
+        }
+    } 
+
 
     public override void UpdateState(Buffaloid _owner)
     {
@@ -50,7 +73,26 @@ public class IdleState : State<Buffaloid>
             _owner.switchState = false;
         }
 
-        Debug.Log("Some idle behavior");
+        timer -= Time.deltaTime;
 
+        if(timer < 0f)
+        {
+            idleSwitch();
+        }
+        Debug.Log("time idle: " + timer);
+
+        if(idling)
+        {
+            Debug.Log("decelerating");
+
+            _owner.moveObject(Vector2.zero, 0f);
+
+        }
+        else
+        {
+            Debug.Log("moving in rand dir: " + randDir);
+
+            _owner.moveObject(randDir, 0.5f);
+        }
     }
 }
