@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+
         myAngle = 0;
         rb = gameObject.GetComponent<Rigidbody2D>();
         walkSpeed = (float)(speed + (agility / 5));

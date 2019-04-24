@@ -8,7 +8,7 @@ public class Player_collision : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D obj)
     {
-        if (obj.gameObject.tag == "Boids")
+        if (obj.gameObject.tag == "Boids" | obj.gameObject.tag == "Rider")
         {
             Vector3 dir = obj.transform.position - transform.position;
             if (Vector3.Angle(dir, obj.transform.up * -1) <= 22.5)
