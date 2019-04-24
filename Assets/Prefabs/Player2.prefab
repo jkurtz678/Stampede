@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3465815255240526706}
   - component: {fileID: 3465815255240526705}
   - component: {fileID: 8480612434524418940}
-  - component: {fileID: 3465815255240526719}
   - component: {fileID: 6309376306255958296}
   - component: {fileID: 3465815255240526708}
   - component: {fileID: 3465815255240526707}
@@ -98,23 +97,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   agility: 5
---- !u!114 &3465815255240526719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3465815255240526718}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c9015d48467df74e82a2a752a60d24e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  acceleration: 3
-  steering: 3
-  maxSpeed: 5
-  horAxis: P2_Horizontal
-  verAxis: P2_Vertical
 --- !u!114 &6309376306255958296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,6 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5fc6d3b12ed71d4ebd1832fe937e94e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathVelocity: 1
 --- !u!50 &3465815255240526708
 Rigidbody2D:
   serializedVersion: 4
