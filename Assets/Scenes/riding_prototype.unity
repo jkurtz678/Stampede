@@ -345,8 +345,8 @@ MonoBehaviour:
   spawnSpots:
   - {fileID: 1976662285}
   - {fileID: 86207331}
-  startTimeBtwSpawns: 0
-  maxSpawnCount: 2
+  startTimeBtwSpawns: 1
+  maxSpawnCount: 20
 --- !u!4 &1701722435
 Transform:
   m_ObjectHideFlags: 0

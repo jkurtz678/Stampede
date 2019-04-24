@@ -9,6 +9,7 @@ public class Player_2 : MonoBehaviour
     private float curSpeed;
     private float maxSpeed;
     private float sprintSpeed;
+    private float myAngle;
     private Rigidbody2D rb;
 
     public float speed;
@@ -16,10 +17,23 @@ public class Player_2 : MonoBehaviour
 
     void Start()
     {
+        myAngle = 0;
         rb = gameObject.GetComponent<Rigidbody2D>();
         walkSpeed = (float)(speed + (agility / 5));
         sprintSpeed = walkSpeed + (walkSpeed / 2);
 
+    }
+
+    private void Update()
+    {
+        //Rotate towards movement
+        float horAxis = -Input.GetAxis("P2_Horizontal");
+        float verAxis = Input.GetAxis("P2_Vertical");
+        if (horAxis != 0 | verAxis != 0)
+        {
+            myAngle = Mathf.Atan2(horAxis, verAxis) * Mathf.Rad2Deg;
+        }
+        gameObject.transform.rotation = Quaternion.AngleAxis(myAngle, Vector3.forward);
     }
 
     void FixedUpdate()
