@@ -51,7 +51,8 @@ public class PackState : State<Buffaloid>
 
         }
 
-        Debug.Log("calling move in PackState");
-        _owner.moveObject(_owner.currentMove);
+        Debug.Log("calling move in PackState: " + _owner.currentMove);
+
+        _owner.moveObject(_owner.currentMove, 1f);
     }
 }
