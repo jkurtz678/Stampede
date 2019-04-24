@@ -7,7 +7,7 @@ public class Player_collision : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D obj)
     {
-        if (obj.gameObject.tag == "Boid")
+        if (obj.gameObject.tag == "Boids")
         {
             Vector3 dir = obj.transform.position - transform.position;
             if (Vector3.Angle(dir, obj.transform.up * -1) <= 22.5)
