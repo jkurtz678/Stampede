@@ -7,10 +7,17 @@ public class Player_collision : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D obj)
     {
-        Vector3 dir = obj.transform.position - transform.position;
-        if (Vector3.Angle(dir, obj.transform.up) <= 22.5)
+        if (obj.gameObject.tag == "Boid")
         {
-            Debug.Log("Hitting on the movement direction side");
+            Vector3 dir = obj.transform.position - transform.position;
+            if (Vector3.Angle(dir, obj.transform.up * -1) <= 22.5)
+            {
+                if (obj.relativeVelocity.magnitude > 2)
+                {
+                    //DEATH the player died
+                    gameObject.SetActive(false);
+                }
+            }
         }
     }
 }
