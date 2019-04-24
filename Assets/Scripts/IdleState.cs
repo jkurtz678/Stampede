@@ -5,13 +5,14 @@ using BuffaloidState;
 
 public class IdleState : State<Buffaloid>
 {
-    private static IdleState _instance;
+    //private static IdleState _instance;
     private float timer;
     private bool idling;
     private Vector2 randDir;
 
-
+    /*
     //private constructor called from buffaloid
+
     private IdleState()
     {
         if(_instance != null)
@@ -32,7 +33,7 @@ public class IdleState : State<Buffaloid>
             }
             return _instance;
         }
-    }
+    }*/
 
     public override void EnterState(Buffaloid _owner)
     {
@@ -67,10 +68,9 @@ public class IdleState : State<Buffaloid>
 
     public override void UpdateState(Buffaloid _owner)
     {
-        if (_owner.switchState)
+        if (_owner.currentMove != Vector2.zero)
         {
-            _owner.stateMachine.ChangeState(PackState.Instance);
-            _owner.switchState = false;
+            _owner.stateMachine.ChangeState(new PackState());
         }
 
         timer -= Time.deltaTime;

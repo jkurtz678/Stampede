@@ -19,7 +19,7 @@ public class Buffaloid : MonoBehaviour
     public float cohesionWeight;
 
     //state stuff
-    public bool switchState = false;
+    //public bool switchState = false;
     public StateMachine<Buffaloid> stateMachine { get; set; }
     public Vector2 currentMove;
 
@@ -34,14 +34,14 @@ public class Buffaloid : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         acceleration = maxSpeed / timeZeroToMax;
         avoidTags = new List<string>();
-        avoidTags.Add("Player");
+        //avoidTags.Add("Player");
         avoidTags.Add("Boids");
         avoidTags.Add("Obstacle");
         //forwardVelocity = 0f;
 
         //state initialization
         stateMachine = new StateMachine<Buffaloid>(this);
-        stateMachine.ChangeState(IdleState.Instance);
+        stateMachine.ChangeState(new IdleState());
     }
 
     //returns vector pointing away from average concentration of nearby objects,
@@ -206,7 +206,7 @@ public class Buffaloid : MonoBehaviour
         //float step = maxSpeed * Time.deltaTime;
         //Debug.Log("accel: " + acceleration);
         //Debug.Log("forwardVelocity: " + forwardVelocity);
-        Debug.DrawRay(transform.position, mv, Color.blue);
+        Debug.DrawRay(transform.position, mv.normalized, Color.blue);
 
         //if buffaloid is moving to a point
         if (mv != Vector2.zero)
@@ -272,7 +272,7 @@ public class Buffaloid : MonoBehaviour
             {
                 rb.rotation += rotationUnit;
             }
-            rb.AddTorque((horizontalAxis * rotationSpeed) * (rb.velocity.magnitude / 10.0f));
+            //rb.AddTorque((horizontalAxis * rotationSpeed) * (rb.velocity.magnitude / 10.0f));
         }
         else
         {
@@ -288,7 +288,7 @@ public class Buffaloid : MonoBehaviour
             {
                 rb.rotation -= rotationUnit;
             }
-            rb.AddTorque((-horizontalAxis * rotationSpeed) * (rb.velocity.magnitude / 10.0f));
+            //rb.AddTorque((-horizontalAxis * rotationSpeed) * (rb.velocity.magnitude / 10.0f));
         }
 
         addDriftForce();
@@ -322,7 +322,6 @@ public class Buffaloid : MonoBehaviour
 
         Vector2 relativeForce = (rightAngleFromForward.normalized * -1.0f) * (driftForce * 10.0f);
 
-
         Debug.DrawLine((Vector3)rb.position, (Vector3)rb.GetRelativePoint(relativeForce), Color.grey);
 
         rb.AddForce(rb.GetRelativeVector(relativeForce));
@@ -341,7 +340,9 @@ public class Buffaloid : MonoBehaviour
 
         //Debug.Log("speed vector: " + speed);
         //Debug.Log("rb vector: " + speed);
-        rb.AddForce(speed * rotSpeedRatio * speedMultiplier);
+        //rb.AddForce(speed * rotSpeedRatio * speedMultiplier);
+
+        rb.AddForce(speed * speedMultiplier);
 
         // prevent object from going over its max speed
         if (rotSpeedRatio >= 0 && rb.velocity.magnitude > maxSpeed)
@@ -375,8 +376,19 @@ public class Buffaloid : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, transform.up + transform.position, forwardVelocity * Time.deltaTime);
     }
 
+    public float getRBSpeed()
+    {
+        return rb.velocity.magnitude;
+    }
+
+    public void torqueRotate(float dir)
+    {
+        Debug.Log("torqueRotate call...");
+        rb.AddTorque(0.05f * dir);
+    }
+
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector2 avoidDir = getAvoid();
         Vector2 edgeAvoidDir = getAvoidEdges();
@@ -404,14 +416,6 @@ public class Buffaloid : MonoBehaviour
         currentMove = move;
         //Debug.Log("move dir: " + move);
 
-        if(currentMove == Vector2.zero && stateMachine.currentState is PackState )
-        {
-            switchState = true;
-        }
-        else if(currentMove != Vector2.zero && stateMachine.currentState is IdleState )
-        {
-            switchState = true;
-        }
 
         //moveObject(move);
 
