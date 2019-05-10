@@ -79,7 +79,7 @@ public class IdleState : State<Buffaloid>
         {
             idleSwitch();
         }
-        Debug.Log("time idle: " + timer);
+        //.Log("time idle: " + timer);
 
         if(idling)
         {

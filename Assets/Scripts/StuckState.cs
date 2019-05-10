@@ -30,7 +30,9 @@ public class StuckState : State<Buffaloid>
         }
         unstuckTimer -= Time.deltaTime; ;
 
-        _owner.torqueRotate(1);
+        //picks 1 or -1 at random to determine direction of turn to get unstuck
+        float randDir = Random.Range(0, 2) * 2 - 1;
+        _owner.torqueRotate(0.1f, randDir);
         Debug.Log("stuck state stuff");
 
     }
