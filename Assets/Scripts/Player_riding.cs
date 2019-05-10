@@ -34,13 +34,13 @@ public class Player_riding : MonoBehaviour
         float direction = Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.up));
         if (direction >= 0.0f)
         {
-            rb.rotation += h * steering * (rb.velocity.magnitude / 5.0f);
-            //rb.AddTorque((h * steering) * (rb.velocity.magnitude / 10.0f));
+            //rb.rotation += h * steering * (rb.velocity.magnitude / 5.0f);
+            rb.AddTorque((h * steering) * (rb.velocity.magnitude / 10.0f));
         }
         else
         {
-            rb.rotation -= h * steering * (rb.velocity.magnitude / 5.0f);
-            //rb.AddTorque((-h * steering) * (rb.velocity.magnitude / 10.0f));
+            //rb.rotation -= h * steering * (rb.velocity.magnitude / 5.0f);
+            rb.AddTorque((-h * steering) * (rb.velocity.magnitude / 10.0f));
         }
 
         Vector2 forward = new Vector2(0.0f, 0.5f);

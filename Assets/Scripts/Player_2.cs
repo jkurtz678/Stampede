@@ -41,7 +41,7 @@ public class Player_2 : MonoBehaviour
         curSpeed = walkSpeed;
         maxSpeed = curSpeed;
 
-        // Move senteces
+        // Move
         rb.velocity = new Vector2(Mathf.Lerp(0, Input.GetAxis("P2_Horizontal") * curSpeed, 0.8f),
                                              Mathf.Lerp(0, Input.GetAxis("P2_Vertical") * curSpeed, 0.8f));
     }

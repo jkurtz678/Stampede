@@ -94,9 +94,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c9015d48467df74e82a2a752a60d24e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 1.5
-  steering: 4
-  maxSpeed: 2.5
+  acceleration: 4
+  steering: 3
+  maxSpeed: 5
   horAxis: 
   verAxis: 
 --- !u!50 &5192761188157795235
@@ -113,7 +113,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.4
+  m_AngularDrag: 2.15
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
