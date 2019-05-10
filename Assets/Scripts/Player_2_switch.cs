@@ -31,22 +31,10 @@ public class Player_2_switch : MonoBehaviour
                 playerRider = Instantiate(rider, closestBoid.transform.position, closestBoid.transform.rotation);
                 playerRider.GetComponent<Player_riding>().horAxis = "P2_Horizontal";
                 playerRider.GetComponent<Player_riding>().verAxis = "P2_Vertical";
+                playerRider.GetComponent<Rigidbody2D>().velocity = closestBoid.GetComponent<Rigidbody2D>().velocity;
                 closestBoid.SetActive(false);
                 player_game_obj.SetActive(false);
-                /*
-                player_game_obj.SetActive(false);
-                player_game_obj.transform.position = closestBoid.transform.position;
-                player_game_obj.transform.rotation = closestBoid.transform.rotation;
-                //Alter components of player and boid for force movement.
-                closestBoid.GetComponent<Buffaloid>().enabled = false;
-                closestBoid.GetComponent<Rigidbody2D>().isKinematic = true;
-                player_game_obj.GetComponent<Player_2>().enabled = false;
-                player_game_obj.GetComponent<Collider2D>().enabled = false;
-                player_game_obj.GetComponent<Player_riding>().enabled = true;
-                //Reset player velocity
-                player_game_obj.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                player_game_obj.GetComponent<Rigidbody2D>().angularVelocity = 0;
-                closestBoid.transform.parent = player_game_obj.transform;*/
+
             }
             else
             {
@@ -55,18 +43,19 @@ public class Player_2_switch : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Space) && controlType == true)
         {
+            Rigidbody2D rider_rb = playerRider.GetComponent<Rigidbody2D>();
+            Vector2 inheritVel = rider_rb.velocity;
+
             controlType = false;
             playerRider.SetActive(false);
             closestBoid.SetActive(true);
             player_game_obj.SetActive(true);
-            /*
-            player_game_obj.GetComponent<Player_riding>().enabled = false;
-            //player_game_obj.GetComponent<Collider2D>().enabled = true;
-            player_game_obj.GetComponent<Player>().enabled = true;
-            closestBoid.GetComponent<Buffaloid>().enabled = true;
-            closestBoid.GetComponent<Rigidbody2D>().isKinematic = false;
-            closestBoid.GetComponent<Collider2D>().enabled = true;
-            closestBoid.transform.parent = null;*/
+
+            closestBoid.transform.position = rider_rb.position;
+            closestBoid.transform.rotation = playerRider.transform.rotation;
+            closestBoid.GetComponent<Rigidbody2D>().velocity = inheritVel;
+            player_game_obj.transform.position = rider_rb.position + new Vector2(0, 1);
+            player_game_obj.transform.rotation = playerRider.transform.rotation;
         }
     }
 

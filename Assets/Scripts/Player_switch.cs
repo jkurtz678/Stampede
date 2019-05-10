@@ -10,7 +10,7 @@ public class Player_switch : MonoBehaviour
     private GameObject playerRider;
     private GameObject player_game_obj;
     private GameObject closestBoid;
-    //False = standard, True = riding
+    //False = walking, True = riding
     private bool controlType = false;
 
     // Start is called before the first frame update
@@ -31,8 +31,10 @@ public class Player_switch : MonoBehaviour
                 playerRider = Instantiate(rider, closestBoid.transform.position, closestBoid.transform.rotation);
                 playerRider.GetComponent<Player_riding>().horAxis = "P1_Horizontal";
                 playerRider.GetComponent<Player_riding>().verAxis = "P1_Vertical";
+                playerRider.GetComponent<Rigidbody2D>().velocity = closestBoid.GetComponent<Rigidbody2D>().velocity;
                 closestBoid.SetActive(false);
                 player_game_obj.SetActive(false);
+
                 /*
                 player_game_obj.transform.position = closestBoid.transform.position;
                 player_game_obj.transform.rotation = closestBoid.transform.rotation;
@@ -57,10 +59,20 @@ public class Player_switch : MonoBehaviour
         }
         else if(Input.GetKeyDown(KeyCode.E) && controlType == true)
         {
+            Rigidbody2D rider_rb = playerRider.GetComponent<Rigidbody2D>();
+            Vector2 inheritVel = rider_rb.velocity;
+
             controlType = false;
             playerRider.SetActive(false);
             closestBoid.SetActive(true);
             player_game_obj.SetActive(true);
+
+            closestBoid.transform.position = rider_rb.position;
+            closestBoid.transform.rotation = playerRider.transform.rotation;
+            closestBoid.GetComponent<Rigidbody2D>().velocity = inheritVel;
+            player_game_obj.transform.position = rider_rb.position + new Vector2(0, 1);
+            player_game_obj.transform.rotation = playerRider.transform.rotation;
+
             /*
             player_game_obj.GetComponent<Player_riding>().enabled = false;
             //player_game_obj.GetComponent<Collider2D>().enabled = true;
