@@ -18,11 +18,13 @@ public class Buffaloid : MonoBehaviour
     public float avoidEdgeWeight;
     public float alignWeight;
     public float cohesionWeight;
+    public float chargeSpeed;
 
     //state stuff
     //public bool switchState = false;
     public StateMachine<Buffaloid> stateMachine { get; set; }
     public Vector2 currentMove;
+    public Vector2 friendDir;
 
     private Rigidbody2D rb;
     private Vector2 move;
@@ -354,11 +356,12 @@ public class Buffaloid : MonoBehaviour
     //acelerates this buffaloid game object with rigidbody forces, moving it in a forward direction
     void ForceAccelerate(float rotSpeedRatio, float speedMultiplier)
     {
-        if( friendSpeed > basePackSpeed )
+
+        if( friendSpeed > basePackSpeed && Vector2.Dot(transform.up, friendDir) > 0)
         {
-            Debug.Log("faster accel...");
+            //Debug.Log("faster accel...");
             //acceleration = friendSpeed / timeZeroToMax;
-            acceleration = friendSpeed;
+            acceleration = friendSpeed + 1f;
         }
         else
         {
@@ -381,15 +384,15 @@ public class Buffaloid : MonoBehaviour
         */
         //rb.AddForce(speed * rotSpeedRatio * speedMultiplier);
 
-        if( rb.velocity.magnitude < basePackSpeed || rb.velocity.magnitude < friendSpeed )
+        if( rb.velocity.magnitude < basePackSpeed || (friendSpeed > basePackSpeed + .15f && rb.velocity.magnitude < friendSpeed + 0.4f) )
         {
-            rb.AddForce(speed * 3 * speedMultiplier);
+            rb.AddForce(speed * 4 * speedMultiplier);
         }
 
 
         if(rb.velocity.magnitude > basePackSpeed)
         {
-            Debug.Log("buffaloid above base pack speed");
+            //Debug.Log("buffaloid above base pack speed");
         }
 
         /*
@@ -457,15 +460,23 @@ public class Buffaloid : MonoBehaviour
         Debug.DrawRay(transform.position, edgeAvoidDir, Color.magenta);
         Debug.DrawRay(transform.position, cohesionDir, Color.green);
 
+        if( rb.velocity.magnitude > chargeSpeed )
+        {
+            avoidDir = Vector2.zero;
+            edgeAvoidDir = Vector2.zero;
+        }
+
         move = (avoidWeight * avoidDir) + (avoidEdgeWeight * edgeAvoidDir) 
             + (cohesionWeight * cohesionDir) + (alignWeight * alignmentDir);
         //move = avoidDir + edgeAvoidDir;
 
         currentMove = move;
+        friendDir = cohesionDir;
         //Debug.Log("move dir: " + move);
 
 
         //moveObject(move);
+
 
         stateMachine.Update();
     }

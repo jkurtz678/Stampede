@@ -94,9 +94,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c9015d48467df74e82a2a752a60d24e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 4
-  steering: 3
-  maxSpeed: 5
+  acceleration: 0.8
+  steering: 1
+  maxSpeed: 2
   horAxis: 
   verAxis: 
 --- !u!50 &5192761188157795235

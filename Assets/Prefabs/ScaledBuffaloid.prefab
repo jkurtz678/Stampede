@@ -95,7 +95,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 4
-  m_LinearDrag: 0.5
+  m_LinearDrag: 1
   m_AngularDrag: 0.4
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -116,18 +116,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 14
-  basePackSpeed: 1
+  basePackSpeed: 0.7
   timeZeroToMax: 2
-  rotationSpeed: 3
+  rotationSpeed: 2
   separation_radius: 0.6
   edge_separation: 100
-  friend_radius: 1.5
+  friend_radius: 2
   forwardVelocity: 0
   avoidWeight: 6
   avoidEdgeWeight: 15
   alignWeight: 1
   cohesionWeight: 0.1
   currentMove: {x: 0, y: 0}
+  friendDir: {x: 0, y: 0}
 --- !u!60 &8628774108898105816
 PolygonCollider2D:
   m_ObjectHideFlags: 0
