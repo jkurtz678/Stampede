@@ -19,7 +19,6 @@ public class StuckState : State<Buffaloid>
     public override void ExitState(Buffaloid _owner)
     {
         Debug.Log("Exiting Stuck State");
-
     }
 
     public override void UpdateState(Buffaloid _owner)
@@ -34,6 +33,7 @@ public class StuckState : State<Buffaloid>
         //picks 1 or -1 at random to determine direction of turn to get unstuck
         float randDir = Random.Range(0, 2) * 2 - 1;
         _owner.torqueRotate(0.7f, randDir);
+        _owner.reverseMove(1f);
         Debug.Log("stuck state stuff");
 
     }

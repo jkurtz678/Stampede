@@ -381,14 +381,6 @@ public class Buffaloid : MonoBehaviour
         {
             speed = Vector2.zero;
         }
-        /*
-        Debug.Log("speed: " + speed);
-        Debug.Log("accel: " + acceleration);
-        Debug.Log("rb.velocity.mag: " + rb.velocity.magnitude);
-        Debug.Log("base pack speed: " + basePackSpeed);
-        Debug.Log("friend speed: " + friendSpeed);
-        */
-        //rb.AddForce(speed * rotSpeedRatio * speedMultiplier);
 
         if( rb.velocity.magnitude < targetSpeed || (friendSpeed > targetSpeed + .15f && rb.velocity.magnitude < friendSpeed + 0.4f) )
         {
@@ -396,47 +388,27 @@ public class Buffaloid : MonoBehaviour
         }
 
 
-        /*
-        // prevent object from going over its max speed
-        if (rotSpeedRatio >= 0 && rb.velocity.magnitude > maxSpeed)
-        {
-            rb.velocity = rb.velocity.normalized * maxSpeed;
-        }*/
     }
-
-    //acelerates this buffaloid game object, moving it in a forward direction
-    //rotSpeedRatio : float between 0 - 1 that is multiplied with acceleration
-    /*void Accelerate(float rotSpeedRatio)
-    {
-        //Debug.Log("Accelerating...");
-
-        forwardVelocity += rotSpeedRatio * acceleration * Time.deltaTime;
-        forwardVelocity = Mathf.Min(forwardVelocity, maxSpeed);
-        //Debug.Log("trans.pos:" + transform.position);
-        //Debug.Log("trans.up:" + transform.up);
-        transform.position = Vector2.MoveTowards(transform.position, transform.up + transform.position, forwardVelocity * Time.deltaTime);
-    }*/
-
-    //decelerates this buffaloid game object, moving it in a forward direction
-    /*void Decelerate(float rotSpeedRatio)
-    {
-        //Debug.Log("Decelerating...");
-
-        forwardVelocity -= (rotSpeedRatio * -1) * acceleration * Time.deltaTime;
-        forwardVelocity = Mathf.Max(0, forwardVelocity);
-
-        transform.position = Vector2.MoveTowards(transform.position, transform.up + transform.position, forwardVelocity * Time.deltaTime);
-    }*/
 
     public float getRBSpeed()
     {
         return rb.velocity.magnitude;
     }
 
+    //rotates object in stuck state
     public void torqueRotate(float mag, float dir)
     {
         Debug.Log("torqueRotate call...");
         rb.AddTorque(mag * dir);
+    }
+
+    //reverse movement called from stuck state
+    public void reverseMove(float speed )
+    {
+
+        Vector2 backwardsForce = transform.up * -1;
+        Debug.DrawRay(transform.position, backwardsForce, Color.yellow);
+        rb.AddForce(backwardsForce * speed);
     }
 
     /*public Vector2 findMove()

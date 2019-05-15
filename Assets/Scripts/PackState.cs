@@ -63,7 +63,7 @@ public class PackState : State<Buffaloid>
             {
                 _owner.stateMachine.ChangeState(new StuckState());
             }
-            else if(_owner.getRBSpeed() > 0.01f )
+            else if(_owner.getRBSpeed() > 0.1f )
             {
                 Debug.Log("stuck to false");
 
@@ -76,7 +76,7 @@ public class PackState : State<Buffaloid>
             {
                 Debug.Log("stuck to true");
 
-                stuckTimer = 3f;
+                stuckTimer = 1f;
                 stuck = true;
             }
         }
@@ -116,13 +116,18 @@ public class PackState : State<Buffaloid>
 
     public override void UpdateState(Buffaloid _owner)
     {
-    
+
+ 
         idleCheck(_owner);
         stuckCheck(_owner);
         chargeCheck(_owner );
 
         //Debug.Log("forwardVelocity " + _owner.getRBSpeed());
+        //Debug.Log("stuck: " + stuck);
+
         Debug.Log("stuck: " + stuck);
+        Debug.Log("speed: " + _owner.getRBSpeed());
+
         //Debug.Log("stuckTimer: " + stuckTimer);
 
         //Debug.Log("calling move in PackState: " + _owner.currentMove);
