@@ -13,6 +13,7 @@ public class StuckState : State<Buffaloid>
     {
         unstuckTimer = 3f;
         Debug.Log("Entering Stuck State");
+        _owner.gameObject.GetComponent<SpriteRenderer>().color = Color.magenta;
     }
 
     public override void ExitState(Buffaloid _owner)
@@ -32,7 +33,7 @@ public class StuckState : State<Buffaloid>
 
         //picks 1 or -1 at random to determine direction of turn to get unstuck
         float randDir = Random.Range(0, 2) * 2 - 1;
-        _owner.torqueRotate(0.5f, randDir);
+        _owner.torqueRotate(0.7f, randDir);
         Debug.Log("stuck state stuff");
 
     }

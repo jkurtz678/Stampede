@@ -43,6 +43,7 @@ public class PackState : State<Buffaloid>
         stuck = false;
         idling = false;
         idleTimer = 1f;
+        _owner.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     public override void ExitState(Buffaloid _owner)
@@ -71,7 +72,7 @@ public class PackState : State<Buffaloid>
         }
         else
         {
-            if(_owner.getRBSpeed() <= 0.01f)
+            if(_owner.getRBSpeed() <= 0.05f)
             {
                 Debug.Log("stuck to true");
 
@@ -105,15 +106,20 @@ public class PackState : State<Buffaloid>
         }
     }
 
+    void chargeCheck(Buffaloid _owner)
+    {
+        if (_owner.getRBSpeed() > _owner.chargeSpeed)
+        {
+            _owner.stateMachine.ChangeState(new ChargeState());
+        }
+    }
+
     public override void UpdateState(Buffaloid _owner)
     {
-        /*
-        if(_owner.currentMove == Vector2.zero)
-        {
-            _owner.stateMachine.ChangeState(new IdleState() );
-        }*/
+    
         idleCheck(_owner);
         stuckCheck(_owner);
+        chargeCheck(_owner );
 
         //Debug.Log("forwardVelocity " + _owner.getRBSpeed());
         Debug.Log("stuck: " + stuck);

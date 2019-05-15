@@ -6,8 +6,7 @@ using BuffaloidState;
 public class Buffaloid : MonoBehaviour
 {
 
-    public float maxSpeed;
-    public float basePackSpeed;
+    //public float maxSpeed;
     public float timeZeroToMax;
     public float rotationSpeed;
     public float separation_radius;
@@ -225,9 +224,16 @@ public class Buffaloid : MonoBehaviour
         }
     }
 
+    /*
+    public void charge(float speedMultiplier)
+    {
+        acceleration = basePackSpeed;
+        Vector2 speed = transform.up * acceleration;
+        rb.AddForce(speed * 4 * speedMultiplier);
+    }*/
 
     //moves object towards vector, speed multiplier depends on state of buffaloid
-    public void moveObject(Vector2 mv, float speedMultiplier)
+    public void moveObject(Vector2 mv, float targetSpeed)
     {
         //float step = maxSpeed * Time.deltaTime;
         //Debug.Log("accel: " + acceleration);
@@ -243,7 +249,7 @@ public class Buffaloid : MonoBehaviour
             //{
             //    rotSpeedRatio = 0.6f;
             //}
-            ForceAccelerate(rotSpeedRatio, speedMultiplier);
+            ForceAccelerate(rotSpeedRatio, targetSpeed);
         }
         //decelerate
         /*else
@@ -354,10 +360,10 @@ public class Buffaloid : MonoBehaviour
     }
 
     //acelerates this buffaloid game object with rigidbody forces, moving it in a forward direction
-    void ForceAccelerate(float rotSpeedRatio, float speedMultiplier)
+    void ForceAccelerate(float rotSpeedRatio, float targetSpeed)
     {
 
-        if( friendSpeed > basePackSpeed && Vector2.Dot(transform.up, friendDir) > 0)
+        if( friendSpeed > targetSpeed && Vector2.Dot(transform.up, friendDir) > 0)
         {
             //Debug.Log("faster accel...");
             //acceleration = friendSpeed / timeZeroToMax;
@@ -366,9 +372,9 @@ public class Buffaloid : MonoBehaviour
         else
         {
             //acceleration = basePackSpeed / timeZeroToMax;
-            acceleration = basePackSpeed;
+            acceleration = targetSpeed;
         }
-        Vector2 speed = transform.up * acceleration ;
+        Vector2 speed = transform.up * acceleration;
 
         //prevents deceleration from moving buffalo backwards
         if (rotSpeedRatio < 0 && rb.velocity.magnitude < speed.magnitude)
@@ -384,16 +390,11 @@ public class Buffaloid : MonoBehaviour
         */
         //rb.AddForce(speed * rotSpeedRatio * speedMultiplier);
 
-        if( rb.velocity.magnitude < basePackSpeed || (friendSpeed > basePackSpeed + .15f && rb.velocity.magnitude < friendSpeed + 0.4f) )
+        if( rb.velocity.magnitude < targetSpeed || (friendSpeed > targetSpeed + .15f && rb.velocity.magnitude < friendSpeed + 0.4f) )
         {
-            rb.AddForce(speed * 4 * speedMultiplier);
+            rb.AddForce(speed * 4);
         }
 
-
-        if(rb.velocity.magnitude > basePackSpeed)
-        {
-            //Debug.Log("buffaloid above base pack speed");
-        }
 
         /*
         // prevent object from going over its max speed
@@ -405,7 +406,7 @@ public class Buffaloid : MonoBehaviour
 
     //acelerates this buffaloid game object, moving it in a forward direction
     //rotSpeedRatio : float between 0 - 1 that is multiplied with acceleration
-    void Accelerate(float rotSpeedRatio)
+    /*void Accelerate(float rotSpeedRatio)
     {
         //Debug.Log("Accelerating...");
 
@@ -414,10 +415,10 @@ public class Buffaloid : MonoBehaviour
         //Debug.Log("trans.pos:" + transform.position);
         //Debug.Log("trans.up:" + transform.up);
         transform.position = Vector2.MoveTowards(transform.position, transform.up + transform.position, forwardVelocity * Time.deltaTime);
-    }
+    }*/
 
     //decelerates this buffaloid game object, moving it in a forward direction
-    void Decelerate(float rotSpeedRatio)
+    /*void Decelerate(float rotSpeedRatio)
     {
         //Debug.Log("Decelerating...");
 
@@ -425,7 +426,7 @@ public class Buffaloid : MonoBehaviour
         forwardVelocity = Mathf.Max(0, forwardVelocity);
 
         transform.position = Vector2.MoveTowards(transform.position, transform.up + transform.position, forwardVelocity * Time.deltaTime);
-    }
+    }*/
 
     public float getRBSpeed()
     {
@@ -437,6 +438,11 @@ public class Buffaloid : MonoBehaviour
         Debug.Log("torqueRotate call...");
         rb.AddTorque(mag * dir);
     }
+
+    /*public Vector2 findMove()
+    {
+
+    }*/
 
     // Update is called once per frame
     void FixedUpdate()
@@ -460,11 +466,6 @@ public class Buffaloid : MonoBehaviour
         Debug.DrawRay(transform.position, edgeAvoidDir, Color.magenta);
         Debug.DrawRay(transform.position, cohesionDir, Color.green);
 
-        if( rb.velocity.magnitude > chargeSpeed )
-        {
-            avoidDir = Vector2.zero;
-            edgeAvoidDir = Vector2.zero;
-        }
 
         move = (avoidWeight * avoidDir) + (avoidEdgeWeight * edgeAvoidDir) 
             + (cohesionWeight * cohesionDir) + (alignWeight * alignmentDir);

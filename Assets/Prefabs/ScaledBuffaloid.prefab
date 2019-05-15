@@ -127,6 +127,7 @@ MonoBehaviour:
   avoidEdgeWeight: 15
   alignWeight: 1
   cohesionWeight: 0.1
+  chargeSpeed: 2
   currentMove: {x: 0, y: 0}
   friendDir: {x: 0, y: 0}
 --- !u!60 &8628774108898105816
