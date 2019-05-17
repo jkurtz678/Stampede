@@ -6,6 +6,7 @@ public class Player_2_switch : MonoBehaviour
 {
     public float ridingBoundary;
     public GameObject rider;
+    public float bumpForce2;
 
     private GameObject playerRider;
     private GameObject player_game_obj;
@@ -22,7 +23,7 @@ public class Player_2_switch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && controlType == false)
+        if (player_game_obj.activeInHierarchy == true && Input.GetKeyDown(KeyCode.Space) && controlType == false)
         {
             controlType = true;
             closestBoid = FindClosestBoid(player_game_obj);
@@ -31,6 +32,10 @@ public class Player_2_switch : MonoBehaviour
                 playerRider = Instantiate(rider, closestBoid.transform.position, closestBoid.transform.rotation);
                 playerRider.GetComponent<Player_riding>().horAxis = "P2_Horizontal";
                 playerRider.GetComponent<Player_riding>().verAxis = "P2_Vertical";
+
+                playerRider.GetComponent<Rider_collision>().enemyRiderStr = "Rider1";
+                playerRider.tag = "Rider2";
+
                 playerRider.GetComponent<Rigidbody2D>().velocity = closestBoid.GetComponent<Rigidbody2D>().velocity;
                 closestBoid.SetActive(false);
                 player_game_obj.SetActive(false);
@@ -47,6 +52,25 @@ public class Player_2_switch : MonoBehaviour
             Vector2 inheritVel = rider_rb.velocity;
 
             controlType = false;
+            //playerRider.SetActive(false);
+            closestBoid.SetActive(true);
+            player_game_obj.SetActive(true);
+
+            closestBoid.transform.position = playerRider.transform.position;
+            closestBoid.transform.rotation = playerRider.transform.rotation;
+            closestBoid.GetComponent<Rigidbody2D>().velocity = inheritVel;
+
+            player_game_obj.transform.position = playerRider.transform.position - playerRider.transform.up + new Vector3(-1, -1, 0);
+            player_game_obj.transform.rotation = playerRider.transform.rotation;
+            Destroy(playerRider);
+        }
+        else if (playerRider != null && playerRider.GetComponent<Rider_collision>().bumpOff == true && controlType == true)
+        {
+            Rigidbody2D rider_rb = playerRider.GetComponent<Rigidbody2D>();
+            Rider_collision collisionScript = playerRider.GetComponent<Rider_collision>();
+            Vector2 inheritVel = rider_rb.velocity;
+
+            controlType = false;
             playerRider.SetActive(false);
             closestBoid.SetActive(true);
             player_game_obj.SetActive(true);
@@ -54,8 +78,11 @@ public class Player_2_switch : MonoBehaviour
             closestBoid.transform.position = rider_rb.position;
             closestBoid.transform.rotation = playerRider.transform.rotation;
             closestBoid.GetComponent<Rigidbody2D>().velocity = inheritVel;
-            player_game_obj.transform.position = rider_rb.position + new Vector2(0, 1);
+
+            player_game_obj.transform.position = playerRider.transform.position + (collisionScript.dir.normalized * -1.5f);
             player_game_obj.transform.rotation = playerRider.transform.rotation;
+            player_game_obj.GetComponent<Rigidbody2D>().AddForce(collisionScript.dir.normalized * -bumpForce2);
+            Destroy(playerRider);
         }
     }
 

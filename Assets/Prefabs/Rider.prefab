@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5791629588276461323}
   - component: {fileID: 5192761188157795235}
   - component: {fileID: 8552369757463749946}
+  - component: {fileID: 7801420917411243879}
   m_Layer: 0
   m_Name: Rider
   m_TagString: Rider
@@ -189,3 +190,17 @@ PolygonCollider2D:
       - {x: 0.175, y: -1.035}
       - {x: 0.275, y: -0.98499995}
       - {x: 0.36499998, y: -0.875}
+--- !u!114 &7801420917411243879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5198409772959853151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 012c79f42119fa141bd426ea861dc8c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bumpVelocity: 2
+  bumpOff: 0

@@ -7,6 +7,9 @@ TagManager:
   - Boids
   - Obstacle
   - Rider
+  - edge
+  - Rider1
+  - Rider2
   layers:
   - Default
   - TransparentFX
