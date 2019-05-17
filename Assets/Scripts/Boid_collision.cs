@@ -2,36 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rider_collision : MonoBehaviour
+public class Boid_collision : MonoBehaviour
 {
     public float bumpVelocity = 2;
-    public bool bumpOff = false;
-    //public Rigidbody2D prey_rb;
     public Vector3 dir;
-    public string enemyRiderStr;
     public float killAngle = 45;
 
-    public GameObject enemyRider;
-
+    private GameObject enemyRider;
     void OnCollisionEnter2D(Collision2D obj)
     {
-        //bumpOff = false;
-        if (obj.gameObject.tag == enemyRiderStr)
+        if (obj.gameObject.tag == "Rider1" || obj.gameObject.tag == "Rider2")
         {
 
             foreach (ContactPoint2D contact in obj.contacts)
             {
+                
                 Vector3 contactV3 = contact.point;
                 dir = contactV3 - transform.position;
-                Debug.DrawRay(transform.position, dir, Color.red, 3.0f);
+                Debug.DrawRay(transform.position, dir, Color.red, 2.0f);
             }
 
             //Debug.Log(Vector3.Angle(dir, transform.up));
-            if (Vector3.Angle(dir, transform.up) <= 40)
+            if (Vector3.Angle(dir, transform.up) <= killAngle)
             {
 
-                //prey_rb = obj.rigidbody;
-                enemyRider = GameObject.FindGameObjectWithTag(enemyRiderStr);
+                enemyRider = obj.gameObject;
                 //Set enemies bump flag to true
                 enemyRider.GetComponent<Rider_collision>().bumpOff = true;
 

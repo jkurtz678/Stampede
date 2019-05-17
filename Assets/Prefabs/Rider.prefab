@@ -202,5 +202,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012c79f42119fa141bd426ea861dc8c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bumpVelocity: 2
+  bumpVelocity: 1
   bumpOff: 0
+  prey_rb: {fileID: 0}
+  dir: {x: 0, y: 0, z: 0}
+  enemyRiderStr: 
+  killAngle: 45
