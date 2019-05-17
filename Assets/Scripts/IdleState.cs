@@ -66,22 +66,31 @@ public class IdleState : State<Buffaloid>
             Debug.Log("now idling and decelerating");
         }
     } 
-    /*
-    void preyCheck()
+
+    void preyCheck(Buffaloid _owner)
     {
         List<GameObject> players = new List<GameObject>();
-        players.Add(GameObject.Find("player1"));
-        players.Add(GameObject.Find("player2"));
+        players.Add(GameObject.Find("Player1"));
+        players.Add(GameObject.Find("Player2"));
 
-        foreach( GameObject player in players)
+        foreach (GameObject player in players)
         {
-            if()
-        }
+            var heading = player.transform.position - _owner.transform.position;
+            var distance = heading.magnitude;
+            Debug.Log("distance: " + distance);
+            Debug.Log("heading: " + heading);
+            Debug.Log("forward: " + _owner.transform.forward);
 
-        if (Mathf.Abs(angel) > 90 && Mathf.Abs(angel) < 270)
-            Debug.Log("target is in front of me");
+            float dot = Vector2.Dot(heading.normalized, _owner.transform.up);
+            Debug.Log("dot: " + dot);
+
+            if( dot > 0.8f && distance < 5f)
+            {
+                _owner.stateMachine.ChangeState(new ChaseState(player));
+            }
+        }
     }
-    */
+
     public override void UpdateState(Buffaloid _owner)
     {
         if (_owner.currentMove != Vector2.zero)
@@ -90,6 +99,8 @@ public class IdleState : State<Buffaloid>
         }
 
         timer -= Time.deltaTime;
+
+        preyCheck(_owner);
 
         if(timer < 0f)
         {
@@ -108,7 +119,7 @@ public class IdleState : State<Buffaloid>
         {
             Debug.Log("moving in rand dir: " + randDir);
 
-            _owner.moveObject(randDir, 0.5f);
+            _owner.moveObject(randDir, 0.3f);
         }
     }
 }
