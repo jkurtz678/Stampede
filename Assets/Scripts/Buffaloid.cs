@@ -40,7 +40,8 @@ public class Buffaloid : MonoBehaviour
         //avoidTags.Add("Player");
         avoidTags.Add("Boids");
         avoidTags.Add("Obstacle");
-        avoidTags.Add("Rider");
+        avoidTags.Add("Rider1");
+        avoidTags.Add("Rider2");
         //forwardVelocity = 0f;
 
         //state initialization
@@ -367,7 +368,7 @@ public class Buffaloid : MonoBehaviour
         {
             //Debug.Log("faster accel...");
             //acceleration = friendSpeed / timeZeroToMax;
-            acceleration = friendSpeed + 1f;
+            acceleration = friendSpeed + 0.5f;
         }
         else
         {

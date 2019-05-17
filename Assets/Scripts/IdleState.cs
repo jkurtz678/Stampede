@@ -66,8 +66,22 @@ public class IdleState : State<Buffaloid>
             Debug.Log("now idling and decelerating");
         }
     } 
+    /*
+    void preyCheck()
+    {
+        List<GameObject> players = new List<GameObject>();
+        players.Add(GameObject.Find("player1"));
+        players.Add(GameObject.Find("player2"));
 
+        foreach( GameObject player in players)
+        {
+            if()
+        }
 
+        if (Mathf.Abs(angel) > 90 && Mathf.Abs(angel) < 270)
+            Debug.Log("target is in front of me");
+    }
+    */
     public override void UpdateState(Buffaloid _owner)
     {
         if (_owner.currentMove != Vector2.zero)
