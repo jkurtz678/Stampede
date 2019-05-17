@@ -84,7 +84,7 @@ public class IdleState : State<Buffaloid>
             float dot = Vector2.Dot(heading.normalized, _owner.transform.up);
             Debug.Log("dot: " + dot);
 
-            if( dot > 0.8f && distance < 5f)
+            if( dot > 0.85f && distance < 5f)
             {
                 _owner.stateMachine.ChangeState(new ChaseState(player));
             }
@@ -119,7 +119,7 @@ public class IdleState : State<Buffaloid>
         {
             Debug.Log("moving in rand dir: " + randDir);
 
-            _owner.moveObject(randDir, 0.3f);
+            _owner.moveObject(randDir, 0.6f);
         }
     }
 }

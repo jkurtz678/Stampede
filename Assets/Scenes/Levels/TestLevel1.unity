@@ -453,7 +453,7 @@ PrefabInstance:
     - target: {fileID: 41188894431200021, guid: dc56bc155c49e4bf98aa777d230f65e0,
         type: 3}
       propertyPath: ridingBoundary
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 41188894431200021, guid: dc56bc155c49e4bf98aa777d230f65e0,
         type: 3}
@@ -464,7 +464,7 @@ PrefabInstance:
     - target: {fileID: 41188894431200020, guid: dc56bc155c49e4bf98aa777d230f65e0,
         type: 3}
       propertyPath: ridingBoundary
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 41188894431200020, guid: dc56bc155c49e4bf98aa777d230f65e0,
         type: 3}

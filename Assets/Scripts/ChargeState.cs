@@ -5,6 +5,9 @@ using BuffaloidState;
 
 public class ChargeState : State<Buffaloid>
 {
+
+    public float minSpeed = 1f;
+    public float chargeSpeed = 3.5f;
     private float timer;
     private Vector2 chargeDir;
 
@@ -26,7 +29,7 @@ public class ChargeState : State<Buffaloid>
 
     public void chargeCheck(Buffaloid _owner)
     {
-        if( _owner.getRBSpeed() < 1f)
+        if( _owner.getRBSpeed() < minSpeed)
         {
             _owner.stateMachine.ChangeState(new PackState());
         }
@@ -42,7 +45,7 @@ public class ChargeState : State<Buffaloid>
         Debug.DrawRay(_owner.transform.position, chargeDir, Color.yellow);
 
         timer -= Time.deltaTime;
-        _owner.moveObject(chargeDir, 4f);
+        _owner.moveObject(chargeDir, chargeSpeed);
 
     }
 }

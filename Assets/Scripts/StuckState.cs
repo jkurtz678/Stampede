@@ -7,13 +7,18 @@ using BuffaloidState;
 //State when buffaloid is stuck on an object, and will attempt to get unstuck
 public class StuckState : State<Buffaloid>
 {
+    public float reverseSpeed = 1f;
+    public float rotateSpeed = 0.06f;
+    public float unstuckTime = 3f;
     private float unstuckTimer;
+    float randDir;
 
     public override void EnterState(Buffaloid _owner)
     {
-        unstuckTimer = 3f;
+        unstuckTimer = unstuckTime;
         Debug.Log("Entering Stuck State");
         _owner.gameObject.GetComponent<SpriteRenderer>().color = Color.magenta;
+        randDir = Random.Range(0, 2) * 2 - 1;
     }
 
     public override void ExitState(Buffaloid _owner)
@@ -31,9 +36,9 @@ public class StuckState : State<Buffaloid>
         unstuckTimer -= Time.deltaTime; ;
 
         //picks 1 or -1 at random to determine direction of turn to get unstuck
-        float randDir = Random.Range(0, 2) * 2 - 1;
-        _owner.torqueRotate(0.7f, randDir);
-        _owner.reverseMove(1f);
+       
+        _owner.torqueRotate(rotateSpeed, randDir);
+        _owner.reverseMove(reverseSpeed);
         Debug.Log("stuck state stuff");
 
     }

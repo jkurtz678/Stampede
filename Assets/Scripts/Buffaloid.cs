@@ -69,8 +69,6 @@ public class Buffaloid : MonoBehaviour
         //if more nearby objects than self
         if (avoidColliders.Count > 0)
         {
-            //Debug.Log("objects within radius: " + hitColliders.Length);
-
             //compute average avoid vector
             Vector2 average = Vector2.zero;
             foreach (Collider2D collider in avoidColliders)
@@ -387,8 +385,6 @@ public class Buffaloid : MonoBehaviour
         {
             rb.AddForce(speed * 4);
         }
-
-
     }
 
     public float getRBSpeed()

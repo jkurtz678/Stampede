@@ -5,7 +5,7 @@ using BuffaloidState;
 
 public class ChaseState : State<Buffaloid>
 {
-    //private static IdleState _instance;
+    public float chaseSpeed = 2.2f;
     private float timer;
     private GameObject prey;
 
@@ -42,7 +42,7 @@ public class ChaseState : State<Buffaloid>
         Debug.Log("Chase state stuff...");
         var heading = prey.transform.position - _owner.transform.position;
         _owner.currentMove = heading;
-        _owner.moveObject(heading, 2.5f);
+        _owner.moveObject(heading, chaseSpeed);
         chargeCheck(_owner);
     }
 }
