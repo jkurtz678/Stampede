@@ -122,7 +122,7 @@ public class Buffaloid : MonoBehaviour
         for (int i = 0; i < friendColliders.Length; i++)
         {
             string friendTag = friendColliders[i].gameObject.tag;
-            if ((friendTag == "Boids" || friendTag == "Rider") && friendColliders[i].gameObject.transform.root != transform)
+            if ((friendTag == "Boids" || friendTag == "Rider1" || friendTag == "Rider2") && friendColliders[i].gameObject.transform.root != transform)
             //if( friendColliders[i].gameObject.transform.root != transform)
             {
                 friends.Add(friendColliders[i].gameObject);

@@ -115,12 +115,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49d6782c5b4b463aa6df147f8e27cfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 14
-  basePackSpeed: 0.7
   timeZeroToMax: 2
   rotationSpeed: 2
   separation_radius: 0.6
-  edge_separation: 100
+  edge_separation: 150
   friend_radius: 2
   forwardVelocity: 0
   avoidWeight: 6
