@@ -9,6 +9,10 @@ public class ChaseState : State<Buffaloid>
     private float timer;
     private GameObject prey;
 
+    public ChaseState(GameObject prey)
+    {
+        this.prey = prey;
+    }
 
     public override void EnterState(Buffaloid _owner)
     {
@@ -23,9 +27,22 @@ public class ChaseState : State<Buffaloid>
 
     }
 
+    void chargeCheck(Buffaloid _owner)
+    {
+        if (_owner.getRBSpeed() > _owner.chargeSpeed)
+        {
+            _owner.stateMachine.ChangeState(new ChargeState());
+        }
+    }
+
+
 
     public override void UpdateState(Buffaloid _owner)
     {
         Debug.Log("Chase state stuff...");
+        var heading = prey.transform.position - _owner.transform.position;
+        _owner.currentMove = heading;
+        _owner.moveObject(heading, 2.5f);
+        chargeCheck(_owner);
     }
 }

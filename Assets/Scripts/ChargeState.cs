@@ -42,7 +42,7 @@ public class ChargeState : State<Buffaloid>
         Debug.DrawRay(_owner.transform.position, chargeDir, Color.yellow);
 
         timer -= Time.deltaTime;
-        _owner.moveObject(chargeDir, 3f);
+        _owner.moveObject(chargeDir, 4f);
 
     }
 }
