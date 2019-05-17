@@ -8,6 +8,8 @@ public class PackState : State<Buffaloid>
 
     private float stuckTimer;
     private bool stuck;
+    private float idleTimer;
+    private bool idling;
     //private static PackState _instance;
 
 
@@ -39,6 +41,9 @@ public class PackState : State<Buffaloid>
         Debug.Log("Entering Pack State");
         stuckTimer = 1f;
         stuck = false;
+        idling = false;
+        idleTimer = 1f;
+        _owner.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     public override void ExitState(Buffaloid _owner)
@@ -47,45 +52,85 @@ public class PackState : State<Buffaloid>
 
     }
 
-    //
+    // checks if buffaloid is stuck on terrain. If it is stuck for a short period of time, changes to stuck state.
     void stuckCheck(Buffaloid _owner)
     {
         if(stuck)
         {
             stuckTimer -= Time.deltaTime;
+            Debug.Log("stuckTimer: " + stuckTimer);
             if(stuckTimer < 0)
             {
                 _owner.stateMachine.ChangeState(new StuckState());
             }
-            else if(_owner.getRBSpeed() > 0.01f )
+            else if(_owner.getRBSpeed() > 0.1f )
             {
+                Debug.Log("stuck to false");
+
                 stuck = false;
             }
         }
         else
         {
-            if(_owner.getRBSpeed() <= 0.01f)
+            if(_owner.getRBSpeed() <= 0.05f)
             {
-                stuckTimer = 3f;
+                Debug.Log("stuck to true");
+
+                stuckTimer = 1f;
                 stuck = true;
             }
         }
     }
 
+    void idleCheck(Buffaloid _owner)
+    {
+        if(idling)
+        {
+            idleTimer -= Time.deltaTime;
+            if (idleTimer < 0)
+            {
+                _owner.stateMachine.ChangeState(new IdleState());
+            }
+            else if (_owner.currentMove != Vector2.zero)
+            {
+                idling = false;
+            }
+        }
+        else
+        {
+            if(_owner.currentMove == Vector2.zero )
+            {
+                idleTimer = 1f;
+                idling = true;
+            }
+        }
+    }
+
+    void chargeCheck(Buffaloid _owner)
+    {
+        if (_owner.getRBSpeed() > _owner.chargeSpeed)
+        {
+            _owner.stateMachine.ChangeState(new ChargeState());
+        }
+    }
+
     public override void UpdateState(Buffaloid _owner)
     {
-        if(_owner.currentMove == Vector2.zero)
-        {
-            _owner.stateMachine.ChangeState(new IdleState() );
-        }
 
+ 
+        idleCheck(_owner);
         stuckCheck(_owner);
+        chargeCheck(_owner );
 
-        Debug.Log("forwardVelocity " + _owner.getRBSpeed());
+        //Debug.Log("forwardVelocity " + _owner.getRBSpeed());
+        //Debug.Log("stuck: " + stuck);
 
-        //if( _owner.forwardVelocity)
+        Debug.Log("stuck: " + stuck);
+        Debug.Log("speed: " + _owner.getRBSpeed());
 
-        Debug.Log("calling move in PackState: " + _owner.currentMove);
+        //Debug.Log("stuckTimer: " + stuckTimer);
+
+        //Debug.Log("calling move in PackState: " + _owner.currentMove);
 
         _owner.moveObject(_owner.currentMove, 1f);
     }

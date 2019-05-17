@@ -115,18 +115,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49d6782c5b4b463aa6df147f8e27cfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 10
+  maxSpeed: 14
+  basePackSpeed: 0.7
   timeZeroToMax: 2
-  rotationSpeed: 3
+  rotationSpeed: 2
   separation_radius: 0.6
   edge_separation: 100
-  friend_radius: 1.5
+  friend_radius: 2
   forwardVelocity: 0
   avoidWeight: 6
   avoidEdgeWeight: 15
   alignWeight: 1
   cohesionWeight: 0.1
+  chargeSpeed: 2
   currentMove: {x: 0, y: 0}
+  friendDir: {x: 0, y: 0}
 --- !u!60 &8628774108898105816
 PolygonCollider2D:
   m_ObjectHideFlags: 0

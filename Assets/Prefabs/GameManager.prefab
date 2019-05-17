@@ -57,9 +57,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ab173eab8f552c4f92abe0ff256bf36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ridingBoundary: 0
-  rider: {fileID: 0}
   bumped: 0
+  ridingBoundary: 4
+  rider: {fileID: 5198409772959853151, guid: bcce9b5b2a81ecc428701acbd82c3647, type: 3}
 --- !u!114 &41188894431200020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,5 +72,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6182974e093c4c8418a851e38f5c4d21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ridingBoundary: 0
-  rider: {fileID: 0}
+  ridingBoundary: 4
+  rider: {fileID: 5198409772959853151, guid: bcce9b5b2a81ecc428701acbd82c3647, type: 3}

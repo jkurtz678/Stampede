@@ -40,6 +40,8 @@ public class IdleState : State<Buffaloid>
         Debug.Log("Entering Idle State");
         timer = Random.Range(3f,8f);
         idling = true;
+        _owner.gameObject.GetComponent<SpriteRenderer>().color = Color.cyan;
+
     }
 
     public override void ExitState(Buffaloid _owner)
@@ -79,7 +81,7 @@ public class IdleState : State<Buffaloid>
         {
             idleSwitch();
         }
-        Debug.Log("time idle: " + timer);
+        //.Log("time idle: " + timer);
 
         if(idling)
         {

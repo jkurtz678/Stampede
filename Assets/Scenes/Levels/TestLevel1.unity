@@ -376,6 +376,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -109.20701
       objectReference: {fileID: 0}
+    - target: {fileID: 1013372186408344777, guid: 5bf6bb12f736e4f9e8cb709f21bfafc9,
+        type: 3}
+      propertyPath: basePackSpeed
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bf6bb12f736e4f9e8cb709f21bfafc9, type: 3}
 --- !u!1001 &449445730
@@ -450,11 +455,23 @@ PrefabInstance:
       propertyPath: ridingBoundary
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 41188894431200021, guid: dc56bc155c49e4bf98aa777d230f65e0,
+        type: 3}
+      propertyPath: rider
+      value: 
+      objectReference: {fileID: 5198409772959853151, guid: bcce9b5b2a81ecc428701acbd82c3647,
+        type: 3}
     - target: {fileID: 41188894431200020, guid: dc56bc155c49e4bf98aa777d230f65e0,
         type: 3}
       propertyPath: ridingBoundary
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 41188894431200020, guid: dc56bc155c49e4bf98aa777d230f65e0,
+        type: 3}
+      propertyPath: rider
+      value: 
+      objectReference: {fileID: 5198409772959853151, guid: bcce9b5b2a81ecc428701acbd82c3647,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc56bc155c49e4bf98aa777d230f65e0, type: 3}
 --- !u!1001 &800198261

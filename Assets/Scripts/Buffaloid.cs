@@ -6,7 +6,7 @@ using BuffaloidState;
 public class Buffaloid : MonoBehaviour
 {
 
-    public float maxSpeed;
+    //public float maxSpeed;
     public float timeZeroToMax;
     public float rotationSpeed;
     public float separation_radius;
@@ -17,26 +17,30 @@ public class Buffaloid : MonoBehaviour
     public float avoidEdgeWeight;
     public float alignWeight;
     public float cohesionWeight;
+    public float chargeSpeed;
 
     //state stuff
     //public bool switchState = false;
     public StateMachine<Buffaloid> stateMachine { get; set; }
     public Vector2 currentMove;
+    public Vector2 friendDir;
 
     private Rigidbody2D rb;
     private Vector2 move;
     private float acceleration;
     private List<string> avoidTags;
+    private float friendSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        acceleration = maxSpeed / timeZeroToMax;
+        //acceleration = maxSpeed / timeZeroToMax;
         avoidTags = new List<string>();
         //avoidTags.Add("Player");
         avoidTags.Add("Boids");
         avoidTags.Add("Obstacle");
+        avoidTags.Add("Rider");
         //forwardVelocity = 0f;
 
         //state initialization
@@ -117,13 +121,34 @@ public class Buffaloid : MonoBehaviour
 
         for (int i = 0; i < friendColliders.Length; i++)
         {
-            if (friendColliders[i].gameObject.tag == "Boids" && friendColliders[i].gameObject.transform.root != transform)
+            string friendTag = friendColliders[i].gameObject.tag;
+            if ((friendTag == "Boids" || friendTag == "Rider") && friendColliders[i].gameObject.transform.root != transform)
             //if( friendColliders[i].gameObject.transform.root != transform)
             {
                 friends.Add(friendColliders[i].gameObject);
             }
         }
         return friends;
+    }
+
+    //returns average speed of list of friend objects. 
+    float getFriendSpeed(List<GameObject> friends) 
+    {
+
+        float totalSpeed = 0f;
+        int numFriends = friends.Count;
+
+        if(numFriends == 0)
+        {
+            return 0f;
+        }
+
+        foreach (GameObject friend in friends)
+        {
+            totalSpeed += friend.GetComponent<Rigidbody2D>().velocity.magnitude;
+        }
+
+        return totalSpeed / numFriends;
     }
 
     private Vector2 getAlignment(List<GameObject> friends)
@@ -199,9 +224,16 @@ public class Buffaloid : MonoBehaviour
         }
     }
 
+    /*
+    public void charge(float speedMultiplier)
+    {
+        acceleration = basePackSpeed;
+        Vector2 speed = transform.up * acceleration;
+        rb.AddForce(speed * 4 * speedMultiplier);
+    }*/
 
     //moves object towards vector, speed multiplier depends on state of buffaloid
-    public void moveObject(Vector2 mv, float speedMultiplier)
+    public void moveObject(Vector2 mv, float targetSpeed)
     {
         //float step = maxSpeed * Time.deltaTime;
         //Debug.Log("accel: " + acceleration);
@@ -217,7 +249,7 @@ public class Buffaloid : MonoBehaviour
             //{
             //    rotSpeedRatio = 0.6f;
             //}
-            ForceAccelerate(rotSpeedRatio, speedMultiplier);
+            ForceAccelerate(rotSpeedRatio, targetSpeed);
         }
         //decelerate
         /*else
@@ -328,52 +360,34 @@ public class Buffaloid : MonoBehaviour
     }
 
     //acelerates this buffaloid game object with rigidbody forces, moving it in a forward direction
-    void ForceAccelerate(float rotSpeedRatio, float speedMultiplier)
+    void ForceAccelerate(float rotSpeedRatio, float targetSpeed)
     {
 
+        if( friendSpeed > targetSpeed && Vector2.Dot(transform.up, friendDir) > 0)
+        {
+            //Debug.Log("faster accel...");
+            //acceleration = friendSpeed / timeZeroToMax;
+            acceleration = friendSpeed + 1f;
+        }
+        else
+        {
+            //acceleration = basePackSpeed / timeZeroToMax;
+            acceleration = targetSpeed;
+        }
         Vector2 speed = transform.up * acceleration;
 
+        //prevents deceleration from moving buffalo backwards
         if (rotSpeedRatio < 0 && rb.velocity.magnitude < speed.magnitude)
         {
             speed = Vector2.zero;
         }
 
-        //Debug.Log("speed vector: " + speed);
-        //Debug.Log("rb vector: " + speed);
-        //rb.AddForce(speed * rotSpeedRatio * speedMultiplier);
-
-        rb.AddForce(speed * speedMultiplier);
-
-        // prevent object from going over its max speed
-        if (rotSpeedRatio >= 0 && rb.velocity.magnitude > maxSpeed)
+        if( rb.velocity.magnitude < targetSpeed || (friendSpeed > targetSpeed + .15f && rb.velocity.magnitude < friendSpeed + 0.4f) )
         {
-            rb.velocity = rb.velocity.normalized * maxSpeed;
+            rb.AddForce(speed * 4);
         }
 
-    }
 
-    //acelerates this buffaloid game object, moving it in a forward direction
-    //rotSpeedRatio : float between 0 - 1 that is multiplied with acceleration
-    void Accelerate(float rotSpeedRatio)
-    {
-        //Debug.Log("Accelerating...");
-
-        forwardVelocity += rotSpeedRatio * acceleration * Time.deltaTime;
-        forwardVelocity = Mathf.Min(forwardVelocity, maxSpeed);
-        //Debug.Log("trans.pos:" + transform.position);
-        //Debug.Log("trans.up:" + transform.up);
-        transform.position = Vector2.MoveTowards(transform.position, transform.up + transform.position, forwardVelocity * Time.deltaTime);
-    }
-
-    //decelerates this buffaloid game object, moving it in a forward direction
-    void Decelerate(float rotSpeedRatio)
-    {
-        //Debug.Log("Decelerating...");
-
-        forwardVelocity -= (rotSpeedRatio * -1) * acceleration * Time.deltaTime;
-        forwardVelocity = Mathf.Max(0, forwardVelocity);
-
-        transform.position = Vector2.MoveTowards(transform.position, transform.up + transform.position, forwardVelocity * Time.deltaTime);
     }
 
     public float getRBSpeed()
@@ -381,11 +395,26 @@ public class Buffaloid : MonoBehaviour
         return rb.velocity.magnitude;
     }
 
-    public void torqueRotate(float dir)
+    //rotates object in stuck state
+    public void torqueRotate(float mag, float dir)
     {
         Debug.Log("torqueRotate call...");
-        rb.AddTorque(0.05f * dir);
+        rb.AddTorque(mag * dir);
     }
+
+    //reverse movement called from stuck state
+    public void reverseMove(float speed )
+    {
+
+        Vector2 backwardsForce = transform.up * -1;
+        Debug.DrawRay(transform.position, backwardsForce, Color.yellow);
+        rb.AddForce(backwardsForce * speed);
+    }
+
+    /*public Vector2 findMove()
+    {
+
+    }*/
 
     // Update is called once per frame
     void FixedUpdate()
@@ -394,7 +423,7 @@ public class Buffaloid : MonoBehaviour
         Vector2 edgeAvoidDir = getAvoidEdges();
 
         List<GameObject> friends = getFriends();
-
+        friendSpeed = getFriendSpeed(friends);
         //Debug.Log("avoid dir: " + avoidDir);
 
         Vector2 cohesionDir = getCohesion(friends);
@@ -409,15 +438,18 @@ public class Buffaloid : MonoBehaviour
         Debug.DrawRay(transform.position, edgeAvoidDir, Color.magenta);
         Debug.DrawRay(transform.position, cohesionDir, Color.green);
 
+
         move = (avoidWeight * avoidDir) + (avoidEdgeWeight * edgeAvoidDir) 
             + (cohesionWeight * cohesionDir) + (alignWeight * alignmentDir);
         //move = avoidDir + edgeAvoidDir;
 
         currentMove = move;
+        friendDir = cohesionDir;
         //Debug.Log("move dir: " + move);
 
 
         //moveObject(move);
+
 
         stateMachine.Update();
     }
