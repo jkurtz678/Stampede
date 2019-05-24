@@ -176,6 +176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52608971181587f4682305564df66329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bumpVelocity: 2
+  bumpVelocity: 3
   dir: {x: 0, y: 0, z: 0}
-  killAngle: 45
+  killAngle: 35

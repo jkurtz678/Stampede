@@ -7,6 +7,7 @@ public class Player_switch : MonoBehaviour
     public float ridingBoundary;
     public GameObject rider;
     public float bumpForce1;
+    public float mountVel = 1.5f;
 
     private GameObject playerRider;
     private GameObject player_game_obj;
@@ -28,7 +29,7 @@ public class Player_switch : MonoBehaviour
         {
             controlType = true;
             closestBoid = FindClosestBoid(player_game_obj);
-            if (RidingBoundary(closestBoid, player_game_obj) == true)
+            if (RidingBoundary(closestBoid, player_game_obj) == true && closestBoid.GetComponent<Rigidbody2D>().velocity.magnitude < mountVel)
             {
                 playerRider = Instantiate(rider, closestBoid.transform.position, closestBoid.transform.rotation);
                 playerRider.GetComponent<Player_riding>().horAxis = "P1_Horizontal";
