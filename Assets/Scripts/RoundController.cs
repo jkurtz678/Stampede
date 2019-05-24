@@ -35,6 +35,14 @@ public class RoundController : MonoBehaviour
         if(player1_script.dead == true)
         {
             player1_lives -= 1;
+            if (player2_lives <= 0)
+            {
+                GameObject.Find("Player1Lives").GetComponent<UnityEngine.UI.Text>().text = "P1 Lives: 0";
+            }
+            else
+            {
+                GameObject.Find("Player1Lives").GetComponent<UnityEngine.UI.Text>().text = "P1 Lives: " + (player1_lives - 1);
+            }
             if (player1_lives <= 0)
             {
                 //Player 2 wins round, move to next scene
@@ -56,6 +64,13 @@ public class RoundController : MonoBehaviour
         if(player2_script.dead == true)
         {
             player2_lives -= 1;
+            if(player2_lives <= 0)
+            {
+                GameObject.Find("Player2Lives").GetComponent<UnityEngine.UI.Text>().text = "P2 Lives: 0";
+            } else
+            {
+                GameObject.Find("Player2Lives").GetComponent<UnityEngine.UI.Text>().text = "P2 Lives: " + (player2_lives-1);
+            }
             if (player2_lives <= 0)
             {
                 //Player 1 wins round, move to next scene

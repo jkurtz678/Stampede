@@ -998,7 +998,6 @@ GameObject:
   - component: {fileID: 1151707324}
   - component: {fileID: 1151707327}
   - component: {fileID: 1151707326}
-  - component: {fileID: 1151707325}
   m_Layer: 5
   m_Name: Player2Lives
   m_TagString: Untagged
@@ -1025,18 +1024,6 @@ RectTransform:
   m_AnchoredPosition: {x: -60, y: -60}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1151707325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1151707323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aee9c2cf1f60e6409855d0fd1cfa2cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1151707326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1495,7 +1482,6 @@ GameObject:
   - component: {fileID: 1552608031}
   - component: {fileID: 1552608034}
   - component: {fileID: 1552608033}
-  - component: {fileID: 1552608032}
   m_Layer: 5
   m_Name: Player1Lives
   m_TagString: Untagged
@@ -1522,18 +1508,6 @@ RectTransform:
   m_AnchoredPosition: {x: 60, y: -60}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1552608032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1552608030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aee9c2cf1f60e6409855d0fd1cfa2cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1552608033
 MonoBehaviour:
   m_ObjectHideFlags: 0
