@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{66453DE9-7988-4F10-9E0D-42BFF3E857F0}" SchemaVersion="94">
+	<AudioObjects>
+		<WorkUnit Name="Default Work Unit" ID="{66453DE9-7988-4F10-9E0D-42BFF3E857F0}" PersistMode="Standalone">
+			<ChildrenList>
+				<Sound Name="TomB16inD3" ID="{822C1618-402A-4837-A603-7DAE608CF662}" ShortID="72318507">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{ABF4AAB9-991B-4AAA-8D2C-C09053327950}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DC1087B0-1DE3-4E8C-85F9-5761E36CAAB0}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="TomB16inD3" ID="{8EE60409-AC5A-4346-B4E2-8BFEF3C6CF13}" ShortID="358497344">
+							<Language>SFX</Language>
+							<AudioFile>TomB16inD3.WAV</AudioFile>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="TomB16inD3" ID="{8EE60409-AC5A-4346-B4E2-8BFEF3C6CF13}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>

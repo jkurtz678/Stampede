@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="11" SoundbankVersion="134">
+	<RootPaths>
+		<ProjectRoot>/Users/jacksonkurtz/Library/Application Support/Wwise2019/Bottles/wwise/dosdevices/y:/Documents/WwiseProjects/firstproject/</ProjectRoot>
+		<SourceFilesRoot>/Users/jacksonkurtz/Library/Application Support/Wwise2019/Bottles/wwise/dosdevices/y:/Documents/WwiseProjects/firstproject/.cache/Mac/</SourceFilesRoot>
+		<SoundBanksRoot>/Users/jacksonkurtz/Library/Application Support/Wwise2019/Bottles/wwise/dosdevices/y:/Documents/WwiseProjects/firstproject/GeneratedSoundBanks/Mac/</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>/Users/jacksonkurtz/Library/Application Support/Wwise2019/Bottles/wwise/dosdevices/y:/Documents/WwiseProjects/firstproject/GeneratedSoundBanks/Mac</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="348692940" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\BaseBank</ObjectPath>
+			<ShortName>BaseBank</ShortName>
+			<Path>BaseBank.bnk</Path>
+			<IncludedEvents>
+				<Event Id="3592640110" Name="Buffaloids" ObjectPath="\Events\Default Work Unit\Buffaloids" DurationType="Infinite"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="530778008" Language="SFX">
+					<ShortName>Buffaloids\theme1-western-123bpm4-4_L14M.wav</ShortName>
+					<Path>SFX/Buffaloids/theme1-western-123bpm4-4_L14M_D79FB2B7.wem</Path>
+				</File>
+				<File Id="965656042" Language="SFX">
+					<ShortName>Buffaloids\comp-western-123bpm4-4_L4M.wav</ShortName>
+					<Path>SFX/Buffaloids/comp-western-123bpm4-4_L4M_D79FB2B7.wem</Path>
+				</File>
+				<File Id="1057512923" Language="SFX">
+					<ShortName>Buffaloids\intro-western-123bpm4-4_L5M.wav</ShortName>
+					<Path>SFX/Buffaloids/intro-western-123bpm4-4_L5M_D79FB2B7.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+		<SoundBank Id="561454006" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\NewMusicTest</ObjectPath>
+			<ShortName>NewMusicTest</ShortName>
+			<Path>NewMusicTest.bnk</Path>
+			<IncludedEvents>
+				<Event Id="713614430" Name="Add_To_Pack" ObjectPath="\Events\Default Work Unit\Add_To_Pack" DurationType="OneShot" DurationMin="4.947642" DurationMax="4.947642"/>
+				<Event Id="3046425890" Name="Riding_Music" ObjectPath="\Events\Default Work Unit\Riding_Music" DurationType="Infinite"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="358497344" Language="SFX">
+					<ShortName>TomB16inD3.WAV</ShortName>
+					<Path>SFX/TomB16inD3_56D34C19.wem</Path>
+				</File>
+				<File Id="974387310" Language="SFX">
+					<ShortName>Buffaloids\calm-percussion-120bpm4-4_L2M.wav</ShortName>
+					<Path>SFX/Buffaloids/calm-percussion-120bpm4-4_L2M_D79FB2B7.wem</Path>
+				</File>
+				<File Id="1020880055" Language="SFX">
+					<ShortName>Buffaloids\intense-percussion-120bpm4-4_L2M.wav</ShortName>
+					<Path>SFX/Buffaloids/intense-percussion-120bpm4-4_L2M_D79FB2B7.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+		<SoundBank Id="1355168291" Language="SFX">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="3161908922" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
+			<ShortName>Main</ShortName>
+			<Path>Main.bnk</Path>
+			<IncludedEvents>
+				<Event Id="3592640110" Name="Buffaloids" ObjectPath="\Events\Default Work Unit\Buffaloids" DurationType="Infinite"/>
+				<Event Id="2267222025" Name="MainWithTheme" ObjectPath="\Events\Default Work Unit\MainWithTheme" DurationType="Infinite"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="530778008" Language="SFX">
+					<ShortName>Buffaloids\theme1-western-123bpm4-4_L14M.wav</ShortName>
+					<Path>SFX/Buffaloids/theme1-western-123bpm4-4_L14M_D79FB2B7.wem</Path>
+				</File>
+				<File Id="965656042" Language="SFX">
+					<ShortName>Buffaloids\comp-western-123bpm4-4_L4M.wav</ShortName>
+					<Path>SFX/Buffaloids/comp-western-123bpm4-4_L4M_D79FB2B7.wem</Path>
+				</File>
+				<File Id="1057512923" Language="SFX">
+					<ShortName>Buffaloids\intro-western-123bpm4-4_L5M.wav</ShortName>
+					<Path>SFX/Buffaloids/intro-western-123bpm4-4_L5M_D79FB2B7.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>

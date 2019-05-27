@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{8E92DCC4-6250-49D5-A992-37D5FF0B3EB7}" SchemaVersion="94">
+	<InteractiveMusic>
+		<WorkUnit Name="Music" ID="{8E92DCC4-6250-49D5-A992-37D5FF0B3EB7}" PersistMode="Standalone">
+			<ChildrenList>
+				<MusicPlaylistContainer Name="RiderContainer" ID="{B4104F09-B776-4E9C-ABE2-E28604AEB971}" ShortID="1047127739">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{ABF4AAB9-991B-4AAA-8D2C-C09053327950}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DC1087B0-1DE3-4E8C-85F9-5761E36CAAB0}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<MusicSegment Name="Buffaloids" ID="{8CFB1713-A954-4D7B-A7F2-70E475029DB3}" ShortID="925005340">
+							<PropertyList>
+								<Property Name="EndPosition" Type="Real64" Value="4005.6258790436"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{ABF4AAB9-991B-4AAA-8D2C-C09053327950}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DC1087B0-1DE3-4E8C-85F9-5761E36CAAB0}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="Rider" ID="{922474C0-7531-466B-B862-C800CCE87554}" ShortID="129786619">
+									<PropertyList>
+										<Property Name="MusicTrackType" Type="int16" Value="3"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="DefaultSwitchOrState">
+											<ObjectRef Name="TwoRiders" ID="{79AF396E-DE7E-4D1E-B554-EFE9E1DD5806}" WorkUnitID="{91070C12-ADEA-49D9-9E01-84A9E184041F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DC1087B0-1DE3-4E8C-85F9-5761E36CAAB0}"/>
+										</Reference>
+										<Reference Name="SwitchGroupOrStateGroup">
+											<ObjectRef Name="Riders" ID="{D354B491-DCE7-40EC-B346-DE28ADD4FA5F}" WorkUnitID="{91070C12-ADEA-49D9-9E01-84A9E184041F}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="calm-percussion-120bpm4-4_L2M" ID="{17E1C8BF-FE9B-4937-8788-274B6A23A20A}" ShortID="974387310">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+												<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+												<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+												<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>Buffaloids\calm-percussion-120bpm4-4_L2M.wav</AudioFile>
+										</AudioFileSource>
+										<AudioFileSource Name="intense-percussion-120bpm4-4_L2M" ID="{C0E6E78C-849F-446E-B9D8-279627C1A364}" ShortID="1020880055">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+												<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+												<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+												<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>Buffaloids\intense-percussion-120bpm4-4_L2M.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{5C6983A2-6E36-45E5-BA27-A502DE96AA78}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<MusicTransition Name="Transition" ID="{9C9DC7FE-3D20-42A8-946D-B18365DE7A22}">
+													<PropertyList>
+														<Property Name="ExitSourceAt" Type="int16" Value="2"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</ChildrenList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<SequenceList>
+										<MusicTrackSequence Name="" ID="{A2465999-9B15-4DD4-814A-86DC71C578E9}">
+											<ClipList>
+												<MusicClip Name="calm-percussion-120bpm4-4_L2M" ID="{9A2A5809-A55D-4025-92FA-C6626B7B555A}">
+													<PropertyList>
+														<Property Name="EndTrimOffset" Type="Real64" Value="4000"/>
+														<Property Name="FadeInMode" Type="int16" Value="0"/>
+														<Property Name="FadeOutMode" Type="int16" Value="0"/>
+													</PropertyList>
+													<AudioSourceRef Name="calm-percussion-120bpm4-4_L2M" ID="{17E1C8BF-FE9B-4937-8788-274B6A23A20A}"/>
+												</MusicClip>
+											</ClipList>
+											<ReferenceList>
+												<Reference Name="TrackSequenceSwitch">
+													<ObjectRef Name="NoRider" ID="{A65492BE-A767-4DF7-9E21-CF3B81BFF33B}" WorkUnitID="{91070C12-ADEA-49D9-9E01-84A9E184041F}"/>
+												</Reference>
+											</ReferenceList>
+										</MusicTrackSequence>
+										<MusicTrackSequence Name="" ID="{171273C7-6F8D-4E23-AD6A-77703AD38852}">
+											<ClipList>
+												<MusicClip Name="intense-percussion-120bpm4-4_L2M" ID="{C55815AA-A3BD-4F90-8646-09FFC8446696}">
+													<PropertyList>
+														<Property Name="EndTrimOffset" Type="Real64" Value="4000"/>
+														<Property Name="FadeInMode" Type="int16" Value="0"/>
+														<Property Name="FadeOutMode" Type="int16" Value="0"/>
+														<Property Name="PlayAt" Type="Real64" Value="5.62587904360056"/>
+													</PropertyList>
+													<AudioSourceRef Name="intense-percussion-120bpm4-4_L2M" ID="{C0E6E78C-849F-446E-B9D8-279627C1A364}"/>
+												</MusicClip>
+											</ClipList>
+											<ReferenceList>
+												<Reference Name="TrackSequenceSwitch">
+													<ObjectRef Name="TwoRiders" ID="{79AF396E-DE7E-4D1E-B554-EFE9E1DD5806}" WorkUnitID="{91070C12-ADEA-49D9-9E01-84A9E184041F}"/>
+												</Reference>
+											</ReferenceList>
+										</MusicTrackSequence>
+									</SequenceList>
+								</MusicTrack>
+							</ChildrenList>
+							<CueList>
+								<MusicCue Name="Entry Cue" ID="{8C1738B1-D5AF-4CBE-8C9F-FEF7F23D3D63}"/>
+								<MusicCue Name="Exit Cue" ID="{0EA99C73-E756-4D4C-96EC-679C590E079A}">
+									<PropertyList>
+										<Property Name="CueType" Type="int16" Value="1"/>
+										<Property Name="TimeMs" Type="Real64" Value="4000"/>
+									</PropertyList>
+								</MusicCue>
+							</CueList>
+						</MusicSegment>
+					</ChildrenList>
+					<TransitionList>
+						<MusicTransition Name="Root" ID="{5E3F0320-BA1D-419A-AC6E-4D5CF0E514B8}">
+							<PropertyList>
+								<Property Name="IsFolder" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<MusicTransition Name="Transition" ID="{CF60221F-1E41-4732-9CF2-65B3195C5D85}">
+									<TransitionInfo/>
+								</MusicTransition>
+							</ChildrenList>
+							<TransitionInfo/>
+						</MusicTransition>
+					</TransitionList>
+					<Playlist>
+						<MusicPlaylistItem Name="" ID="{7A32732A-542B-4B3E-A9F4-176A088B94A8}" ShortID="957305305">
+							<ChildrenList>
+								<MusicPlaylistItem Name="" ID="{CD399113-4673-4CB0-B80F-8BD768F931C9}" ShortID="798791164">
+									<PropertyList>
+										<Property Name="LoopCount" Type="int16" Value="0"/>
+										<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+									</PropertyList>
+									<SegmentRef Name="Buffaloids" ID="{8CFB1713-A954-4D7B-A7F2-70E475029DB3}"/>
+								</MusicPlaylistItem>
+							</ChildrenList>
+						</MusicPlaylistItem>
+					</Playlist>
+				</MusicPlaylistContainer>
+			</ChildrenList>
+		</WorkUnit>
+	</InteractiveMusic>
+</WwiseDocument>

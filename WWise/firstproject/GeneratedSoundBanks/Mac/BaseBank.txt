@@ -1,0 +1,8 @@
+Event	ID	Name			Wwise Object Path	Notes
+	3592640110	Buffaloids			\Default Work Unit\Buffaloids	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	530778008	theme1-western-123bpm4-4_L14M	Y:\Documents\WwiseProjects\firstproject\.cache\Mac\SFX\Buffaloids\theme1-western-123bpm4-4_L14M_D79FB2B7.wem		\Interactive Music Hierarchy\WesternMusic\Buffaloids\theme1-western-123bpm4-4_L14M\theme1-western-123bpm4-4_L14M		4818796
+	965656042	comp-western-123bpm4-4_L4M	Y:\Documents\WwiseProjects\firstproject\.cache\Mac\SFX\Buffaloids\comp-western-123bpm4-4_L4M_D79FB2B7.wem		\Interactive Music Hierarchy\WesternMusic\Buffaloids\comp-western-123bpm4-4_L4M\comp-western-123bpm4-4_L4M		1376844
+	1057512923	intro-western-123bpm4-4_L5M	Y:\Documents\WwiseProjects\firstproject\.cache\Mac\SFX\Buffaloids\intro-western-123bpm4-4_L5M_D79FB2B7.wem		\Interactive Music Hierarchy\WesternMusic\Buffaloids\intro-western-123bpm4-4_L5M\intro-western-123bpm4-4_L5M		1721040
+

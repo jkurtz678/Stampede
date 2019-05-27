@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{BA85C032-73B3-47AF-B189-BCE452CECD57}" SchemaVersion="94">
+	<SoundBanks>
+		<WorkUnit Name="Default Work Unit" ID="{BA85C032-73B3-47AF-B189-BCE452CECD57}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundBank Name="NewMusicTest" ID="{75A6D2ED-D4E7-4CF1-8BA9-7EE49C92355E}">
+					<ObjectInclusionList>
+						<ObjectRef Name="Add_To_Pack" ID="{EB636123-5D30-4747-9912-CD46040084C8}" WorkUnitID="{64D3AE78-43F5-4897-848B-FA493D11A502}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Riding_Music" ID="{AFB57E61-B810-4F2D-8E6A-C9B02E3C5E6B}" WorkUnitID="{64D3AE78-43F5-4897-848B-FA493D11A502}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="BaseBank" ID="{8FF4D3A1-9B76-47AA-9E45-F7B0779A7536}">
+					<ObjectInclusionList>
+						<ObjectRef Name="Buffaloids" ID="{37F070E7-069B-4E89-84C3-AE739C965BF2}" WorkUnitID="{64D3AE78-43F5-4897-848B-FA493D11A502}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="Main" ID="{36D4D336-74AF-4BA3-83A6-4F0239EE184E}">
+					<ObjectInclusionList>
+						<ObjectRef Name="MainWithTheme" ID="{65737A8A-A756-408A-8A1C-F9D9FB96351C}" WorkUnitID="{64D3AE78-43F5-4897-848B-FA493D11A502}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Buffaloids" ID="{37F070E7-069B-4E89-84C3-AE739C965BF2}" WorkUnitID="{64D3AE78-43F5-4897-848B-FA493D11A502}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+			</ChildrenList>
+		</WorkUnit>
+	</SoundBanks>
+</WwiseDocument>
