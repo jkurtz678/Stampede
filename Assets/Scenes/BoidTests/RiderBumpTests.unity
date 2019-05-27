@@ -1037,7 +1037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.46226418, g: 0.23470363, b: 0.04579032, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1521,7 +1521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.4627451, g: 0.23529412, b: 0.047058824, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1550,29 +1550,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1552608030}
   m_CullTransparentMesh: 0
---- !u!1 &1681122026 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 41188894431200023, guid: dc56bc155c49e4bf98aa777d230f65e0,
-    type: 3}
-  m_PrefabInstance: {fileID: 449445730}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1681122027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1681122026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 518cc94eb731d46468085af7b70bf865, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NumLives: 3
-  spawnPoints: []
-  player1: {fileID: 0}
-  player1_lives: 0
-  player2_lives: 0
 --- !u!1 &1814681001
 GameObject:
   m_ObjectHideFlags: 0
