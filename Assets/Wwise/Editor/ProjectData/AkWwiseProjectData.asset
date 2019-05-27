@@ -191,7 +191,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 32c085bab373af47b189bce452cecd57
     GuidInternal: 
-    m_lastTime: -8586426894394775808
+    m_lastTime: -8586426120714775808
     List:
     - name: BaseBank
       guid: a1d3f48f769baa479e45f7b0779a7536
@@ -203,7 +203,7 @@ MonoBehaviour:
         ObjectType: 7
       Path: Default Work Unit/BaseBank
     - name: Main
-      guid: aaee6c970207a44d99e9fef2699c8ad5
+      guid: 36d3d436af74a34b83a64f0239ee184e
       id: 3161908922
       PathAndIcons:
       - ElementName: Default Work Unit
@@ -225,7 +225,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 78aed364f5439748848bfa493d11a502
     GuidInternal: 
-    m_lastTime: -8586426894394775808
+    m_lastTime: -8586426120714775808
     List:
     - name: Add_To_Pack
       guid: 236163eb305d47479912cd46040084c8
@@ -248,6 +248,18 @@ MonoBehaviour:
       - ElementName: Buffaloids
         ObjectType: 3
       Path: Default Work Unit/Buffaloids
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: MainWithTheme
+      guid: 8a7a736556a78a408a1cf9d9fb96351c
+      id: 2267222025
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: MainWithTheme
+        ObjectType: 3
+      Path: Default Work Unit/MainWithTheme
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -438,12 +450,5 @@ MonoBehaviour:
     List: []
   ExpandedItems:
   - /firstproject
-  - /firstproject/Events
-  - /firstproject/Events/Default Work Unit
-  - /firstproject/SoundBanks
-  - /firstproject/SoundBanks/Default Work Unit
-  - /firstproject/Switches
-  - /firstproject/Switches/Default Work Unit
-  - /firstproject/Switches/Default Work Unit/Riders
   autoPopulateEnabled: 1
   CurrentPluginConfig: 
