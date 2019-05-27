@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3563061799217211658}
   - component: {fileID: 41188894431200021}
   - component: {fileID: 41188894431200020}
+  - component: {fileID: 8091040811441557860}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -57,9 +58,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ab173eab8f552c4f92abe0ff256bf36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bumped: 0
   ridingBoundary: 4
   rider: {fileID: 5198409772959853151, guid: bcce9b5b2a81ecc428701acbd82c3647, type: 3}
+  bumpForce1: 0
+  mountVel: 1.5
 --- !u!114 &41188894431200020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,3 +76,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ridingBoundary: 4
   rider: {fileID: 5198409772959853151, guid: bcce9b5b2a81ecc428701acbd82c3647, type: 3}
+  bumpForce2: 0
+--- !u!114 &8091040811441557860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41188894431200023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 518cc94eb731d46468085af7b70bf865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NumLives: 3
+  spawnPoints: []
+  player1: {fileID: 0}
+  player1_lives: 0
+  player2_lives: 0
