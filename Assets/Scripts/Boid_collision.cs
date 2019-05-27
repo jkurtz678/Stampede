@@ -23,7 +23,7 @@ public class Boid_collision : MonoBehaviour
             }
 
             //Debug.Log(Vector3.Angle(dir, transform.up));
-            if (Vector3.Angle(dir, transform.up) <= killAngle)
+            if (obj.relativeVelocity.magnitude > bumpVelocity && Vector3.Angle(dir, transform.up) <= killAngle)
             {
 
                 enemyRider = obj.gameObject;

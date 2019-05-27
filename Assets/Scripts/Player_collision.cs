@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player_collision : MonoBehaviour
 {
     public float deathVelocity = 2;
+    public bool dead;
 
     void OnCollisionStay2D(Collision2D obj)
     {
@@ -17,6 +18,7 @@ public class Player_collision : MonoBehaviour
                 {
                     //DEATH the player died
                     gameObject.SetActive(false);
+                    dead = true;
                 }
             }
         }

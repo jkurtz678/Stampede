@@ -6,7 +6,6 @@ public class Rider_collision : MonoBehaviour
 {
     public float bumpVelocity = 2;
     public bool bumpOff = false;
-    //public Rigidbody2D prey_rb;
     public Vector3 dir;
     public string enemyRiderStr;
     public float killAngle = 45;
@@ -25,18 +24,15 @@ public class Rider_collision : MonoBehaviour
                 dir = contactV3 - transform.position;
                 Debug.DrawRay(transform.position, dir, Color.red, 3.0f);
             }
-
+            enemyRider = GameObject.FindGameObjectWithTag(enemyRiderStr);
             //Debug.Log(Vector3.Angle(dir, transform.up));
-            if (Vector3.Angle(dir, transform.up) <= 40)
+            if (obj.relativeVelocity.magnitude > bumpVelocity && Vector3.Angle(dir, transform.up) <= 40)
             {
-
-                //prey_rb = obj.rigidbody;
-                enemyRider = GameObject.FindGameObjectWithTag(enemyRiderStr);
+                
                 //Set enemies bump flag to true
                 enemyRider.GetComponent<Rider_collision>().bumpOff = true;
 
             }
         }
-
     }
 }
