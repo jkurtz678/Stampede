@@ -51,7 +51,8 @@ public class RoundController : MonoBehaviour
             {
                 //Respawn player
                 int respawnSelect = Random.Range(1, spawnPoints.Length);
-                if (Vector3.Distance(spawnPoints[respawnSelect].transform.position, GameObject.FindGameObjectWithTag("Rider2").transform.position) < 5)
+                GameObject rider2 = GameObject.FindGameObjectWithTag("Rider2");
+                if (rider2 != null && Vector3.Distance(spawnPoints[respawnSelect].transform.position, GameObject.FindGameObjectWithTag("Rider2").transform.position) < 5)
                 {
                     respawnSelect = Random.Range(1, spawnPoints.Length);
                 }
@@ -79,7 +80,8 @@ public class RoundController : MonoBehaviour
             {
                 //Respawn player
                 int respawnSelect = Random.Range(1, spawnPoints.Length);
-                if (Vector3.Distance(spawnPoints[respawnSelect].transform.position, GameObject.FindGameObjectWithTag("Rider1").transform.position) < 5)
+                GameObject rider1 = GameObject.FindGameObjectWithTag("Rider1");
+                if (rider1 != null && Vector3.Distance(spawnPoints[respawnSelect].transform.position, rider1.transform.position) < 5)
                 {
                     respawnSelect = Random.Range(1, spawnPoints.Length);
                 }
