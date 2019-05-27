@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{91070C12-ADEA-49D9-9E01-84A9E184041F}" SchemaVersion="94">
+	<Switches>
+		<WorkUnit Name="Default Work Unit" ID="{91070C12-ADEA-49D9-9E01-84A9E184041F}" PersistMode="Standalone">
+			<ChildrenList>
+				<SwitchGroup Name="Riders" ID="{D354B491-DCE7-40EC-B346-DE28ADD4FA5F}">
+					<ChildrenList>
+						<Switch Name="NoRider" ID="{A65492BE-A767-4DF7-9E21-CF3B81BFF33B}"/>
+						<Switch Name="TwoRiders" ID="{79AF396E-DE7E-4D1E-B554-EFE9E1DD5806}"/>
+					</ChildrenList>
+				</SwitchGroup>
+			</ChildrenList>
+		</WorkUnit>
+	</Switches>
+</WwiseDocument>

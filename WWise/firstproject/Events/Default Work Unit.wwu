@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{64D3AE78-43F5-4897-848B-FA493D11A502}" SchemaVersion="94">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{64D3AE78-43F5-4897-848B-FA493D11A502}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="Add_To_Pack" ID="{EB636123-5D30-4747-9912-CD46040084C8}">
+					<ChildrenList>
+						<Action Name="" ID="{569D9EBD-8DA2-4A29-AABD-E1E159FBA2D8}" ShortID="1044474423">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="TomB16inD3" ID="{822C1618-402A-4837-A603-7DAE608CF662}" WorkUnitID="{66453DE9-7988-4F10-9E0D-42BFF3E857F0}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Riding_Music" ID="{AFB57E61-B810-4F2D-8E6A-C9B02E3C5E6B}">
+					<ChildrenList>
+						<Action Name="" ID="{97E44ED7-A2BD-4198-9864-792302C4639B}" ShortID="467660935">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="RiderContainer" ID="{B4104F09-B776-4E9C-ABE2-E28604AEB971}" WorkUnitID="{8E92DCC4-6250-49D5-A992-37D5FF0B3EB7}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Buffaloids" ID="{37F070E7-069B-4E89-84C3-AE739C965BF2}">
+					<ChildrenList>
+						<Action Name="" ID="{325C5C05-4C16-4EC3-979A-24E2F2C455EB}" ShortID="349940219">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Buffaloids" ID="{EC2EA24A-7BCA-49C1-8B8C-E665167F2230}" WorkUnitID="{176CC457-C403-4752-BEE0-F036176FAB13}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="MainWithTheme" ID="{65737A8A-A756-408A-8A1C-F9D9FB96351C}">
+					<ChildrenList>
+						<Action Name="" ID="{3E26A14F-ED45-4EDD-A8EF-C7F0204BE89B}" ShortID="467130406">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="BuffaloidsTheme" ID="{2FC06347-D2B3-46CE-884E-13821A20C110}" WorkUnitID="{176CC457-C403-4752-BEE0-F036176FAB13}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{5797D462-DBD0-4600-A432-F70C53F77195}" ShortID="35802442">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Buffaloids" ID="{EC2EA24A-7BCA-49C1-8B8C-E665167F2230}" WorkUnitID="{176CC457-C403-4752-BEE0-F036176FAB13}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

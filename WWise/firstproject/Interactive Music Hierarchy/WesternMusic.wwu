@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{176CC457-C403-4752-BEE0-F036176FAB13}" SchemaVersion="94">
+	<InteractiveMusic>
+		<WorkUnit Name="WesternMusic" ID="{176CC457-C403-4752-BEE0-F036176FAB13}" PersistMode="Standalone">
+			<ChildrenList>
+				<MusicPlaylistContainer Name="Buffaloids" ID="{EC2EA24A-7BCA-49C1-8B8C-E665167F2230}" ShortID="60495712">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{ABF4AAB9-991B-4AAA-8D2C-C09053327950}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DC1087B0-1DE3-4E8C-85F9-5761E36CAAB0}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<MusicSegment Name="comp-western-123bpm4-4_L4M" ID="{A3E801FD-AB55-4F53-B5D4-D89E7A6F67B0}" ShortID="716496602">
+							<PropertyList>
+								<Property Name="EndPosition" Type="Real64" Value="8292.68016149549"/>
+								<Property Name="OverrideClockSettings" Type="bool" Value="True"/>
+								<Property Name="Tempo" Type="Real64" Value="123"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{ABF4AAB9-991B-4AAA-8D2C-C09053327950}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DC1087B0-1DE3-4E8C-85F9-5761E36CAAB0}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="comp-western-123bpm4-4_L4M" ID="{2D02CA2B-6B10-4210-AB75-02C419E60184}" ShortID="355505613">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DC1087B0-1DE3-4E8C-85F9-5761E36CAAB0}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="comp-western-123bpm4-4_L4M" ID="{3AB70308-FB26-4717-86A7-BCE82BE9A15C}" ShortID="965656042">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+												<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+												<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+												<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>Buffaloids\comp-western-123bpm4-4_L4M.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{BE4E8E3E-ADA2-4C77-AC7D-DC39C7195E8B}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<SequenceList>
+										<MusicTrackSequence Name="" ID="{8A1AC21A-AC29-4637-86DB-53D5D133F9F4}">
+											<ClipList>
+												<MusicClip Name="comp-western-123bpm4-4_L4M" ID="{C23EAAFF-FCB0-46BB-91BF-4CB6FB3667BE}">
+													<PropertyList>
+														<Property Name="BeginTrimOffset" Type="Real64" Value="3902.43902439024"/>
+														<Property Name="EndTrimOffset" Type="Real64" Value="7804.87528344671"/>
+														<Property Name="FadeInDuration" Type="Real64" Value="31.6413862842435"/>
+														<Property Name="FadeOutMode" Type="int16" Value="0"/>
+														<Property Name="PlayAt" Type="Real64" Value="-3902.43902439024"/>
+													</PropertyList>
+													<AudioSourceRef Name="comp-western-123bpm4-4_L4M" ID="{3AB70308-FB26-4717-86A7-BCE82BE9A15C}"/>
+													<PropertyCurveList>
+														<PropertyCurve PropertyName="Highpass">
+															<Curve Name="" ID="{BA0F8D7E-3856-4B5F-9469-789E4F5341EA}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="1"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>3.90244</XPos>
+																		<YPos>0</YPos>
+																		<Flags>5</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>7.80487528344671</XPos>
+																		<YPos>0</YPos>
+																		<Flags>37</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</PropertyCurve>
+														<PropertyCurve PropertyName="Lowpass">
+															<Curve Name="" ID="{114DCED4-B5B9-4F6C-A28E-67680AAB2A04}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="1"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>3.90244</XPos>
+																		<YPos>0</YPos>
+																		<Flags>5</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>7.80487528344671</XPos>
+																		<YPos>0</YPos>
+																		<Flags>37</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</PropertyCurve>
+														<PropertyCurve PropertyName="Volume">
+															<Curve Name="" ID="{FCE40DAD-E890-4A9F-A56E-7A5DFC96FD15}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="3"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>3.90244</XPos>
+																		<YPos>0</YPos>
+																		<Flags>5</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>7.80487528344671</XPos>
+																		<YPos>0</YPos>
+																		<Flags>37</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</PropertyCurve>
+													</PropertyCurveList>
+												</MusicClip>
+											</ClipList>
+										</MusicTrackSequence>
+									</SequenceList>
+								</MusicTrack>
+							</ChildrenList>
+							<CueList>
+								<MusicCue Name="Entry Cue" ID="{A13DE3A4-3A2B-45B2-9D50-87413A08EC82}"/>
+								<MusicCue Name="Exit Cue" ID="{C62FB970-7899-4AAB-930E-04A440BC4D5A}">
+									<PropertyList>
+										<Property Name="CueType" Type="int16" Value="1"/>
+										<Property Name="TimeMs" Type="Real64" Value="3902.43625905647"/>
+									</PropertyList>
+								</MusicCue>
+							</CueList>
+						</MusicSegment>
+						<MusicSegment Name="intro-western-123bpm4-4_L5M" ID="{9A038B12-1050-4003-A77A-71B9D9397C05}" ShortID="699112148">
+							<PropertyList>
+								<Property Name="EndPosition" Type="Real64" Value="9756.09977324263"/>
+								<Property Name="OverrideClockSettings" Type="bool" Value="True"/>
+								<Property Name="Tempo" Type="Real64" Value="123"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{ABF4AAB9-991B-4AAA-8D2C-C09053327950}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DC1087B0-1DE3-4E8C-85F9-5761E36CAAB0}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="intro-western-123bpm4-4_L5M" ID="{C14D63B1-19A4-4464-A06C-765AC54C5943}" ShortID="816776760">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DC1087B0-1DE3-4E8C-85F9-5761E36CAAB0}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="intro-western-123bpm4-4_L5M" ID="{97C490FE-E0D2-4C8C-89EC-7A0CB47B2531}" ShortID="1057512923">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+												<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+												<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+												<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>Buffaloids\intro-western-123bpm4-4_L5M.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{B262F506-AD20-4732-BBFC-F76C58F881B9}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<MusicTransition Name="Transition" ID="{EFE4105C-0E3D-4416-B4D8-8CD8C226C7E4}">
+													<TransitionInfo/>
+												</MusicTransition>
+											</ChildrenList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<SequenceList>
+										<MusicTrackSequence Name="" ID="{FC705EF7-EA53-4864-8D05-811AA6220A3D}">
+											<ClipList>
+												<MusicClip Name="intro-western-123bpm4-4_L5M" ID="{266EE722-AE7B-472C-B5DC-D41AF2F07B65}">
+													<PropertyList>
+														<Property Name="EndTrimOffset" Type="Real64" Value="9756.09977324263"/>
+														<Property Name="FadeInMode" Type="int16" Value="0"/>
+														<Property Name="FadeOutMode" Type="int16" Value="0"/>
+													</PropertyList>
+													<AudioSourceRef Name="intro-western-123bpm4-4_L5M" ID="{97C490FE-E0D2-4C8C-89EC-7A0CB47B2531}"/>
+												</MusicClip>
+											</ClipList>
+										</MusicTrackSequence>
+									</SequenceList>
+								</MusicTrack>
+							</ChildrenList>
+							<CueList>
+								<MusicCue Name="Entry Cue" ID="{E31245E8-051A-4357-AD36-E3DAD19986F8}"/>
+								<MusicCue Name="Exit Cue" ID="{EB43050F-7C12-4A52-A9A3-3C998A0C240B}">
+									<PropertyList>
+										<Property Name="CueType" Type="int16" Value="1"/>
+										<Property Name="TimeMs" Type="Real64" Value="9756.09977324263"/>
+									</PropertyList>
+								</MusicCue>
+							</CueList>
+						</MusicSegment>
+						<MusicSegment Name="theme1-western-123bpm4-4_L14M" ID="{8B5664B2-35DA-4366-A0F3-4566160C6339}" ShortID="619622031">
+							<PropertyList>
+								<Property Name="EndPosition" Type="Real64" Value="27317.074829932"/>
+								<Property Name="OverrideClockSettings" Type="bool" Value="True"/>
+								<Property Name="Tempo" Type="Real64" Value="123"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{ABF4AAB9-991B-4AAA-8D2C-C09053327950}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DC1087B0-1DE3-4E8C-85F9-5761E36CAAB0}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="theme1-western-123bpm4-4_L14M" ID="{5B4FBD4A-DC93-41B5-B353-020BF539DB93}" ShortID="971246552">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DC1087B0-1DE3-4E8C-85F9-5761E36CAAB0}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="theme1-western-123bpm4-4_L14M" ID="{0FCEED23-D40A-4A2E-9811-B479DBB39902}" ShortID="530778008">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+												<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+												<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+												<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>Buffaloids\theme1-western-123bpm4-4_L14M.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{762B3AC9-283F-46FA-B546-70EC245C9581}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<SequenceList>
+										<MusicTrackSequence Name="" ID="{F6C50568-6699-412F-83B2-0E9A0E75D32A}">
+											<ClipList>
+												<MusicClip Name="theme1-western-123bpm4-4_L14M" ID="{6FA72607-DFF8-42A3-86C2-035167F723B3}">
+													<PropertyList>
+														<Property Name="EndTrimOffset" Type="Real64" Value="27317.074829932"/>
+														<Property Name="FadeInMode" Type="int16" Value="0"/>
+														<Property Name="FadeOutMode" Type="int16" Value="0"/>
+													</PropertyList>
+													<AudioSourceRef Name="theme1-western-123bpm4-4_L14M" ID="{0FCEED23-D40A-4A2E-9811-B479DBB39902}"/>
+												</MusicClip>
+											</ClipList>
+										</MusicTrackSequence>
+									</SequenceList>
+								</MusicTrack>
+							</ChildrenList>
+							<CueList>
+								<MusicCue Name="Entry Cue" ID="{7E6A9787-599C-4E0C-A262-BDA851BCE6E9}"/>
+								<MusicCue Name="Exit Cue" ID="{25A6E375-2F7E-4A6A-90F5-C739EF8C7589}">
+									<PropertyList>
+										<Property Name="CueType" Type="int16" Value="1"/>
+										<Property Name="TimeMs" Type="Real64" Value="27317.074829932"/>
+									</PropertyList>
+								</MusicCue>
+							</CueList>
+						</MusicSegment>
+					</ChildrenList>
+					<TransitionList>
+						<MusicTransition Name="Root" ID="{9A2B04FB-05A8-4EB8-ACA8-3B4108362897}">
+							<PropertyList>
+								<Property Name="IsFolder" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<MusicTransition Name="Transition" ID="{0A3AAD64-3F63-495F-B8AE-3A60FEC37DDC}">
+									<TransitionInfo/>
+								</MusicTransition>
+							</ChildrenList>
+							<TransitionInfo/>
+						</MusicTransition>
+					</TransitionList>
+					<Playlist>
+						<MusicPlaylistItem Name="" ID="{490F39D8-F41E-4444-A652-976EECC0C9C1}" ShortID="450985697">
+							<ChildrenList>
+								<MusicPlaylistItem Name="" ID="{D4FC4C46-F890-42C4-8B4F-2A9F5F26F585}" ShortID="1028506090">
+									<PropertyList>
+										<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+									</PropertyList>
+									<SegmentRef Name="intro-western-123bpm4-4_L5M" ID="{9A038B12-1050-4003-A77A-71B9D9397C05}"/>
+								</MusicPlaylistItem>
+								<MusicPlaylistItem Name="" ID="{5E1F7CB2-D7A6-45C9-8CF0-F800152DAC98}" ShortID="1015862546">
+									<PropertyList>
+										<Property Name="LoopCount" Type="int16" Value="0"/>
+										<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+									</PropertyList>
+									<SegmentRef Name="comp-western-123bpm4-4_L4M" ID="{A3E801FD-AB55-4F53-B5D4-D89E7A6F67B0}"/>
+								</MusicPlaylistItem>
+							</ChildrenList>
+						</MusicPlaylistItem>
+					</Playlist>
+				</MusicPlaylistContainer>
+				<MusicPlaylistContainer Name="BuffaloidsTheme" ID="{2FC06347-D2B3-46CE-884E-13821A20C110}" ShortID="440688366">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{ABF4AAB9-991B-4AAA-8D2C-C09053327950}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DC1087B0-1DE3-4E8C-85F9-5761E36CAAB0}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<MusicSegment Name="comp-western-123bpm4-4_L4M" ID="{C04A103D-EA9F-4623-8D9F-838990DA23B4}" ShortID="796463519">
+							<PropertyList>
+								<Property Name="EndPosition" Type="Real64" Value="8292.68016149549"/>
+								<Property Name="OverrideClockSettings" Type="bool" Value="True"/>
+								<Property Name="Tempo" Type="Real64" Value="123"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{ABF4AAB9-991B-4AAA-8D2C-C09053327950}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DC1087B0-1DE3-4E8C-85F9-5761E36CAAB0}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="comp-western-123bpm4-4_L4M" ID="{E2B7E57E-5F05-4084-B3F1-DB93097EE0D1}" ShortID="490152267">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DC1087B0-1DE3-4E8C-85F9-5761E36CAAB0}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="comp-western-123bpm4-4_L4M" ID="{9677C73C-ADF6-4A7D-8DA3-3EF59AF01111}" ShortID="235688422">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+												<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+												<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+												<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>Buffaloids\comp-western-123bpm4-4_L4M.wav</AudioFile>
+											<ConvertedFileIDList>
+												<File ID="965656042"/>
+											</ConvertedFileIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{6E6564F7-0B7B-45C4-B710-4FD04503AA63}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<SequenceList>
+										<MusicTrackSequence Name="" ID="{82BA30C5-FCB1-4D73-9664-D6734320CB16}">
+											<ClipList>
+												<MusicClip Name="comp-western-123bpm4-4_L4M" ID="{641D426C-B5AE-4FA8-9609-050113902FD4}">
+													<PropertyList>
+														<Property Name="BeginTrimOffset" Type="Real64" Value="3902.43902439024"/>
+														<Property Name="EndTrimOffset" Type="Real64" Value="7804.87528344671"/>
+														<Property Name="FadeInDuration" Type="Real64" Value="31.6413862842435"/>
+														<Property Name="FadeOutMode" Type="int16" Value="0"/>
+														<Property Name="PlayAt" Type="Real64" Value="-3902.43902439024"/>
+													</PropertyList>
+													<AudioSourceRef Name="comp-western-123bpm4-4_L4M" ID="{9677C73C-ADF6-4A7D-8DA3-3EF59AF01111}"/>
+													<PropertyCurveList>
+														<PropertyCurve PropertyName="Highpass">
+															<Curve Name="" ID="{F9EE0591-30D0-414D-B2EE-710C28A72A4D}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="1"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>3.90244</XPos>
+																		<YPos>0</YPos>
+																		<Flags>5</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>7.80487528344671</XPos>
+																		<YPos>0</YPos>
+																		<Flags>37</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</PropertyCurve>
+														<PropertyCurve PropertyName="Lowpass">
+															<Curve Name="" ID="{98E37391-FCBC-4037-82BB-1DD3F42B0600}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="1"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>3.90244</XPos>
+																		<YPos>0</YPos>
+																		<Flags>5</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>7.80487528344671</XPos>
+																		<YPos>0</YPos>
+																		<Flags>37</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</PropertyCurve>
+														<PropertyCurve PropertyName="Volume">
+															<Curve Name="" ID="{6F381E1E-F4A0-4376-A5F5-A2C80D6CC25E}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="3"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>3.90244</XPos>
+																		<YPos>0</YPos>
+																		<Flags>5</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>7.80487528344671</XPos>
+																		<YPos>0</YPos>
+																		<Flags>37</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</PropertyCurve>
+													</PropertyCurveList>
+												</MusicClip>
+											</ClipList>
+										</MusicTrackSequence>
+									</SequenceList>
+								</MusicTrack>
+							</ChildrenList>
+							<CueList>
+								<MusicCue Name="Entry Cue" ID="{B55B6E37-B4B9-41E2-A54F-5EF9972936ED}"/>
+								<MusicCue Name="Exit Cue" ID="{3290C111-91FF-4B37-B66E-7D4A86079EEF}">
+									<PropertyList>
+										<Property Name="CueType" Type="int16" Value="1"/>
+										<Property Name="TimeMs" Type="Real64" Value="3902.43625905647"/>
+									</PropertyList>
+								</MusicCue>
+							</CueList>
+						</MusicSegment>
+						<MusicSegment Name="intro-western-123bpm4-4_L5M" ID="{55AC624A-CB6E-446F-9AE0-47290B38FB2D}" ShortID="126028206">
+							<PropertyList>
+								<Property Name="EndPosition" Type="Real64" Value="9756.09977324263"/>
+								<Property Name="OverrideClockSettings" Type="bool" Value="True"/>
+								<Property Name="Tempo" Type="Real64" Value="123"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{ABF4AAB9-991B-4AAA-8D2C-C09053327950}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DC1087B0-1DE3-4E8C-85F9-5761E36CAAB0}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="intro-western-123bpm4-4_L5M" ID="{22D0C908-80A7-46D0-A9F7-55EBB68E5C52}" ShortID="722226357">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DC1087B0-1DE3-4E8C-85F9-5761E36CAAB0}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="intro-western-123bpm4-4_L5M" ID="{4226F0BD-6A1C-4339-B56D-117814E54A48}" ShortID="1020884418">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+												<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+												<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+												<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>Buffaloids\intro-western-123bpm4-4_L5M.wav</AudioFile>
+											<ConvertedFileIDList>
+												<File ID="1057512923"/>
+											</ConvertedFileIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{B1032261-4349-4169-A5E6-64322EE120A8}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<MusicTransition Name="Transition" ID="{14C02E34-90C3-4984-9596-2DAEAF67121D}">
+													<TransitionInfo/>
+												</MusicTransition>
+											</ChildrenList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<SequenceList>
+										<MusicTrackSequence Name="" ID="{A5C52BAD-C231-49C4-A355-A6F505917D50}">
+											<ClipList>
+												<MusicClip Name="intro-western-123bpm4-4_L5M" ID="{3D2473C3-10F5-4A77-B123-BCED8BC8AE6D}">
+													<PropertyList>
+														<Property Name="EndTrimOffset" Type="Real64" Value="9756.09977324263"/>
+														<Property Name="FadeInMode" Type="int16" Value="0"/>
+														<Property Name="FadeOutMode" Type="int16" Value="0"/>
+													</PropertyList>
+													<AudioSourceRef Name="intro-western-123bpm4-4_L5M" ID="{4226F0BD-6A1C-4339-B56D-117814E54A48}"/>
+												</MusicClip>
+											</ClipList>
+										</MusicTrackSequence>
+									</SequenceList>
+								</MusicTrack>
+							</ChildrenList>
+							<CueList>
+								<MusicCue Name="Entry Cue" ID="{0207E083-173B-4D94-8974-6E9A94D601B7}"/>
+								<MusicCue Name="Exit Cue" ID="{83A1EF24-DD20-4CCA-ADD0-79B9B717379C}">
+									<PropertyList>
+										<Property Name="CueType" Type="int16" Value="1"/>
+										<Property Name="TimeMs" Type="Real64" Value="9756.09977324263"/>
+									</PropertyList>
+								</MusicCue>
+							</CueList>
+						</MusicSegment>
+						<MusicSegment Name="theme1-western-123bpm4-4_L14M" ID="{E92A4C90-F888-44F6-9437-BC5EA2C594E1}" ShortID="574925423">
+							<PropertyList>
+								<Property Name="EndPosition" Type="Real64" Value="27317.074829932"/>
+								<Property Name="OverrideClockSettings" Type="bool" Value="True"/>
+								<Property Name="Tempo" Type="Real64" Value="123"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{ABF4AAB9-991B-4AAA-8D2C-C09053327950}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DC1087B0-1DE3-4E8C-85F9-5761E36CAAB0}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="theme1-western-123bpm4-4_L14M" ID="{7D0F6BBA-AA93-4232-BD60-A8273032F06E}" ShortID="450977674">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DC1087B0-1DE3-4E8C-85F9-5761E36CAAB0}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="theme1-western-123bpm4-4_L14M" ID="{F9782446-1115-48C2-B6BF-883340C7ED12}" ShortID="1913844">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+												<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+												<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+												<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>Buffaloids\theme1-western-123bpm4-4_L14M.wav</AudioFile>
+											<ConvertedFileIDList>
+												<File ID="530778008"/>
+											</ConvertedFileIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{37E211D3-962B-404F-94F1-32E574DD4EA7}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<SequenceList>
+										<MusicTrackSequence Name="" ID="{D08DE0F5-9263-4E8A-8115-B3FE1BF23E42}">
+											<ClipList>
+												<MusicClip Name="theme1-western-123bpm4-4_L14M" ID="{BC3EED00-2DED-41EE-985C-C218D8A04A07}">
+													<PropertyList>
+														<Property Name="EndTrimOffset" Type="Real64" Value="27317.074829932"/>
+														<Property Name="FadeInMode" Type="int16" Value="0"/>
+														<Property Name="FadeOutMode" Type="int16" Value="0"/>
+													</PropertyList>
+													<AudioSourceRef Name="theme1-western-123bpm4-4_L14M" ID="{F9782446-1115-48C2-B6BF-883340C7ED12}"/>
+												</MusicClip>
+											</ClipList>
+										</MusicTrackSequence>
+									</SequenceList>
+								</MusicTrack>
+							</ChildrenList>
+							<CueList>
+								<MusicCue Name="Entry Cue" ID="{26112C9A-E482-4928-AFA1-99763212692A}"/>
+								<MusicCue Name="Exit Cue" ID="{5E6D8714-E92B-459A-A144-5FF553658021}">
+									<PropertyList>
+										<Property Name="CueType" Type="int16" Value="1"/>
+										<Property Name="TimeMs" Type="Real64" Value="27317.074829932"/>
+									</PropertyList>
+								</MusicCue>
+							</CueList>
+						</MusicSegment>
+					</ChildrenList>
+					<TransitionList>
+						<MusicTransition Name="Root" ID="{A007F9A7-48C1-4428-ADE2-13F13F484A82}">
+							<PropertyList>
+								<Property Name="IsFolder" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<MusicTransition Name="Transition" ID="{8968B0CE-8D75-44A2-AE41-27BEB89380AB}">
+									<TransitionInfo/>
+								</MusicTransition>
+							</ChildrenList>
+							<TransitionInfo/>
+						</MusicTransition>
+					</TransitionList>
+					<Playlist>
+						<MusicPlaylistItem Name="" ID="{9E538D4C-0C0A-497E-B145-1C6CA428885B}" ShortID="1039379205">
+							<ChildrenList>
+								<MusicPlaylistItem Name="" ID="{4F32B97D-B084-4BF5-A6D7-FEADF06818B9}" ShortID="758454304">
+									<PropertyList>
+										<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+									</PropertyList>
+									<SegmentRef Name="intro-western-123bpm4-4_L5M" ID="{55AC624A-CB6E-446F-9AE0-47290B38FB2D}"/>
+								</MusicPlaylistItem>
+								<MusicPlaylistItem Name="" ID="{920BD5AE-8E17-4256-B920-AEE37064B18D}" ShortID="237194121">
+									<PropertyList>
+										<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+									</PropertyList>
+									<SegmentRef Name="comp-western-123bpm4-4_L4M" ID="{C04A103D-EA9F-4623-8D9F-838990DA23B4}"/>
+								</MusicPlaylistItem>
+								<MusicPlaylistItem Name="" ID="{A13BFC76-360A-4F96-A893-718CF204E226}" ShortID="50413189">
+									<PropertyList>
+										<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+									</PropertyList>
+									<SegmentRef Name="theme1-western-123bpm4-4_L14M" ID="{E92A4C90-F888-44F6-9437-BC5EA2C594E1}"/>
+								</MusicPlaylistItem>
+								<MusicPlaylistItem Name="" ID="{14A3A329-A6A6-457C-827B-3E0F3016F388}" ShortID="598543421">
+									<PropertyList>
+										<Property Name="LoopCount" Type="int16" Value="0"/>
+										<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+									</PropertyList>
+									<SegmentRef Name="comp-western-123bpm4-4_L4M" ID="{C04A103D-EA9F-4623-8D9F-838990DA23B4}"/>
+								</MusicPlaylistItem>
+							</ChildrenList>
+						</MusicPlaylistItem>
+					</Playlist>
+				</MusicPlaylistContainer>
+			</ChildrenList>
+		</WorkUnit>
+	</InteractiveMusic>
+</WwiseDocument>
