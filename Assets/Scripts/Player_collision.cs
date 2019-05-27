@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player_collision : MonoBehaviour
 {
-    public float deathVelocity = 2;
+    public float deathVelocity = 0.7f;
     public bool dead;
 
     void OnCollisionStay2D(Collision2D obj)
