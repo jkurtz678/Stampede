@@ -18,7 +18,7 @@ public class ChaseState : State<Buffaloid>
     {
         Debug.Log("Entering Chase State");
         _owner.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
-        WWiseBankManager.Chase(_owner.gameObject);
+       // WWiseBankManager.Chase(_owner.gameObject);
     }
 
     public override void ExitState(Buffaloid _owner)

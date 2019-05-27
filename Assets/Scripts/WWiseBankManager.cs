@@ -11,7 +11,7 @@ public class WWiseBankManager : MonoBehaviour
     public static void MainMusic(GameObject gameObject )
     {
         AkSoundEngine.StopAll();
-        AkSoundEngine.PostEvent("Buffaloids", gameObject);
+        AkSoundEngine.PostEvent("MainWithTheme", gameObject);
     }
     public static void RidingMusic(GameObject gameObject) => AkSoundEngine.PostEvent("Riding_Music", gameObject);
 }

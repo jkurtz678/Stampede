@@ -15,6 +15,7 @@ namespace AK
     {
         static const AkUniqueID ADD_TO_PACK = 713614430U;
         static const AkUniqueID BUFFALOIDS = 3592640110U;
+        static const AkUniqueID MAINWITHTHEME = 2267222025U;
         static const AkUniqueID RIDING_MUSIC = 3046425890U;
     } // namespace EVENTS
 

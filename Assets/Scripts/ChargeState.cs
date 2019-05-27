@@ -18,7 +18,7 @@ public class ChargeState : State<Buffaloid>
         _owner.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         timer = 4f;
         chargeDir = _owner.currentMove;
-        WWiseBankManager.Charge(_owner.gameObject);
+        //WWiseBankManager.Charge(_owner.gameObject);
     }
 
     public override void ExitState(Buffaloid _owner)

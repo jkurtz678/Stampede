@@ -29,6 +29,8 @@ public class RoundController : MonoBehaviour
 
         player1_lives = NumLives;
         player2_lives = NumLives;
+
+        WWiseBankManager.MainMusic(gameObject);
     }
 
     // Update is called once per frame
