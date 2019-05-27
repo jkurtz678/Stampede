@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class RoundController : MonoBehaviour
 {
@@ -37,7 +39,7 @@ public class RoundController : MonoBehaviour
         if(player1_script.dead == true)
         {
             player1_lives -= 1;
-            if (player2_lives <= 0)
+            if (player1_lives <= 0)
             {
                 GameObject.Find("Player1Lives").GetComponent<UnityEngine.UI.Text>().text = "P1 Lives: 0";
             }
@@ -48,7 +50,8 @@ public class RoundController : MonoBehaviour
             if (player1_lives <= 0)
             {
                 //Player 2 wins round, move to next scene
-                
+                Debug.Log("Inside 0 lives");
+                SceneManager.LoadScene(sceneName:"RiderBumpTests");
             } else
             {
                 //Respawn player
@@ -77,7 +80,7 @@ public class RoundController : MonoBehaviour
             if (player2_lives <= 0)
             {
                 //Player 1 wins round, move to next scene
-
+                SceneManager.LoadScene(sceneName:"RiderBumpTests");
             } else
             {
                 //Respawn player
