@@ -184,17 +184,26 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: b08710dce31d8c4e85f95761e36caab0
     GuidInternal: 
-    m_lastTime: -8586472507614775808
+    m_lastTime: -8586471651244775808
     List: []
   BankWwu:
   - PhysicalPath: SoundBanks/Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 32c085bab373af47b189bce452cecd57
     GuidInternal: 
-    m_lastTime: -8586472507624775808
+    m_lastTime: -8586426894394775808
     List:
+    - name: BaseBank
+      guid: a1d3f48f769baa479e45f7b0779a7536
+      id: 348692940
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: BaseBank
+        ObjectType: 7
+      Path: Default Work Unit/BaseBank
     - name: Main
-      guid: e96bc9d1f1ab514fb90b3591c197c7fd
+      guid: aaee6c970207a44d99e9fef2699c8ad5
       id: 3161908922
       PathAndIcons:
       - ElementName: Default Work Unit
@@ -202,12 +211,21 @@ MonoBehaviour:
       - ElementName: Main
         ObjectType: 7
       Path: Default Work Unit/Main
+    - name: NewMusicTest
+      guid: edd2a675e7d4f14c8ba97ee49c92355e
+      id: 561454006
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: NewMusicTest
+        ObjectType: 7
+      Path: Default Work Unit/NewMusicTest
   EventWwu:
   - PhysicalPath: Events/Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 78aed364f5439748848bfa493d11a502
     GuidInternal: 
-    m_lastTime: -8586472507624775808
+    m_lastTime: -8586426894394775808
     List:
     - name: Add_To_Pack
       guid: 236163eb305d47479912cd46040084c8
@@ -219,8 +237,32 @@ MonoBehaviour:
         ObjectType: 3
       Path: Default Work Unit/Add_To_Pack
       maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
+      maxDuration: 4.947642
+      minDuration: 4.947642
+    - name: Buffaloids
+      guid: e770f0379b06894e84c3ae739c965bf2
+      id: 3592640110
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Buffaloids
+        ObjectType: 3
+      Path: Default Work Unit/Buffaloids
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Riding_Music
+      guid: 617eb5af10b82d4f8e6ac9b02e3c5e6b
+      id: 3046425890
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Riding_Music
+        ObjectType: 3
+      Path: Default Work Unit/Riding_Music
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
   RtpcWwu:
   - PhysicalPath: Game Parameters/Default Work Unit.wwu
     ParentPhysicalPath: 
@@ -360,8 +402,33 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 120c0791eaadd9499e0184a9e184041f
     GuidInternal: 
-    m_lastTime: -8586472507624775808
-    List: []
+    m_lastTime: -8586428692034775808
+    List:
+    - name: Riders
+      guid: 91b454d3e7dcec40b346de28add4fa5f
+      id: 402323774
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Riders
+        ObjectType: 11
+      Path: Default Work Unit/Riders
+      values:
+      - name: NoRider
+        guid: be9254a667a7f74d9e21cf3b81bff33b
+        id: 2957640076
+        PathAndIcons:
+        - ElementName: NoRider
+          ObjectType: 10
+      - name: TwoRiders
+        guid: 6e39af797ede1e4db554efe9e1dd5806
+        id: 72111622
+        PathAndIcons:
+        - ElementName: TwoRiders
+          ObjectType: 10
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
   TriggerWwu:
   - PhysicalPath: Triggers/Default Work Unit.wwu
     ParentPhysicalPath: 
@@ -375,5 +442,8 @@ MonoBehaviour:
   - /firstproject/Events/Default Work Unit
   - /firstproject/SoundBanks
   - /firstproject/SoundBanks/Default Work Unit
+  - /firstproject/Switches
+  - /firstproject/Switches/Default Work Unit
+  - /firstproject/Switches/Default Work Unit/Riders
   autoPopulateEnabled: 1
   CurrentPluginConfig: 

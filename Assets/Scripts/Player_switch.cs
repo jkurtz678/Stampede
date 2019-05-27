@@ -41,8 +41,10 @@ public class Player_switch : MonoBehaviour
                 playerRider.GetComponent<Rigidbody2D>().velocity = closestBoid.GetComponent<Rigidbody2D>().velocity;
                 closestBoid.SetActive(false);
                 player_game_obj.SetActive(false);
+                WWiseBankManager.RidingMusic(gameObject);
 
-            } else
+            }
+            else
             {
                 controlType = false;
             }

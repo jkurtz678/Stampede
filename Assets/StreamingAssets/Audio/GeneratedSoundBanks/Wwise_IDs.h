@@ -14,7 +14,24 @@ namespace AK
     namespace EVENTS
     {
         static const AkUniqueID ADD_TO_PACK = 713614430U;
+        static const AkUniqueID BUFFALOIDS = 3592640110U;
+        static const AkUniqueID RIDING_MUSIC = 3046425890U;
     } // namespace EVENTS
+
+    namespace SWITCHES
+    {
+        namespace RIDERS
+        {
+            static const AkUniqueID GROUP = 402323774U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID NORIDER = 2957640076U;
+                static const AkUniqueID TWORIDERS = 72111622U;
+            } // namespace SWITCH
+        } // namespace RIDERS
+
+    } // namespace SWITCHES
 
     namespace GAME_PARAMETERS
     {
@@ -35,7 +52,9 @@ namespace AK
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;
+        static const AkUniqueID BASEBANK = 348692940U;
         static const AkUniqueID MAIN = 3161908922U;
+        static const AkUniqueID NEWMUSICTEST = 561454006U;
     } // namespace BANKS
 
     namespace BUSSES

@@ -238,6 +238,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 35.779003
       objectReference: {fileID: 0}
+    - target: {fileID: 6998984326472103593, guid: 5bf6bb12f736e4f9e8cb709f21bfafc9,
+        type: 3}
+      propertyPath: data.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 032ed7b0cd37f43e69844007e8ad728f,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bf6bb12f736e4f9e8cb709f21bfafc9, type: 3}
 --- !u!1001 &237282863
@@ -383,6 +389,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bf6bb12f736e4f9e8cb709f21bfafc9, type: 3}
+--- !u!1 &433283349 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 41188894431200023, guid: dc56bc155c49e4bf98aa777d230f65e0,
+    type: 3}
+  m_PrefabInstance: {fileID: 449445730}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &433283354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433283349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d24426e36e2f044bca3e6b785725b918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: f7e1664c
+  useOtherObject: 0
+  data:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  decodeBank: 0
+  loadAsynchronous: 0
+  saveDecodedBank: 0
+  unloadTriggerList: 958ca0ea
+  bankNameInternal: 
+  valueGuidInternal: 
 --- !u!1001 &449445730
 PrefabInstance:
   m_ObjectHideFlags: 0
