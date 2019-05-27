@@ -8,13 +8,15 @@ public class RoundController : MonoBehaviour
 {
     public int NumLives = 3;
     public GameObject[] spawnPoints;
+    public static int player1wins = 0;
+    public static int player2wins = 0;
     
-    public GameObject player1;
+    private GameObject player1;
     private GameObject player2;
     private Player_collision player1_script;
     private Player_collision player2_script;
-    public int player1_lives;
-    public int player2_lives;
+    private int player1_lives;
+    private int player2_lives;
     
     // Start is called before the first frame update
     void Start()
@@ -50,7 +52,7 @@ public class RoundController : MonoBehaviour
             if (player1_lives <= 0)
             {
                 //Player 2 wins round, move to next scene
-                Debug.Log("Inside 0 lives");
+                player2wins++;
                 SceneManager.LoadScene(sceneName:"RiderBumpTests");
             } else
             {
@@ -80,6 +82,7 @@ public class RoundController : MonoBehaviour
             if (player2_lives <= 0)
             {
                 //Player 1 wins round, move to next scene
+                player1wins++;
                 SceneManager.LoadScene(sceneName:"RiderBumpTests");
             } else
             {
