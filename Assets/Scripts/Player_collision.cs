@@ -12,7 +12,7 @@ public class Player_collision : MonoBehaviour
         if (obj.gameObject.tag == "Boids" || obj.gameObject.tag == "Rider1" || obj.gameObject.tag == "Rider2")
         {
             Vector3 dir = obj.transform.position - transform.position;
-            if (Vector3.Angle(dir, obj.transform.up * -1) <= 22.5)
+            if (Vector3.Angle(dir, obj.transform.up * -1) <= 25)
             {
                 if (obj.relativeVelocity.magnitude > deathVelocity)
                 {
