@@ -17,6 +17,8 @@ public class RoundController : MonoBehaviour
     private Player_collision player2_script;
     private int player1_lives;
     private int player2_lives;
+
+    private GameObject winsUI;
     
     // Start is called before the first frame update
     void Start()
@@ -32,13 +34,16 @@ public class RoundController : MonoBehaviour
         player1_lives = NumLives;
         player2_lives = NumLives;
 
+        winsUI = GameObject.Find("Wins");
+
         WWiseBankManager.MainMusic(gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(player1_script.dead == true)
+        winsUI.GetComponent<UnityEngine.UI.Text>().text = player1wins + ":" + player2wins;
+        if (player1_script.dead == true)
         {
             player1_lives -= 1;
             if (player1_lives <= 0)
@@ -53,6 +58,7 @@ public class RoundController : MonoBehaviour
             {
                 //Player 2 wins round, move to next scene
                 player2wins++;
+                winsUI.GetComponent<UnityEngine.UI.Text>().text = player1wins + ":" + player2wins;
                 SceneManager.LoadScene(sceneName:"RiderBumpTests");
             } else
             {
@@ -83,6 +89,7 @@ public class RoundController : MonoBehaviour
             {
                 //Player 1 wins round, move to next scene
                 player1wins++;
+                winsUI.GetComponent<UnityEngine.UI.Text>().text = player1wins + ":"+ player2wins;
                 SceneManager.LoadScene(sceneName:"RiderBumpTests");
             } else
             {
