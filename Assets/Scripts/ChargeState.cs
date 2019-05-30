@@ -14,7 +14,7 @@ public class ChargeState : State<Buffaloid>
 
     public override void EnterState(Buffaloid _owner)
     {
-        Debug.Log("Entering Charge State");
+        //Debug.Log("Entering Charge State");
         _owner.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         timer = 4f;
         chargeDir = _owner.currentMove;
@@ -23,7 +23,7 @@ public class ChargeState : State<Buffaloid>
 
     public override void ExitState(Buffaloid _owner)
     {
-        Debug.Log("Exiting Charge State");
+        //Debug.Log("Exiting Charge State");
 
     }
 
@@ -40,8 +40,7 @@ public class ChargeState : State<Buffaloid>
 
         chargeCheck(_owner);
 
-        Debug.Log("Charge State stuff...");
-        Debug.Log("Charge dir: " + chargeDir);
+        //Debug.Log("Charge dir: " + chargeDir);
         Debug.DrawRay(_owner.transform.position, chargeDir, Color.yellow);
 
         timer -= Time.deltaTime;

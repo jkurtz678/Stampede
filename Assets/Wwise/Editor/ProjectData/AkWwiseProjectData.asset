@@ -448,6 +448,9 @@ MonoBehaviour:
     GuidInternal: 
     m_lastTime: -8586472507614775808
     List: []
-  ExpandedItems: []
+  ExpandedItems:
+  - /firstproject
+  - /firstproject/SoundBanks
+  - /firstproject/SoundBanks/Default Work Unit
   autoPopulateEnabled: 1
   CurrentPluginConfig: 

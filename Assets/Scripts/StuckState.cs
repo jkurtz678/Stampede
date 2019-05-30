@@ -16,14 +16,14 @@ public class StuckState : State<Buffaloid>
     public override void EnterState(Buffaloid _owner)
     {
         unstuckTimer = unstuckTime;
-        Debug.Log("Entering Stuck State");
+        //Debug.Log("Entering Stuck State");
         _owner.gameObject.GetComponent<SpriteRenderer>().color = Color.magenta;
         randDir = Random.Range(0, 2) * 2 - 1;
     }
 
     public override void ExitState(Buffaloid _owner)
     {
-        Debug.Log("Exiting Stuck State");
+        //Debug.Log("Exiting Stuck State");
     }
 
     public override void UpdateState(Buffaloid _owner)
@@ -39,7 +39,6 @@ public class StuckState : State<Buffaloid>
        
         _owner.torqueRotate(rotateSpeed, randDir);
         _owner.reverseMove(reverseSpeed);
-        Debug.Log("stuck state stuff");
 
     }
 }

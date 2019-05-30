@@ -38,7 +38,7 @@ public class PackState : State<Buffaloid>
 
     public override void EnterState(Buffaloid _owner)
     {
-        Debug.Log("Entering Pack State");
+        //Debug.Log("Entering Pack State");
         stuckTimer = 1f;
         stuck = false;
         idling = false;
@@ -48,7 +48,7 @@ public class PackState : State<Buffaloid>
 
     public override void ExitState(Buffaloid _owner)
     {
-        Debug.Log("Exiting Pack State");
+        //Debug.Log("Exiting Pack State");
 
     }
 
@@ -58,14 +58,14 @@ public class PackState : State<Buffaloid>
         if(stuck)
         {
             stuckTimer -= Time.deltaTime;
-            Debug.Log("stuckTimer: " + stuckTimer);
+            //Debug.Log("stuckTimer: " + stuckTimer);
             if(stuckTimer < 0)
             {
                 _owner.stateMachine.ChangeState(new StuckState());
             }
             else if(_owner.getRBSpeed() > 0.1f )
             {
-                Debug.Log("stuck to false");
+                //.Log("stuck to false");
 
                 stuck = false;
             }
@@ -74,7 +74,7 @@ public class PackState : State<Buffaloid>
         {
             if(_owner.getRBSpeed() <= 0.05f)
             {
-                Debug.Log("stuck to true");
+                //Debug.Log("stuck to true");
 
                 stuckTimer = 1f;
                 stuck = true;
@@ -125,8 +125,8 @@ public class PackState : State<Buffaloid>
         //Debug.Log("forwardVelocity " + _owner.getRBSpeed());
         //Debug.Log("stuck: " + stuck);
 
-        Debug.Log("stuck: " + stuck);
-        Debug.Log("speed: " + _owner.getRBSpeed());
+        //Debug.Log("stuck: " + stuck);
+        //Debug.Log("speed: " + _owner.getRBSpeed());
 
         //Debug.Log("stuckTimer: " + stuckTimer);
 

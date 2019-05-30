@@ -37,7 +37,7 @@ public class IdleState : State<Buffaloid>
 
     public override void EnterState(Buffaloid _owner)
     {
-        Debug.Log("Entering Idle State");
+        //Debug.Log("Entering Idle State");
         timer = Random.Range(3f,8f);
         idling = true;
         _owner.gameObject.GetComponent<SpriteRenderer>().color = Color.cyan;
@@ -46,7 +46,7 @@ public class IdleState : State<Buffaloid>
 
     public override void ExitState(Buffaloid _owner)
     {
-        Debug.Log("Exiting Idle State");
+        //Debug.Log("Exiting Idle State");
 
     }
 
@@ -58,12 +58,12 @@ public class IdleState : State<Buffaloid>
         {
             idling = false;
             randDir = Random.insideUnitCircle.normalized;
-            Debug.Log("moving in random direction: " + randDir);
+            //Debug.Log("moving in random direction: " + randDir);
         }
         else
         {
             idling = true;
-            Debug.Log("now idling and decelerating");
+            //Debug.Log("now idling and decelerating");
         }
     } 
 
@@ -77,12 +77,12 @@ public class IdleState : State<Buffaloid>
         {
             var heading = player.transform.position - _owner.transform.position;
             var distance = heading.magnitude;
-            Debug.Log("distance: " + distance);
+            /*Debug.Log("distance: " + distance);
             Debug.Log("heading: " + heading);
-            Debug.Log("forward: " + _owner.transform.forward);
+            Debug.Log("forward: " + _owner.transform.forward);*/
 
             float dot = Vector2.Dot(heading.normalized, _owner.transform.up);
-            Debug.Log("dot: " + dot);
+            //Debug.Log("dot: " + dot);
 
             if( dot > 0.85f && distance < 5f)
             {
@@ -110,14 +110,14 @@ public class IdleState : State<Buffaloid>
 
         if(idling)
         {
-            Debug.Log("decelerating");
+            //Debug.Log("decelerating");
 
             _owner.moveObject(Vector2.zero, 0f);
 
         }
         else
         {
-            Debug.Log("moving in rand dir: " + randDir);
+            //Debug.Log("moving in rand dir: " + randDir);
 
             _owner.moveObject(randDir, 0.6f);
         }

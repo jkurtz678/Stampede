@@ -16,14 +16,14 @@ public class ChaseState : State<Buffaloid>
 
     public override void EnterState(Buffaloid _owner)
     {
-        Debug.Log("Entering Chase State");
+        //Debug.Log("Entering Chase State");
         _owner.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
        // WWiseBankManager.Chase(_owner.gameObject);
     }
 
     public override void ExitState(Buffaloid _owner)
     {
-        Debug.Log("Exiting Chase State");
+        //Debug.Log("Exiting Chase State");
 
     }
 
@@ -39,7 +39,7 @@ public class ChaseState : State<Buffaloid>
 
     public override void UpdateState(Buffaloid _owner)
     {
-        Debug.Log("Chase state stuff...");
+        //Debug.Log("Chase state stuff...");
         var heading = prey.transform.position - _owner.transform.position;
         _owner.currentMove = heading;
         _owner.moveObject(heading, chaseSpeed);

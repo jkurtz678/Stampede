@@ -6,19 +6,23 @@ using UnityEngine.SceneManagement;
 
 public class RoundController : MonoBehaviour
 {
+
     public int NumLives = 3;
     public GameObject[] spawnPoints;
+    public string next_level;
     
     public GameObject player1;
     private GameObject player2;
     private Player_collision player1_script;
     private Player_collision player2_script;
+    //private string[] levelNames = new string[] { "level1", "level2", "level3" };
     public int player1_lives;
     public int player2_lives;
-    
+
     // Start is called before the first frame update
     void Start()
     {
+
         player1 = GameObject.Find("Player1");
         player2 = GameObject.Find("Player2");
 
@@ -30,6 +34,8 @@ public class RoundController : MonoBehaviour
         player1_lives = NumLives;
         player2_lives = NumLives;
 
+
+        Debug.Log("about to call wwise bank...");
         WWiseBankManager.MainMusic(gameObject);
     }
 
@@ -51,8 +57,9 @@ public class RoundController : MonoBehaviour
             {
                 //Player 2 wins round, move to next scene
                 Debug.Log("Inside 0 lives");
-                SceneManager.LoadScene(sceneName:"RiderBumpTests");
-            } else
+                SceneManager.LoadScene(sceneName: next_level);
+            }
+            else
             {
                 //Respawn player
                 int respawnSelect = Random.Range(1, spawnPoints.Length);
@@ -64,6 +71,8 @@ public class RoundController : MonoBehaviour
                 player1_script.dead = false;
                 player1.SetActive(true);
                 player1.transform.position = spawnPoints[respawnSelect].transform.position;
+
+                //WWiseBankManager.MainMusic(gameObject);
             }
         }
 
@@ -80,8 +89,12 @@ public class RoundController : MonoBehaviour
             if (player2_lives <= 0)
             {
                 //Player 1 wins round, move to next scene
-                SceneManager.LoadScene(sceneName:"RiderBumpTests");
-            } else
+                Debug.Log("Inside 0 lives");
+
+                SceneManager.LoadScene(sceneName: next_level);
+                //ResetScene();
+            }
+            else
             {
                 //Respawn player
                 int respawnSelect = Random.Range(1, spawnPoints.Length);
@@ -94,8 +107,10 @@ public class RoundController : MonoBehaviour
                 player2.SetActive(true);
                 
                 player2.transform.position = spawnPoints[respawnSelect].transform.position;
+                //WWiseBankManager.MainMusic(gameObject);
+
             }
-            
+
         }
     }
 }
