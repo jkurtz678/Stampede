@@ -16,7 +16,7 @@ public class ChargeState : State<Buffaloid>
     {
         //Debug.Log("Entering Charge State");
         _owner.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
-        timer = 4f;
+        timer = 1f;
         chargeDir = _owner.currentMove;
         //WWiseBankManager.Charge(_owner.gameObject);
     }
@@ -29,9 +29,9 @@ public class ChargeState : State<Buffaloid>
 
     public void chargeCheck(Buffaloid _owner)
     {
-        if( _owner.getRBSpeed() < minSpeed)
+        if( _owner.getRBSpeed() < minSpeed || timer <= 0f )
         {
-            _owner.stateMachine.ChangeState(new PackState());
+            _owner.stateMachine.ChangeState(new IdleState());
         }
     }
 

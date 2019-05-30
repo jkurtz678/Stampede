@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1013372186408344777}
   - component: {fileID: 8628774108898105816}
   - component: {fileID: 8757711607621529639}
-  - component: {fileID: 6998984326472103593}
   - component: {fileID: 8438032709907123918}
   m_Layer: 0
   m_Name: ScaledBuffaloid
@@ -120,8 +119,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeZeroToMax: 2
   rotationSpeed: 2
-  separation_radius: 0.6
-  edge_separation: 150
+  separation_radius: 0.7
+  edge_separation: 180
   friend_radius: 2
   forwardVelocity: 0
   avoidWeight: 6
@@ -200,30 +199,6 @@ MonoBehaviour:
   bumpVelocity: 3
   dir: {x: 0, y: 0, z: 0}
   killAngle: 45
---- !u!114 &6998984326472103593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1013372186408344780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d24426e36e2f044bca3e6b785725b918, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerList: f7e1664c
-  useOtherObject: 0
-  data:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
-  decodeBank: 0
-  loadAsynchronous: 0
-  saveDecodedBank: 0
-  unloadTriggerList: 958ca0ea
-  bankNameInternal: 
-  valueGuidInternal: 
 --- !u!114 &8438032709907123918
 MonoBehaviour:
   m_ObjectHideFlags: 0
