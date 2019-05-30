@@ -10,6 +10,7 @@ public class RoundController : MonoBehaviour
     public int NumLives = 3;
     public GameObject[] spawnPoints;
     public string next_level;
+    public int maxWins = 3;
 
     public static int player1wins = 0;
     public static int player2wins = 0;
@@ -51,6 +52,9 @@ public class RoundController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        
+
         winsUI.GetComponent<UnityEngine.UI.Text>().text = player1wins + ":" + player2wins;
         if (player1_script.dead == true)
         {
@@ -66,11 +70,11 @@ public class RoundController : MonoBehaviour
             if (player1_lives <= 0)
             {
                 //Player 2 wins round, move to next scene
-                Debug.Log("Inside 0 lives");
-
-                player2wins++;
+                player2wins = Mathf.Clamp(player2wins + 1, 0, maxWins);
+                //player2wins++;
                 winsUI.GetComponent<UnityEngine.UI.Text>().text = player1wins + ":" + player2wins;
-                SceneManager.LoadScene(sceneName: next_level);
+                CheckWins();
+                //SceneManager.LoadScene(sceneName: next_level);
             } else
             {
                 //Respawn player
@@ -101,9 +105,11 @@ public class RoundController : MonoBehaviour
             if (player2_lives <= 0)
             {
                 //Player 1 wins round, move to next scene
-                player1wins++;
+                player1wins = Mathf.Clamp(player1wins + 1, 0, maxWins);
+                //player1wins++;
                 winsUI.GetComponent<UnityEngine.UI.Text>().text = player1wins + ":"+ player2wins;
-                SceneManager.LoadScene(sceneName: next_level);
+                CheckWins();
+                //SceneManager.LoadScene(sceneName: next_level);
             } else
             {
                 //Respawn player
@@ -121,6 +127,24 @@ public class RoundController : MonoBehaviour
 
             }
 
+        }
+    }
+
+    public void CheckWins()
+    {
+        if ((player1wins >= maxWins) || (player2wins >= maxWins))
+        {
+            Time.timeScale = 0.001f;
+            if (Input.GetKeyDown("space"))
+            {
+                player1wins = 0;
+                player2wins = 0;
+                SceneManager.LoadScene(0);
+                Time.timeScale = 1.0f;
+            }
+        } else
+        {
+            SceneManager.LoadScene(sceneName: next_level);
         }
     }
 }
