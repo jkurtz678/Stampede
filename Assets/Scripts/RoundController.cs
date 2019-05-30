@@ -33,6 +33,8 @@ public class RoundController : MonoBehaviour
 
         player1_lives = NumLives;
         player2_lives = NumLives;
+        GameObject.Find("Player1Lives").GetComponent<UnityEngine.UI.Text>().text = "P1 Lives: " + (NumLives-1);
+        GameObject.Find("Player2Lives").GetComponent<UnityEngine.UI.Text>().text = "P2 Lives: " + (NumLives-1);
 
         winsUI = GameObject.Find("Wins");
 
