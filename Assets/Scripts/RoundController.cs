@@ -10,15 +10,20 @@ public class RoundController : MonoBehaviour
     public int NumLives = 3;
     public GameObject[] spawnPoints;
     public string next_level;
+
+    public static int player1wins = 0;
+    public static int player2wins = 0;
     
-    public GameObject player1;
+    private GameObject player1;
     private GameObject player2;
     private Player_collision player1_script;
     private Player_collision player2_script;
-    //private string[] levelNames = new string[] { "level1", "level2", "level3" };
-    public int player1_lives;
-    public int player2_lives;
 
+    private int player1_lives;
+    private int player2_lives;
+
+    private GameObject winsUI;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +38,10 @@ public class RoundController : MonoBehaviour
 
         player1_lives = NumLives;
         player2_lives = NumLives;
+        GameObject.Find("Player1Lives").GetComponent<UnityEngine.UI.Text>().text = "P1 Lives: " + (NumLives-1);
+        GameObject.Find("Player2Lives").GetComponent<UnityEngine.UI.Text>().text = "P2 Lives: " + (NumLives-1);
+
+        winsUI = GameObject.Find("Wins");
 
 
         Debug.Log("about to call wwise bank...");
@@ -42,7 +51,8 @@ public class RoundController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(player1_script.dead == true)
+        winsUI.GetComponent<UnityEngine.UI.Text>().text = player1wins + ":" + player2wins;
+        if (player1_script.dead == true)
         {
             player1_lives -= 1;
             if (player1_lives <= 0)
@@ -57,9 +67,11 @@ public class RoundController : MonoBehaviour
             {
                 //Player 2 wins round, move to next scene
                 Debug.Log("Inside 0 lives");
+
+                player2wins++;
+                winsUI.GetComponent<UnityEngine.UI.Text>().text = player1wins + ":" + player2wins;
                 SceneManager.LoadScene(sceneName: next_level);
-            }
-            else
+            } else
             {
                 //Respawn player
                 int respawnSelect = Random.Range(1, spawnPoints.Length);
@@ -89,12 +101,10 @@ public class RoundController : MonoBehaviour
             if (player2_lives <= 0)
             {
                 //Player 1 wins round, move to next scene
-                Debug.Log("Inside 0 lives");
-
+                player1wins++;
+                winsUI.GetComponent<UnityEngine.UI.Text>().text = player1wins + ":"+ player2wins;
                 SceneManager.LoadScene(sceneName: next_level);
-                //ResetScene();
-            }
-            else
+            } else
             {
                 //Respawn player
                 int respawnSelect = Random.Range(1, spawnPoints.Length);
