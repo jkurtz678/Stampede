@@ -91,6 +91,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NumLives: 3
   spawnPoints: []
-  player1: {fileID: 0}
-  player1_lives: 0
-  player2_lives: 0
+  next_level: 
+  maxWins: 3
