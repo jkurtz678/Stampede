@@ -47,6 +47,12 @@ TagManager:
   - name: Background
     uniqueID: 1887425967
     locked: 0
+  - name: BackRocks
+    uniqueID: 2028462983
+    locked: 0
+  - name: FrontRocks
+    uniqueID: 1801650371
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

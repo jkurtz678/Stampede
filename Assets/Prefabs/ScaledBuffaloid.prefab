@@ -124,7 +124,7 @@ MonoBehaviour:
   friend_radius: 2
   forwardVelocity: 0
   avoidWeight: 6
-  avoidEdgeWeight: 15
+  avoidEdgeWeight: 16
   alignWeight: 1
   cohesionWeight: 0.1
   chargeSpeed: 2
