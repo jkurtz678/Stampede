@@ -75,13 +75,15 @@ public class Player_switch : MonoBehaviour
             controlType = false;
             closestBoid.SetActive(true);
             player_game_obj.SetActive(true);
+            Vector3 dir = new Vector3(Input.GetAxis("P1_Horizontal"), Input.GetAxis("P1_Vertical"));
 
             closestBoid.transform.position = rider_rb.position;
             closestBoid.transform.rotation = playerRider.transform.rotation;
             closestBoid.GetComponent<Rigidbody2D>().velocity = inheritVel;
 
-            player_game_obj.transform.position = playerRider.transform.position - playerRider.transform.up + new Vector3(-1, -1, 0);
-            player_game_obj.transform.rotation = playerRider.transform.rotation;
+            player_game_obj.transform.position = playerRider.transform.position + dir/1.5f;
+
+            player_game_obj.transform.rotation = Quaternion.Euler(dir);
             Destroy(playerRider);
             
         }

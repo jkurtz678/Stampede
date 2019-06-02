@@ -78,8 +78,10 @@ public class Player_2_switch : MonoBehaviour
             closestBoid.transform.rotation = playerRider.transform.rotation;
             closestBoid.GetComponent<Rigidbody2D>().velocity = inheritVel;
 
-            player_game_obj.transform.position = playerRider.transform.position - playerRider.transform.up + new Vector3(-1, -1, 0);
-            player_game_obj.transform.rotation = playerRider.transform.rotation;
+            Vector3 dir = new Vector3(Input.GetAxis("P2_Horizontal"), Input.GetAxis("P2_Vertical"));
+            player_game_obj.transform.position = playerRider.transform.position + dir/1.5f;
+            player_game_obj.transform.rotation = Quaternion.Euler(dir);
+
             Destroy(playerRider);
         }
         else if (playerRider != null && playerRider.GetComponent<Rider_collision>().bumpOff == true && controlType == true)
