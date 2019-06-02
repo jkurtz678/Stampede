@@ -13,8 +13,8 @@ public class Buffaloid : MonoBehaviour
     public float edge_separation;
     public float friend_radius;
     public float forwardVelocity;
-    public float avoidWeight;
-    public float avoidEdgeWeight;
+    public float avoidObstacleWeight;
+    public float avoidFriendsWeight;
     public float alignWeight;
     public float cohesionWeight;
     public float chargeSpeed;
@@ -28,62 +28,149 @@ public class Buffaloid : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 move;
     private float acceleration;
-    private List<string> avoidTags;
+    private List<string> obstacleTags;
+    private List<string> friendTags;
+
     private float friendSpeed;
+    private BuffaloDebugger debugger;
+    private List<Collider2D> current_colliders;
+    private List<Vector2> closestColliderPoints;
+    private List<Collider2D> myColliders;
+    private Rect avoidBounds;
+    private Vector2 rightSide;
+    private Vector2 leftSide;
+    private Vector2 frontLeft;
+    private Vector2 frontRight;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         //acceleration = maxSpeed / timeZeroToMax;
-        avoidTags = new List<string>();
+        obstacleTags = new List<string>();
         //avoidTags.Add("Player");
-        avoidTags.Add("Boids");
-        avoidTags.Add("Obstacle");
-        avoidTags.Add("Rider1");
-        avoidTags.Add("Rider2");
-        //forwardVelocity = 0f;
+        obstacleTags.Add("Obstacle");
 
+        friendTags = new List<string>();
+        friendTags.Add("Boids");
+        friendTags.Add("Rider1");
+        friendTags.Add("Rider2");
+
+        myColliders = new List<Collider2D>();
+        myColliders.Add(GetComponent<PolygonCollider2D>());
+        myColliders.Add(GetComponent<BoxCollider2D>());
+        myColliders.Add(GetComponent<CircleCollider2D>());
+
+        //forwardVelocity = 0f;
+        if ( GameObject.Find("AvoidDebuggerPanel") )
+        {
+            debugger = GameObject.Find("AvoidDebuggerPanel").GetComponent<BuffaloDebugger>();
+        }
         //state initialization
         stateMachine = new StateMachine<Buffaloid>(this);
         stateMachine.ChangeState(new IdleState());
+
+        //Physics2D.IgnoreCollision(GetComponent<PolygonCollider2D>(), GetComponent<BoxCollider2D>());
+        //Physics2D.IgnoreCollision(GetComponent<PolygonCollider2D>(), GetComponent<CircleCollider2D>());
+        //Physics2D.IgnoreCollision(GetComponent<CircleCollider2D>(), GetComponent<BoxCollider2D>());
+
     }
 
-    //returns vector pointing away from average concentration of nearby objects,
-    //or a zero vector if no nearby objects
-    Vector2 getAvoid()
+    List<Vector2> getClosestPoints(Collider2D col, List<string> avoidTags)
     { 
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, separation_radius);
+        Collider2D[] hitColliders = new Collider2D[20];
+        Physics2D.OverlapCollider(col, new ContactFilter2D(), hitColliders);
+
+        //Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, separation_radius);
 
         List<Collider2D> avoidColliders = new List<Collider2D>();
+        current_colliders = avoidColliders;
+        List<Vector2> closest = new List<Vector2>();
 
-        for(int i = 0; i < hitColliders.Length; i++ )
+        //list of my colliders
+
+
+        //creates new list of colliders that contain avoid tags
+        for (int i = 0; i < hitColliders.Length; i++)
         {
-            if(avoidTags.Contains(hitColliders[i].tag) && hitColliders[i].gameObject.transform.root != transform)
+            if (hitColliders[i] == null)
             {
-                avoidColliders.Add(hitColliders[i]);
+                break;
+            }
+
+            if (avoidTags.Contains(hitColliders[i].tag) && !myColliders.Contains(hitColliders[i]))
+            {
+                Collider2D currentCol = hitColliders[i];
+                avoidColliders.Add(currentCol);
+                closest.Add(currentCol.ClosestPoint(transform.position + transform.up * 0.15f));
             }
         }
+        closestColliderPoints = closest;
 
-        //Debug.Log("hit colliders: " + hitColliders.Length);
-        //if more nearby objects than self
-        if (avoidColliders.Count > 0)
+
+        return closest;
+    }
+
+    //gets points nearest to head of buffalo that are also within box collider
+    Vector2 getNearestPoint(List<Vector2> closestPoints)
+    {
+        Debug.Log("CLOSEST PASS: " + closestPoints.Count);
+
+
+        Vector2 closestVec = closestPoints[0];
+        float shortestDist = Vector2.Distance(transform.position + transform.up * 0.15f, closestVec);
+        Debug.Log("closest vec before: " + closestVec);
+
+        foreach (Vector2 vec in closestPoints)
         {
-            //compute average avoid vector
-            Vector2 average = Vector2.zero;
-            foreach (Collider2D collider in avoidColliders)
+            if(gameObject.GetComponent<BoxCollider2D>().bounds.Contains(vec))
             {
-                average += (Vector2)collider.gameObject.transform.position;
+                float newDist = Vector2.Distance(transform.position + transform.up * 0.15f, vec);
+                if (newDist < shortestDist)
+                {
+                    closestVec = vec;
+                    shortestDist = newDist;
+                    Debug.Log("New closest " + closestVec);
+                }
             }
+        }
+        Debug.Log("FOUND CLOSEST: " + closestVec);
+
+        return closestVec;
+    }
+    //returns vector pointing away from average concentration of nearby objects,
+    //or a zero vector if no nearby objects
+    Vector2 getAvoid(Collider2D col, List<string> avoidTags)
+    {
+
+        List<Vector2> closestPoints = getClosestPoints(col, avoidTags);
+        Vector2 anchorPoint = transform.position + (transform.up * 0.15f);
+
+
+        if (debugger && col == gameObject.GetComponent<CircleCollider2D>())
+        {
+            debugger.SetColliderText(closestPoints.Count);
+        }
+        //if more nearby objects than self
+        if (closestPoints.Count > 0)
+        {
+            Vector2 nearestPoint = getNearestPoint(closestPoints);
+            Debug.DrawRay(anchorPoint, nearestPoint - anchorPoint, Color.cyan);
+
+            float dot = Vector2.Dot(transform.right, nearestPoint - anchorPoint );
 
             //get inverted vector relative to self
-            //Debug.Log("average avoid: " + average);
-            //Debug.Log("transpos: " + transform.position );
-            Vector2 averageInverted = (Vector2)transform.position - average;
-
+            if(dot > 0)
+            {
+                return transform.right * -1;
+            }
+            else
+            {
+                return transform.right;
+            }
             //Vector2 averageInverted = ((Vector2)transform.position - average) + (Vector2)transform.position;
             //Debug.DrawRay(transform.position, averageInverted, Color.red);
-            return averageInverted.normalized;
         }
         else
         {
@@ -91,26 +178,6 @@ public class Buffaloid : MonoBehaviour
             return Vector2.zero;
         }
     }
-
-    // returns vector pointing towards screen center if object is too close to edge, otherwise returns zero
-    Vector2 getAvoidEdges()
-    {
-
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(this.transform.position);
-        
-        if (screenPos.x < edge_separation || screenPos.y < edge_separation ||
-         screenPos.x > Screen.width - edge_separation || screenPos.y > Screen.height - edge_separation)
-        {
-            Vector2 avoidEdgeVector = (-1 * (Vector2)transform.position).normalized;
-            return avoidEdgeVector;
-        }
-        else
-        {
-            //Debug.Log("on screen");
-            return Vector2.zero;
-        }
-    }
-
 
     //get nearby buffaloids in pack
     List<GameObject> getFriends() 
@@ -237,7 +304,7 @@ public class Buffaloid : MonoBehaviour
         //float step = maxSpeed * Time.deltaTime;
         //Debug.Log("accel: " + acceleration);
         //Debug.Log("forwardVelocity: " + forwardVelocity);
-        Debug.DrawRay(transform.position, mv.normalized, Color.blue);
+        Debug.DrawRay(transform.position, mv.normalized*2, Color.blue);
 
         //if buffaloid is moving to a point
         if (mv != Vector2.zero)
@@ -347,13 +414,13 @@ public class Buffaloid : MonoBehaviour
 
         Vector2 rightAngleFromForward = Quaternion.AngleAxis(steeringRightAngle, Vector3.forward) * forward;
 
-        Debug.DrawLine((Vector3)rb.position, (Vector3)rb.GetRelativePoint(rightAngleFromForward), Color.black);
+        //Debug.DrawLine((Vector3)rb.position, (Vector3)rb.GetRelativePoint(rightAngleFromForward), Color.black);
 
         float driftForce = Vector2.Dot(rb.velocity, rb.GetRelativeVector(rightAngleFromForward.normalized));
 
         Vector2 relativeForce = (rightAngleFromForward.normalized * -1.0f) * (driftForce * 10.0f);
 
-        Debug.DrawLine((Vector3)rb.position, (Vector3)rb.GetRelativePoint(relativeForce), Color.grey);
+        //Debug.DrawLine((Vector3)rb.position, (Vector3)rb.GetRelativePoint(relativeForce), Color.grey);
 
         rb.AddForce(rb.GetRelativeVector(relativeForce));
     }
@@ -395,7 +462,7 @@ public class Buffaloid : MonoBehaviour
     //rotates object in stuck state
     public void torqueRotate(float mag, float dir)
     {
-        Debug.Log("torqueRotate call...");
+        //Debug.Log("torqueRotate call...");
         rb.AddTorque(mag * dir);
     }
 
@@ -412,12 +479,49 @@ public class Buffaloid : MonoBehaviour
     {
 
     }*/
+    public void OnDrawGizmosSelected()
+    {
+
+
+        if( current_colliders != null && current_colliders.Count > 0)
+        {
+            Gizmos.color = Color.magenta;
+            foreach (Collider2D c in current_colliders)
+            {
+                Gizmos.DrawSphere(c.gameObject.transform.position, 0.2f);
+            }
+            Gizmos.color = Color.cyan;
+            foreach (Vector2 v in closestColliderPoints )
+            {
+                Gizmos.DrawSphere(v, 0.05f);
+            }
+        }
+        /*
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(leftSide, 0.05f);
+        Gizmos.DrawSphere(rightSide, 0.05f);
+        Gizmos.DrawSphere(frontLeft, 0.05f);
+        Gizmos.DrawSphere(frontRight, 0.05f);*/
+    }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector2 avoidDir = getAvoid();
-        Vector2 edgeAvoidDir = getAvoidEdges();
+        //avoid box
+        leftSide = transform.position - transform.right * 0.6f + transform.up * 0.1f;
+        rightSide = transform.position + transform.right * 0.6f + transform.up * 0.1f;
+        frontRight = rightSide + (Vector2)transform.up * 1.4f;
+        frontLeft = leftSide + (Vector2)transform.up * 1.4f;
+
+        if (debugger != null)
+        {
+            debugger.SetStateText(stateMachine.currentState);
+        }
+
+        Vector2 avoidObstacleDir = getAvoid(gameObject.GetComponent<BoxCollider2D>(), obstacleTags);
+        Vector2 avoidFriendsDir = getAvoid(gameObject.GetComponent<CircleCollider2D>(), friendTags);
+
+        //Vector2 edgeAvoidDir = getAvoidEdges();
 
         List<GameObject> friends = getFriends();
         friendSpeed = getFriendSpeed(friends);
@@ -431,14 +535,16 @@ public class Buffaloid : MonoBehaviour
         //Debug.Log("cohesion dir: " + cohesionDir);
 
         Debug.DrawRay(transform.position, alignmentDir, Color.white);
-        Debug.DrawRay(transform.position, avoidDir, Color.red);
-        Debug.DrawRay(transform.position, edgeAvoidDir, Color.magenta);
+        Debug.DrawRay(transform.position, avoidObstacleDir, Color.red);
+        Debug.DrawRay(transform.position, avoidFriendsDir, Color.yellow);
+        //Debug.DrawRay(transform.position, edgeAvoidDir, Color.magenta);
         Debug.DrawRay(transform.position, cohesionDir, Color.green);
 
 
-        move = (avoidWeight * avoidDir) + (avoidEdgeWeight * edgeAvoidDir) 
-            + (cohesionWeight * cohesionDir) + (alignWeight * alignmentDir);
+        //move = (avoidWeight * avoidDir) + (avoidEdgeWeight * edgeAvoidDir) 
+        //+ (cohesionWeight * cohesionDir) + (alignWeight * alignmentDir);
         //move = avoidDir + edgeAvoidDir;
+        move = (avoidObstacleWeight * avoidObstacleDir) + (avoidFriendsWeight * avoidFriendsDir) + (cohesionWeight * cohesionDir) + (alignWeight * alignmentDir);
 
         currentMove = move;
         friendDir = cohesionDir;

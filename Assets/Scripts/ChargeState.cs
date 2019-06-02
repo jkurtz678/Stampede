@@ -29,7 +29,7 @@ public class ChargeState : State<Buffaloid>
 
     public void chargeCheck(Buffaloid _owner)
     {
-        if( _owner.getRBSpeed() < minSpeed || timer <= 0f )
+        if( _owner.getRBSpeed() < minSpeed )
         {
             _owner.stateMachine.ChangeState(new IdleState());
         }
