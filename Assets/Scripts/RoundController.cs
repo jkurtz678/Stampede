@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 
 public class RoundController : MonoBehaviour
 {
@@ -11,6 +11,8 @@ public class RoundController : MonoBehaviour
     public GameObject[] spawnPoints;
     public string next_level;
     public int maxWins = 3;
+    public Text textPrefab;
+    private GameObject renderCanvas;
 
     public static int player1wins = 0;
     public static int player2wins = 0;
@@ -41,6 +43,7 @@ public class RoundController : MonoBehaviour
         player2_lives = NumLives;
         GameObject.Find("Player1Lives").GetComponent<UnityEngine.UI.Text>().text = "P1 Lives: " + (NumLives-1);
         GameObject.Find("Player2Lives").GetComponent<UnityEngine.UI.Text>().text = "P2 Lives: " + (NumLives-1);
+        renderCanvas = GameObject.Find("Canvas");
 
         winsUI = GameObject.Find("Wins");
 
@@ -134,14 +137,33 @@ public class RoundController : MonoBehaviour
     {
         if ((player1wins >= maxWins) || (player2wins >= maxWins))
         {
+            if (player1wins > player2wins)
+            {
+                winsUI.GetComponent<Text>().text = "P1 Wins\n" + player1wins + ":" + player2wins;
+            } else
+            {
+                winsUI.GetComponent<Text>().text = "P2 Wins\n" + player1wins + ":" + player2wins;
+                winsUI.GetComponent<Text>().fontSize = 40;
+                winsUI.GetComponent<Text>().alignment = TextAnchor.LowerCenter;
+
+                Text tempTextBox = Instantiate(textPrefab, Vector3.zero, transform.rotation) as Text;
+                //Parent to the panel
+                tempTextBox.transform.SetParent(renderCanvas.transform, false);
+                //Set the text box's text element font size and style:
+                tempTextBox.fontSize = 32;
+                //Set the text box's text element to the current textToDisplay:
+                tempTextBox.text = "Press space to restart";
+            }
             Time.timeScale = 0.001f;
             if (Input.GetKeyDown("space"))
             {
                 player1wins = 0;
                 player2wins = 0;
+                
+               
                 SceneManager.LoadScene(0);
                 Time.timeScale = 1.0f;
-            }
+            } 
         } else
         {
             SceneManager.LoadScene(sceneName: next_level);

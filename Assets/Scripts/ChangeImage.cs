@@ -7,6 +7,7 @@ public class ChangeImage : MonoBehaviour
 {
     public Sprite[] _myOtherSprites;
     public int spriteNumber = 3;
+    public int spriteChoice;
 
     private SpriteRenderer[] _images;
 
@@ -19,8 +20,8 @@ public class ChangeImage : MonoBehaviour
     {
         for (int i = 0; i < _images.Length; i++)
         {
-            spriteNumber = Random.Range(0, spriteNumber);
-            _images[i].sprite = _myOtherSprites[spriteNumber];
+            spriteChoice = Random.Range(0, spriteNumber);
+            _images[i].sprite = _myOtherSprites[spriteChoice];
         }
         yield return new WaitForSeconds(2);
     }

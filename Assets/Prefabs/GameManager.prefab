@@ -62,6 +62,13 @@ MonoBehaviour:
   rider: {fileID: 5198409772959853151, guid: bcce9b5b2a81ecc428701acbd82c3647, type: 3}
   bumpForce1: 0
   mountVel: 1.5
+  Sprites: []
+  buffSprites:
+  - {fileID: 21300000, guid: 5ca28c423533d7d4a947ef6acca6c4de, type: 3}
+  - {fileID: 21300000, guid: 8e8b0d548e33d304fad3ae3614a0ca8d, type: 3}
+  - {fileID: 21300000, guid: 2c3ff6dcfe8df9443b7c53b527840455, type: 3}
+  player_game_obj: {fileID: 0}
+  closestBoid: {fileID: 0}
 --- !u!114 &41188894431200020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,6 +84,11 @@ MonoBehaviour:
   ridingBoundary: 4
   rider: {fileID: 5198409772959853151, guid: bcce9b5b2a81ecc428701acbd82c3647, type: 3}
   bumpForce2: 0
+  Sprites: []
+  buffSprites:
+  - {fileID: 21300000, guid: 5ca28c423533d7d4a947ef6acca6c4de, type: 3}
+  - {fileID: 21300000, guid: 8e8b0d548e33d304fad3ae3614a0ca8d, type: 3}
+  - {fileID: 21300000, guid: 2c3ff6dcfe8df9443b7c53b527840455, type: 3}
 --- !u!114 &8091040811441557860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,7 +101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 518cc94eb731d46468085af7b70bf865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumLives: 3
+  NumLives: 1
   spawnPoints: []
-  next_level: 
-  maxWins: 3
+  next_level: level2
+  maxWins: 1
+  textPrefab: {fileID: 6296935571820289663, guid: a68afbb20fd30944eaf5ac64c7733537,
+    type: 3}
