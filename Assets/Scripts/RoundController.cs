@@ -54,8 +54,10 @@ public class RoundController : MonoBehaviour
     {
 
         
-
-        winsUI.GetComponent<UnityEngine.UI.Text>().text = player1wins + ":" + player2wins;
+        if(winsUI)
+        {
+            winsUI.GetComponent<UnityEngine.UI.Text>().text = player1wins + ":" + player2wins;
+        }
         if (player1_script.dead == true)
         {
             player1_lives -= 1;

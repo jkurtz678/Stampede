@@ -100,7 +100,7 @@ public class IdleState : State<Buffaloid>
 
         timer -= Time.deltaTime;
 
-        preyCheck(_owner);
+        //preyCheck(_owner);
 
         if(timer < 0f)
         {
