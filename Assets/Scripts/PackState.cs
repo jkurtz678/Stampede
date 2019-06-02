@@ -10,6 +10,7 @@ public class PackState : State<Buffaloid>
     private bool stuck;
     private float idleTimer;
     private bool idling;
+    private float timeStuck;
     //private static PackState _instance;
 
 
@@ -38,8 +39,9 @@ public class PackState : State<Buffaloid>
 
     public override void EnterState(Buffaloid _owner)
     {
+        timeStuck = 0.5f;
         //Debug.Log("Entering Pack State");
-        stuckTimer = 1f;
+        stuckTimer = timeStuck;
         stuck = false;
         idling = false;
         idleTimer = 1f;
@@ -76,7 +78,7 @@ public class PackState : State<Buffaloid>
             {
                 //Debug.Log("stuck to true");
 
-                stuckTimer = 1f;
+                stuckTimer = timeStuck;
                 stuck = true;
             }
         }

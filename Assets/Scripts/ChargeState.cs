@@ -7,7 +7,7 @@ public class ChargeState : State<Buffaloid>
 {
 
     public float minSpeed = 1f;
-    public float chargeSpeed = 3.5f;
+    public float chargeSpeed = 4f;
     private float timer;
     private Vector2 chargeDir;
 

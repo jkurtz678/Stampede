@@ -436,6 +436,13 @@ public class Buffaloid : MonoBehaviour
             speed = Vector2.zero;
         }*/
 
+        //if ( rb.velocity.magnitude < targetSpeed || (friendSpeed > targetSpeed + .15f && rb.velocity.magnitude < friendSpeed + 0.4f) )
+
+        Debug.Log(name + "- current speed: " + rb.velocity.magnitude);
+        Debug.Log(name + "- friend speed: " + friendSpeed);
+        Debug.Log(name + "- target speed: " + targetSpeed);
+
+        //if ( rb.velocity.magnitude < targetSpeed || rb.velocity.magnitude < friendSpeed + 0.3f) 
         if ( rb.velocity.magnitude < targetSpeed || (friendSpeed > targetSpeed + .15f && rb.velocity.magnitude < friendSpeed + 0.4f) )
         {
             rb.AddForce(speed);
@@ -513,7 +520,6 @@ public class Buffaloid : MonoBehaviour
 
         List<GameObject> friends = getFriends();
         friendSpeed = getFriendSpeed(friends);
-        //Debug.Log("avoid dir: " + avoidDir);
 
         Vector2 cohesionDir = getCohesion(friends);
         Vector2 alignmentDir = getAlignment(friends);
