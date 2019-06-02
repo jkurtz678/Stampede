@@ -8,6 +8,8 @@ public class Player_switch : MonoBehaviour
     public GameObject rider;
     public float bumpForce1;
     public float mountVel = 1.5f;
+    public Sprite[] Sprites;
+    public Sprite[] buffSprites;
 
     private GameObject playerRider;
     private GameObject player_game_obj;
@@ -19,7 +21,8 @@ public class Player_switch : MonoBehaviour
     void Start()
     {
         player_game_obj = GameObject.Find("Player1");
-
+        Sprites = Resources.LoadAll<Sprite>("rider_spritemap");
+        
     }
 
     // Update is called once per frame
@@ -32,6 +35,20 @@ public class Player_switch : MonoBehaviour
             if (RidingBoundary(closestBoid, player_game_obj) == true && closestBoid.GetComponent<Rigidbody2D>().velocity.magnitude < mountVel)
             {
                 playerRider = Instantiate(rider, closestBoid.transform.position, closestBoid.transform.rotation);
+                SpriteRenderer srBuff = closestBoid.GetComponent<SpriteRenderer>();
+                SpriteRenderer srRider = playerRider.GetComponent<SpriteRenderer>();
+                if (srBuff.sprite == buffSprites[0])
+                {
+                    srRider.sprite = Sprites[1];
+                }
+                else if (srBuff.sprite == buffSprites[1])
+                {
+                    srRider.sprite = Sprites[3];
+                }
+                else if (srBuff.sprite == buffSprites[2])
+                {
+                    srRider.sprite = Sprites[5];
+                }
                 playerRider.GetComponent<Player_riding>().horAxis = "P1_Horizontal";
                 playerRider.GetComponent<Player_riding>().verAxis = "P1_Vertical";
 
