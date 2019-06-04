@@ -99,7 +99,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 4
-  m_LinearDrag: 0.2
+  m_LinearDrag: 0.3
   m_AngularDrag: 0.4
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: f00b2bbe522034eb8938d0dfce4fe607, type: 2}
@@ -119,17 +119,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49d6782c5b4b463aa6df147f8e27cfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 5
-  rotationSpeed: 4
+  acceleration: 4.5
+  rotationSpeed: 3.6
   separation_radius: 0.7
   edge_separation: 180
   friend_radius: 2
   forwardVelocity: 0
   avoidObstacleWeight: 8
-  avoidFriendsWeight: 5
-  alignWeight: 0.6
-  cohesionWeight: 0.3
-  chargeSpeed: 1.8
+  avoidFriendsWeight: 1
+  alignRiderWeight: 0.8
+  alignBoidWeight: 0.6
+  cohesionRiderWeight: 0.08
+  cohesionBoidWeight: 0.05
+  chargeSpeed: 2
   currentMove: {x: 0, y: 0}
   friendDir: {x: 0, y: 0}
 --- !u!60 &8628774108898105816

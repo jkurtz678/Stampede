@@ -13,10 +13,14 @@ public class Buffaloid : MonoBehaviour
     public float edge_separation;
     public float friend_radius;
     public float forwardVelocity;
+
+    //boid behavior weights
     public float avoidObstacleWeight;
     public float avoidFriendsWeight;
-    public float alignWeight;
-    public float cohesionWeight;
+    public float alignRiderWeight;
+    public float alignBoidWeight;
+    public float cohesionRiderWeight;
+    public float cohesionBoidWeight;
     public float chargeSpeed;
 
 
@@ -30,6 +34,9 @@ public class Buffaloid : MonoBehaviour
     private Vector2 move;
     private List<string> obstacleTags;
     private List<string> friendTags;
+    private List<string> boidTags;
+    private List<string> riderTags;
+
 
     private float friendSpeed;
     private BuffaloDebugger debugger;
@@ -42,6 +49,13 @@ public class Buffaloid : MonoBehaviour
     private Vector2 frontLeft;
     private Vector2 frontRight;
 
+    private Vector2 cohesionDir;
+    private Vector2 alignmentDir;
+    private Vector2 avoidObstacleDir;
+    private Vector2 avoidFriendsDir;
+
+
+    private List<GameObject> players;
 
     // Start is called before the first frame update
     void Start()
@@ -49,7 +63,6 @@ public class Buffaloid : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
       
         obstacleTags = new List<string>();
-        //avoidTags.Add("Player");
         obstacleTags.Add("Obstacle");
 
         friendTags = new List<string>();
@@ -57,20 +70,34 @@ public class Buffaloid : MonoBehaviour
         friendTags.Add("Rider1");
         friendTags.Add("Rider2");
 
+
+        boidTags = new List<string>();
+        boidTags.Add("Boids");
+
+        riderTags = new List<string>();
+        riderTags.Add("Rider1");
+        riderTags.Add("Rider2");
+
+        players = new List<GameObject>();
+        players.Add(GameObject.Find("Player1"));
+        players.Add(GameObject.Find("Player2"));
+
         myColliders = new List<Collider2D>();
         myColliders.Add(GetComponent<PolygonCollider2D>());
         myColliders.Add(GetComponent<BoxCollider2D>());
         myColliders.Add(GetComponent<CircleCollider2D>());
 
         //forwardVelocity = 0f;
-        if ( GameObject.Find("AvoidDebuggerPanel") )
+        GameObject debuggerPanel = GameObject.Find("AvoidDebuggerPanel");
+        if (debuggerPanel)
         {
-            debugger = GameObject.Find("AvoidDebuggerPanel").GetComponent<BuffaloDebugger>();
+            debugger = debuggerPanel.GetComponent<BuffaloDebugger>();
         }
         //state initialization
         stateMachine = new StateMachine<Buffaloid>(this);
         stateMachine.ChangeState(new IdleState());
 
+        InvokeRepeating("GetCurrentMove", 1f, 0.2f);
     }
 
     List<Vector2> getClosestPoints(Collider2D col, List<string> avoidTags)
@@ -111,12 +138,9 @@ public class Buffaloid : MonoBehaviour
     //gets points nearest to head of buffalo that are also within box collider
     Vector2 getNearestPoint(List<Vector2> closestPoints)
     {
-        Debug.Log("CLOSEST PASS: " + closestPoints.Count);
-
 
         Vector2 closestVec = closestPoints[0];
         float shortestDist = Vector2.Distance(transform.position + transform.up * 0.15f, closestVec);
-        Debug.Log("closest vec before: " + closestVec);
 
         foreach (Vector2 vec in closestPoints)
         {
@@ -127,11 +151,9 @@ public class Buffaloid : MonoBehaviour
                 {
                     closestVec = vec;
                     shortestDist = newDist;
-                    Debug.Log("New closest " + closestVec);
                 }
             }
         }
-        Debug.Log("FOUND CLOSEST: " + closestVec);
 
         return closestVec;
     }
@@ -166,7 +188,7 @@ public class Buffaloid : MonoBehaviour
                 return transform.right;
             }
             //Vector2 averageInverted = ((Vector2)transform.position - average) + (Vector2)transform.position;
-            //Debug.DrawRay(transform.position, averageInverted, Color.red);
+            //Debug.DrawRay(ugtransform.position, averageInverted, Color.red);
         }
         else
         {
@@ -213,7 +235,7 @@ public class Buffaloid : MonoBehaviour
         return totalSpeed / numFriends;
     }
 
-    private Vector2 getAlignment(List<GameObject> friends)
+    private Vector2 getAlignment(List<GameObject> friends, List<string> tags )
     {
         if(friends.Count == 0)
         {
@@ -223,7 +245,10 @@ public class Buffaloid : MonoBehaviour
         List<Transform> positions = new List<Transform>();
         for (int i = 0; i < friends.Count; i++)
         {
-            positions.Add(friends[i].gameObject.transform);
+            if(tags.Contains(friends[i].tag))
+            {
+                positions.Add(friends[i].gameObject.transform);
+            }
         }
 
         Vector2 avg_dir = GetMeanDir(positions);
@@ -262,16 +287,18 @@ public class Buffaloid : MonoBehaviour
     }
 
     //returns vector pointing towards center of pack of friends
-    Vector2 getCohesion(List<GameObject> friends)
+    Vector2 getCohesion(List<GameObject> friends, List<string> tags)
     {
-
         if (friends.Count > 0)
         {
             //Debug.Log("in pack");
             List<Transform> positions = new List<Transform>();
             for(int i = 0; i < friends.Count; i++ )
             {
-                positions.Add(friends[i].gameObject.transform);
+                if(tags.Contains(friends[i].tag))
+                {
+                    positions.Add(friends[i].gameObject.transform);
+                }
             }
 
            //Debug.Log("num positions: " + positions.Count);
@@ -419,32 +446,13 @@ public class Buffaloid : MonoBehaviour
     {
         Vector2 speed = transform.up * acceleration;
 
-        /*
-        if( friendSpeed > targetSpeed && Vector2.Dot(transform.up, friendDir) > 0)
-        {
-            //acceleration = friendSpeed / timeZeroToMax;
-            acceleration = friendSpeed + 0.5f;
-        }
-        else
-        {
-            //acceleration = basePackSpeed / timeZeroToMax;
-            acceleration = targetSpeed;
-        }
-
-        //prevents deceleration from moving buffalo backwards
-        if (rotSpeedRatio < 0 && rb.velocity.magnitude < speed.magnitude)
-        {
-            speed = Vector2.zero;
-        }*/
-
-        //if ( rb.velocity.magnitude < targetSpeed || (friendSpeed > targetSpeed + .15f && rb.velocity.magnitude < friendSpeed + 0.4f) )
-
         Debug.Log(name + "- current speed: " + rb.velocity.magnitude);
         Debug.Log(name + "- friend speed: " + friendSpeed);
         Debug.Log(name + "- target speed: " + targetSpeed);
 
-        //if ( rb.velocity.magnitude < targetSpeed || rb.velocity.magnitude < friendSpeed + 0.3f) 
-        if ( rb.velocity.magnitude < targetSpeed || (friendSpeed > targetSpeed + .15f && rb.velocity.magnitude < friendSpeed + 0.4f) )
+        //if ( rb.velocity.magnitude < targetSpeed || (friendSpeed > targetSpeed + .15f && rb.velocity.magnitude < friendSpeed + 0.4f &) )
+        if ( rb.velocity.magnitude < targetSpeed || 
+            (friendSpeed > targetSpeed + .1f && Vector2.Dot(transform.up, friendDir ) > 0 && rb.velocity.magnitude < friendSpeed + 0.2f ) )
         {
             rb.AddForce(speed);
         }
@@ -473,13 +481,9 @@ public class Buffaloid : MonoBehaviour
 
     public void preyCheck()
     {
-        List<GameObject> players = new List<GameObject>();
-        players.Add(GameObject.Find("Player1"));
-        players.Add(GameObject.Find("Player2"));
-
         foreach (GameObject player in players)
         {
-            if (player)
+            if (player && player.activeInHierarchy)
             {
                 var heading = player.transform.position - transform.position;
                 var distance = heading.magnitude;
@@ -498,14 +502,8 @@ public class Buffaloid : MonoBehaviour
         }
     }
 
-    /*public Vector2 findMove()
-    {
-
-    }*/
     public void OnDrawGizmosSelected()
     {
-
-
         if(closestColliderPoints != null && closestColliderPoints.Count > 0)
         {
             /*
@@ -520,62 +518,54 @@ public class Buffaloid : MonoBehaviour
                 Gizmos.DrawSphere(v, 0.05f);
             }
         }
-        /*
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(leftSide, 0.05f);
-        Gizmos.DrawSphere(rightSide, 0.05f);
-        Gizmos.DrawSphere(frontLeft, 0.05f);
-        Gizmos.DrawSphere(frontRight, 0.05f);*/
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void GetCurrentMove()
     {
-        //avoid box
-        leftSide = transform.position - transform.right * 0.6f + transform.up * 0.1f;
-        rightSide = transform.position + transform.right * 0.6f + transform.up * 0.1f;
-        frontRight = rightSide + (Vector2)transform.up * 1.4f;
-        frontLeft = leftSide + (Vector2)transform.up * 1.4f;
-
-        if (debugger != null)
-        {
-            debugger.SetStateText(stateMachine.currentState);
-        }
-
-        Vector2 avoidObstacleDir = getAvoid(gameObject.GetComponent<BoxCollider2D>(), obstacleTags);
-        Vector2 avoidFriendsDir = getAvoid(gameObject.GetComponent<CircleCollider2D>(), friendTags);
+        avoidObstacleDir = getAvoid(gameObject.GetComponent<BoxCollider2D>(), obstacleTags);
+        avoidFriendsDir = getAvoid(gameObject.GetComponent<CircleCollider2D>(), friendTags);
 
         //Vector2 edgeAvoidDir = getAvoidEdges();
 
         List<GameObject> friends = getFriends();
         friendSpeed = getFriendSpeed(friends);
 
-        Vector2 cohesionDir = getCohesion(friends);
-        Vector2 alignmentDir = getAlignment(friends);
+        Vector2 cohesionBoidDir = getCohesion(friends, boidTags);
+        Vector2 cohesionRiderDir = getCohesion(friends, riderTags);
+        Vector2 alignmentBoidDir = getAlignment(friends, boidTags);
+        Vector2 alignmentRiderDir = getAlignment(friends, riderTags);
+
 
         //Debug.Log("avoid dir: " + avoidDir );
         //Debug.Log("edge avoid dir: " + edgeAvoidDir);
         //Debug.Log("cohesion dir: " + cohesionDir);
+        cohesionDir = ((cohesionBoidDir * cohesionBoidWeight) + (cohesionRiderDir * cohesionRiderWeight)) / 2;
+        alignmentDir = ((alignmentBoidDir * alignBoidWeight) + (alignmentRiderDir * alignRiderWeight)) / 2;
 
-        Debug.DrawRay(transform.position, alignmentDir, Color.white);
-        Debug.DrawRay(transform.position, avoidObstacleDir, Color.red);
-        Debug.DrawRay(transform.position, avoidFriendsDir, Color.yellow);
-        //Debug.DrawRay(transform.position, edgeAvoidDir, Color.magenta);
-        Debug.DrawRay(transform.position, cohesionDir, Color.green);
+       
 
 
         //move = (avoidWeight * avoidDir) + (avoidEdgeWeight * edgeAvoidDir) 
         //+ (cohesionWeight * cohesionDir) + (alignWeight * alignmentDir);
         //move = avoidDir + edgeAvoidDir;
-        move = (avoidObstacleWeight * avoidObstacleDir) + (avoidFriendsWeight * avoidFriendsDir) + (cohesionWeight * cohesionDir) + (alignWeight * alignmentDir);
+        move = (avoidObstacleWeight * avoidObstacleDir) + (avoidFriendsWeight * avoidFriendsDir) + cohesionDir + alignmentDir;
 
         currentMove = move;
         friendDir = cohesionDir;
-        //Debug.Log("move dir: " + move);
+    }
 
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        Debug.DrawRay(transform.position, alignmentDir, Color.white);
+        Debug.DrawRay(transform.position, avoidObstacleDir, Color.red);
+        Debug.DrawRay(transform.position, avoidFriendsDir, Color.yellow);
+        Debug.DrawRay(transform.position, cohesionDir.normalized, Color.green);
 
-        //moveObject(move);
-
+        if (debugger != null)
+        {
+            debugger.SetStateText(stateMachine.currentState);
+        }
 
         stateMachine.Update();
     }
