@@ -9,14 +9,21 @@ public class Player : MonoBehaviour
     private float curSpeed;
     private float myAngle;
     private Rigidbody2D rb;
+    public float stunTime = 7;
+    private float stunCheck;
+    private float flashTime;
+    private SpriteRenderer sr;
 
-    public float speed;
+    public float speed = 1.5f;
+    public float stunScalar = 2.5f;
     public bool stunned;
 
     void Start()
     {
         stunned = false;
+        stunCheck = stunTime;
         myAngle = 0;
+        sr = gameObject.GetComponent<SpriteRenderer>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         
     }
@@ -34,11 +41,36 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        
+
         if (stunned)
         {
-            curSpeed = speed/2;
-        } else
+            if (stunTime == stunCheck)
+            {
+                curSpeed = speed / stunScalar;
+            }
+            flashTime += Time.deltaTime;
+            stunTime -= Time.deltaTime;
+            if (flashTime > 0.20f)
+            {
+                if (sr.color == Color.red)
+                {
+                    sr.color = Color.white;
+                }
+                else
+                {
+                    sr.color = Color.red;
+                }
+                flashTime = 0;
+            }
+            if (stunTime < 0)
+            {
+                sr.color = Color.white;
+                GameObject.Find("GameManager").GetComponent<Player_switch>().stunned = false;
+                stunned = false;
+                stunTime = stunCheck;
+            }
+        }
+        else
         {
             curSpeed = speed;
         }

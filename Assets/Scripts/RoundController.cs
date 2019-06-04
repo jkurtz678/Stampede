@@ -21,6 +21,8 @@ public class RoundController : MonoBehaviour
     private GameObject player2;
     private Player_collision player1_script;
     private Player_collision player2_script;
+    private Text p1LivesString;
+    private Text p2LivesString;
 
     private int player1_lives;
     private int player2_lives;
@@ -41,8 +43,10 @@ public class RoundController : MonoBehaviour
 
         player1_lives = NumLives;
         player2_lives = NumLives;
-        GameObject.Find("Player1Lives").GetComponent<UnityEngine.UI.Text>().text = "P1 Lives: " + (NumLives-1);
-        GameObject.Find("Player2Lives").GetComponent<UnityEngine.UI.Text>().text = "P2 Lives: " + (NumLives-1);
+        p1LivesString = GameObject.Find("Player1Lives").GetComponent<Text>();
+        p2LivesString = GameObject.Find("Player2Lives").GetComponent<Text>();
+        p1LivesString.text = "P1 Lives: " + (NumLives - 1);
+        p2LivesString.text = "P2 Lives: " + (NumLives - 1);
         renderCanvas = GameObject.Find("Canvas");
 
         winsUI = GameObject.Find("Wins");
@@ -59,25 +63,24 @@ public class RoundController : MonoBehaviour
         
         if(winsUI)
         {
-            winsUI.GetComponent<UnityEngine.UI.Text>().text = player1wins + ":" + player2wins;
+            winsUI.GetComponent<Text>().text = player1wins + ":" + player2wins;
         }
         if (player1_script.dead == true)
         {
             player1_lives -= 1;
             if (player1_lives <= 0)
             {
-                GameObject.Find("Player1Lives").GetComponent<UnityEngine.UI.Text>().text = "P1 Lives: 0";
+                p1LivesString.text = "P1 Lives: 0";
             }
             else
             {
-                GameObject.Find("Player1Lives").GetComponent<UnityEngine.UI.Text>().text = "P1 Lives: " + (player1_lives - 1);
+                p1LivesString.text = "P1 Lives: " + (player1_lives - 1);
             }
             if (player1_lives <= 0)
             {
                 //Player 2 wins round, move to next scene
                 player2wins = Mathf.Clamp(player2wins + 1, 0, maxWins);
-                //player2wins++;
-                winsUI.GetComponent<UnityEngine.UI.Text>().text = player1wins + ":" + player2wins;
+                winsUI.GetComponent<Text>().text = player1wins + ":" + player2wins;
                 CheckWins();
                 //SceneManager.LoadScene(sceneName: next_level);
             } else
@@ -102,17 +105,16 @@ public class RoundController : MonoBehaviour
             player2_lives -= 1;
             if(player2_lives <= 0)
             {
-                GameObject.Find("Player2Lives").GetComponent<UnityEngine.UI.Text>().text = "P2 Lives: 0";
+                p2LivesString.text = "P2 Lives: 0";
             } else
             {
-                GameObject.Find("Player2Lives").GetComponent<UnityEngine.UI.Text>().text = "P2 Lives: " + (player2_lives-1);
+                p2LivesString.text = "P2 Lives: " + (player2_lives-1);
             }
             if (player2_lives <= 0)
             {
                 //Player 1 wins round, move to next scene
                 player1wins = Mathf.Clamp(player1wins + 1, 0, maxWins);
-                //player1wins++;
-                winsUI.GetComponent<UnityEngine.UI.Text>().text = player1wins + ":"+ player2wins;
+                winsUI.GetComponent<Text>().text = player1wins + ":"+ player2wins;
                 CheckWins();
                 //SceneManager.LoadScene(sceneName: next_level);
             } else
@@ -142,20 +144,21 @@ public class RoundController : MonoBehaviour
             if (player1wins > player2wins)
             {
                 winsUI.GetComponent<Text>().text = "P1 Wins\n" + player1wins + ":" + player2wins;
+
             } else
             {
                 winsUI.GetComponent<Text>().text = "P2 Wins\n" + player1wins + ":" + player2wins;
-                winsUI.GetComponent<Text>().fontSize = 40;
-                winsUI.GetComponent<Text>().alignment = TextAnchor.LowerCenter;
-
-                Text tempTextBox = Instantiate(textPrefab, Vector3.zero, transform.rotation) as Text;
-                //Parent to the panel
-                tempTextBox.transform.SetParent(renderCanvas.transform, false);
-                //Set the text box's text element font size and style:
-                tempTextBox.fontSize = 32;
-                //Set the text box's text element to the current textToDisplay:
-                tempTextBox.text = "Press space to restart";
             }
+            winsUI.GetComponent<Text>().fontSize = 40;
+            winsUI.GetComponent<Text>().alignment = TextAnchor.LowerCenter;
+            
+            Text tempTextBox = Instantiate(textPrefab, Vector3.zero, transform.rotation) as Text;
+            //Parent to the panel
+            tempTextBox.transform.SetParent(renderCanvas.transform, false);
+            //Set the text box's text element font size and style:
+            tempTextBox.fontSize = 32;
+            //Set the text box's text element to the current textToDisplay:
+            tempTextBox.text = "Press space to restart";
             Time.timeScale = 0.001f;
             if (Input.GetKeyDown("space"))
             {

@@ -16,10 +16,12 @@ public class Player_switch : MonoBehaviour
     private GameObject closestBoid;
     //False = walking, True = riding
     private bool controlType = false;
+    public bool stunned;
 
     // Start is called before the first frame update
     void Start()
     {
+        stunned = false;
         player_game_obj = GameObject.Find("Player1");
         Sprites = Resources.LoadAll<Sprite>("rider_spritemap");
         
@@ -28,7 +30,7 @@ public class Player_switch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player_game_obj.activeInHierarchy == true && Input.GetKeyDown(KeyCode.E) && controlType == false)
+        if (player_game_obj.activeInHierarchy == true && Input.GetKeyDown(KeyCode.E) && controlType == false && stunned == false)
         {
             controlType = true;
             closestBoid = FindClosestBoid(player_game_obj);
@@ -89,14 +91,19 @@ public class Player_switch : MonoBehaviour
         }
         else if (playerRider != null && playerRider.GetComponent<Rider_collision>().bumpOff == true && controlType == true)
         {
+            
             Rigidbody2D rider_rb = playerRider.GetComponent<Rigidbody2D>();
             Rider_collision collisionScript = playerRider.GetComponent<Rider_collision>();
             Vector3 inheritVel = rider_rb.velocity;
+
 
             controlType = false;
             playerRider.SetActive(false);
             closestBoid.SetActive(true);
             player_game_obj.SetActive(true);
+
+            this.stunned = true;
+            player_game_obj.GetComponent<Player>().stunned = true;
 
             closestBoid.transform.position =  rider_rb.position;
             closestBoid.transform.rotation = playerRider.transform.rotation;

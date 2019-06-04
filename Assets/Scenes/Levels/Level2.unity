@@ -2903,12 +2903,17 @@ PrefabInstance:
     - target: {fileID: 8091040811441557860, guid: dc56bc155c49e4bf98aa777d230f65e0,
         type: 3}
       propertyPath: NumLives
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8091040811441557860, guid: dc56bc155c49e4bf98aa777d230f65e0,
         type: 3}
       propertyPath: next_level
       value: level3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091040811441557860, guid: dc56bc155c49e4bf98aa777d230f65e0,
+        type: 3}
+      propertyPath: maxWins
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc56bc155c49e4bf98aa777d230f65e0, type: 3}
