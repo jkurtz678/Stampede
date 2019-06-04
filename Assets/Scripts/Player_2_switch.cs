@@ -15,10 +15,13 @@ public class Player_2_switch : MonoBehaviour
     private GameObject closestBoid;
     //False = standard, True = riding
     private bool controlType = false;
+    public bool stunned;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        stunned = false;
         player_game_obj = GameObject.Find("Player2");
         Sprites = Resources.LoadAll<Sprite>("rider_spritemap");
 
@@ -27,7 +30,7 @@ public class Player_2_switch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player_game_obj.activeInHierarchy == true && Input.GetKeyDown(KeyCode.Space) && controlType == false)
+        if (player_game_obj.activeInHierarchy == true && Input.GetKeyDown(KeyCode.Space) && controlType == false && stunned == false)
         {
             controlType = true;
             closestBoid = FindClosestBoid(player_game_obj);
@@ -94,6 +97,9 @@ public class Player_2_switch : MonoBehaviour
             playerRider.SetActive(false);
             closestBoid.SetActive(true);
             player_game_obj.SetActive(true);
+
+            this.stunned = true;
+            player_game_obj.GetComponent<Player_2>().stunned = true;
 
             closestBoid.transform.position = rider_rb.position;
             closestBoid.transform.rotation = playerRider.transform.rotation;
