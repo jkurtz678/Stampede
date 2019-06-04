@@ -110,6 +110,6 @@ public class PackState : State<Buffaloid>
 
         //Debug.Log("calling move in PackState: " + _owner.currentMove);
 
-        _owner.moveObject(_owner.currentMove, 0.4f);
+        _owner.moveObject(_owner.currentMove, 0.32f);
     }
 }

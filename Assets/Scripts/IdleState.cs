@@ -97,7 +97,7 @@ public class IdleState : State<Buffaloid>
         {
             //Debug.Log("moving in rand dir: " + randDir);
 
-            _owner.moveObject(randDir, 0.4f);
+            _owner.moveObject(randDir, 0.25f);
         }
     }
 }
