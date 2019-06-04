@@ -216,6 +216,11 @@
 						<MusicSegment Name="theme1-western-123bpm4-4_L14M" ID="{8B5664B2-35DA-4366-A0F3-4566160C6339}" ShortID="619622031">
 							<PropertyList>
 								<Property Name="EndPosition" Type="Real64" Value="27317.074829932"/>
+								<Property Name="Inclusion" Type="bool">
+									<ValueList>
+										<Value>False</Value>
+									</ValueList>
+								</Property>
 								<Property Name="OverrideClockSettings" Type="bool" Value="True"/>
 								<Property Name="Tempo" Type="Real64" Value="123"/>
 							</PropertyList>
@@ -614,6 +619,15 @@
 							<TransitionInfo/>
 						</MusicTransition>
 					</TransitionList>
+					<StingerList>
+						<MusicStinger Name="" ID="{E21A6A70-D671-43AF-BF86-A4F039C7D166}">
+							<PropertyList>
+								<Property Name="PlaySegmentAt" Type="int16" Value="3"/>
+							</PropertyList>
+							<TriggerRef Name="Tom_Hit" ID="{9782F601-B25C-4216-9990-A31CDD182440}" WorkUnitID="{713ED9A2-79B4-4DFF-B569-1A7ED9155E3E}"/>
+							<SegmentRef Name="deathstinger-western-123bpm4-4_L3M" ID="{51287316-AD14-4CB5-85D2-ED8402B2A413}" WorkUnitID="{176CC457-C403-4752-BEE0-F036176FAB13}"/>
+						</MusicStinger>
+					</StingerList>
 					<Playlist>
 						<MusicPlaylistItem Name="" ID="{9E538D4C-0C0A-497E-B145-1C6CA428885B}" ShortID="1039379205">
 							<ChildrenList>
@@ -646,6 +660,202 @@
 						</MusicPlaylistItem>
 					</Playlist>
 				</MusicPlaylistContainer>
+				<Folder Name="Stingers" ID="{7AD99DFE-81D1-4B50-A685-5416854FD142}" ShortID="214886685">
+					<ChildrenList>
+						<MusicSegment Name="deathstinger-western-123bpm4-4_L3M" ID="{51287316-AD14-4CB5-85D2-ED8402B2A413}" ShortID="457422519">
+							<PropertyList>
+								<Property Name="EndPosition" Type="Real64" Value="8048.77274487031"/>
+								<Property Name="Tempo" Type="Real64" Value="123"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{ABF4AAB9-991B-4AAA-8D2C-C09053327950}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DC1087B0-1DE3-4E8C-85F9-5761E36CAAB0}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="deathstinger-western-123bpm4-4_L3M" ID="{9621C70F-1610-433D-9970-8347F81719E8}" ShortID="58666064">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DC1087B0-1DE3-4E8C-85F9-5761E36CAAB0}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="deathstinger-western-123bpm4-4_L3M" ID="{E3762ADF-BA75-4644-A399-5AA6CDEF2C73}" ShortID="609543544">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+												<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+												<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+												<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>deathstinger-western-123bpm4-4_L3M.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{D466F630-E82E-48FB-A96C-B1879F82E9B3}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<SequenceList>
+										<MusicTrackSequence Name="" ID="{8D20D1EB-9D5F-477B-ADC0-83AAFD1F4BF0}">
+											<ClipList>
+												<MusicClip Name="deathstinger-western-123bpm4-4_L3M" ID="{2C856852-D7B5-4168-B65F-765D1E29CFE6}">
+													<PropertyList>
+														<Property Name="BeginTrimOffset" Type="Real64" Value="1463.41463414634"/>
+														<Property Name="EndTrimOffset" Type="Real64" Value="5853.65079365079"/>
+														<Property Name="FadeOutMode" Type="int16" Value="0"/>
+														<Property Name="PlayAt" Type="Real64" Value="541.437171671357"/>
+													</PropertyList>
+													<AudioSourceRef Name="deathstinger-western-123bpm4-4_L3M" ID="{E3762ADF-BA75-4644-A399-5AA6CDEF2C73}"/>
+													<PropertyCurveList>
+														<PropertyCurve PropertyName="Highpass">
+															<Curve Name="" ID="{A7CBD9BB-6A4F-48C2-82C0-404B73C3D003}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="1"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>1.46341</XPos>
+																		<YPos>0</YPos>
+																		<Flags>5</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>5.85365079365079</XPos>
+																		<YPos>0</YPos>
+																		<Flags>37</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</PropertyCurve>
+														<PropertyCurve PropertyName="Lowpass">
+															<Curve Name="" ID="{6AAB285F-837C-4722-BDA6-707CD7F2A16A}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="1"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>1.46341</XPos>
+																		<YPos>0</YPos>
+																		<Flags>5</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>5.85365079365079</XPos>
+																		<YPos>0</YPos>
+																		<Flags>37</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</PropertyCurve>
+														<PropertyCurve PropertyName="Volume">
+															<Curve Name="" ID="{6FCD4134-C726-43DE-9841-9F2A24BF9B3A}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="3"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>1.46341</XPos>
+																		<YPos>0</YPos>
+																		<Flags>5</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>5.85365079365079</XPos>
+																		<YPos>0</YPos>
+																		<Flags>37</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</PropertyCurve>
+													</PropertyCurveList>
+												</MusicClip>
+											</ClipList>
+										</MusicTrackSequence>
+									</SequenceList>
+								</MusicTrack>
+							</ChildrenList>
+							<CueList>
+								<MusicCue Name="Entry Cue" ID="{97D286C4-BCE2-4CB0-B017-072DC2C1144D}">
+									<PropertyList>
+										<Property Name="TimeMs" Type="Real64" Value="2492.65668386648"/>
+									</PropertyList>
+								</MusicCue>
+								<MusicCue Name="Exit Cue" ID="{F103E414-4A27-41DB-9859-94AB87C3E814}">
+									<PropertyList>
+										<Property Name="CueType" Type="int16" Value="1"/>
+										<Property Name="TimeMs" Type="Real64" Value="2492.65668386648"/>
+									</PropertyList>
+								</MusicCue>
+							</CueList>
+						</MusicSegment>
+						<MusicSegment Name="immediatedeath-western-123bpm4-4_L3M" ID="{F08B17B6-0582-485C-B5EF-861B72A62997}" ShortID="59878010">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{ABF4AAB9-991B-4AAA-8D2C-C09053327950}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DC1087B0-1DE3-4E8C-85F9-5761E36CAAB0}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="immediatedeath-western-123bpm4-4_L3M" ID="{3AA314B8-7D5D-4A0A-892A-2732542CC738}" ShortID="723486348">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DC1087B0-1DE3-4E8C-85F9-5761E36CAAB0}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="immediatedeath-western-123bpm4-4_L3M" ID="{142538CD-1D3B-495D-AE43-4039C4D77D8F}" ShortID="920181282">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="-0.001"/>
+												<Property Name="LoopEnd" Type="Real64" Value="-0.001"/>
+												<Property Name="TrimBegin" Type="Real64" Value="-0.001"/>
+												<Property Name="TrimEnd" Type="Real64" Value="-0.001"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>immediatedeath-western-123bpm4-4_L3M.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{8A81A586-3972-42FC-93B8-A52F3CFCDE21}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<SequenceList>
+										<MusicTrackSequence Name="" ID="{F7AF120E-0D24-4C58-96FE-E931BED5FF08}">
+											<ClipList>
+												<MusicClip Name="immediatedeath-western-123bpm4-4_L3M" ID="{2BDA3D7E-26DC-4DAC-AB33-B8109737EFAD}">
+													<PropertyList>
+														<Property Name="EndTrimOffset" Type="Real64" Value="1951.22448979592"/>
+														<Property Name="FadeInMode" Type="int16" Value="0"/>
+														<Property Name="FadeOutMode" Type="int16" Value="0"/>
+													</PropertyList>
+													<AudioSourceRef Name="immediatedeath-western-123bpm4-4_L3M" ID="{142538CD-1D3B-495D-AE43-4039C4D77D8F}"/>
+												</MusicClip>
+											</ClipList>
+										</MusicTrackSequence>
+									</SequenceList>
+								</MusicTrack>
+							</ChildrenList>
+							<CueList>
+								<MusicCue Name="Entry Cue" ID="{7724CAC8-9D3C-48C5-A24A-1AE4C0521673}"/>
+								<MusicCue Name="Exit Cue" ID="{22DDE309-C2FF-4954-8CB1-2EFF861246CF}">
+									<PropertyList>
+										<Property Name="CueType" Type="int16" Value="1"/>
+										<Property Name="TimeMs" Type="Real64" Value="1951.22448979592"/>
+									</PropertyList>
+								</MusicCue>
+							</CueList>
+						</MusicSegment>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</InteractiveMusic>

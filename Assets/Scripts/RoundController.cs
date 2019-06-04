@@ -68,10 +68,10 @@ public class RoundController : MonoBehaviour
         if (player1_script.dead == true)
         {
             player1_lives -= 1;
+            WWiseBankManager.PlayerDeath(gameObject);
+
             if (player1_lives <= 0)
-            {
                 p1LivesString.text = "P1 Lives: 0";
-            }
             else
             {
                 p1LivesString.text = "P1 Lives: " + (player1_lives - 1);
@@ -103,7 +103,8 @@ public class RoundController : MonoBehaviour
         if(player2_script.dead == true)
         {
             player2_lives -= 1;
-            if(player2_lives <= 0)
+            WWiseBankManager.PlayerDeath(gameObject);
+            if (player2_lives <= 0)
             {
                 p2LivesString.text = "P2 Lives: 0";
             } else

@@ -1,9 +1,15 @@
 Event	ID	Name			Wwise Object Path	Notes
+	779278001	Death			\Default Work Unit\Death	
 	2267222025	MainWithTheme			\Default Work Unit\MainWithTheme	
 	3592640110	Buffaloids			\Default Work Unit\Buffaloids	
 
+Trigger	ID	Name			Wwise Object Path	Notes
+	3904529349	Tom_Hit			\Music\Tom_Hit	
+
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	530778008	theme1-western-123bpm4-4_L14M	Y:\Documents\WwiseProjects\firstproject\.cache\Windows\SFX\Buffaloids\theme1-western-123bpm4-4_L14M_D79FB2B7.wem		\Interactive Music Hierarchy\WesternMusic\BuffaloidsTheme\theme1-western-123bpm4-4_L14M\theme1-western-123bpm4-4_L14M		4818796
-	965656042	comp-western-123bpm4-4_L4M	Y:\Documents\WwiseProjects\firstproject\.cache\Windows\SFX\Buffaloids\comp-western-123bpm4-4_L4M_D79FB2B7.wem		\Interactive Music Hierarchy\WesternMusic\BuffaloidsTheme\comp-western-123bpm4-4_L4M\comp-western-123bpm4-4_L4M		1376844
-	1057512923	intro-western-123bpm4-4_L5M	Y:\Documents\WwiseProjects\firstproject\.cache\Windows\SFX\Buffaloids\intro-western-123bpm4-4_L5M_D79FB2B7.wem		\Interactive Music Hierarchy\WesternMusic\BuffaloidsTheme\intro-western-123bpm4-4_L5M\intro-western-123bpm4-4_L5M		1721040
+	530778008	theme1-western-123bpm4-4_L14M	Y:\Documents\Code\Unity\StampedeRepo\Stampede\WWise\firstproject\.cache\Windows\SFX\Buffaloids\theme1-western-123bpm4-4_L14M_D79FB2B7.wem		\Interactive Music Hierarchy\WesternMusic\BuffaloidsTheme\theme1-western-123bpm4-4_L14M\theme1-western-123bpm4-4_L14M		4818796
+	609543544	deathstinger-western-123bpm4-4_L3M	Y:\Documents\Code\Unity\StampedeRepo\Stampede\WWise\firstproject\.cache\Windows\SFX\deathstinger-western-123bpm4-4_L3M_D79FB2B7.wem		\Interactive Music Hierarchy\WesternMusic\Stingers\deathstinger-western-123bpm4-4_L3M\deathstinger-western-123bpm4-4_L3M		1032648
+	920181282	immediatedeath-western-123bpm4-4_L3M	Y:\Documents\Code\Unity\StampedeRepo\Stampede\WWise\firstproject\.cache\Windows\SFX\immediatedeath-western-123bpm4-4_L3M_D79FB2B7.wem		\Interactive Music Hierarchy\WesternMusic\Stingers\immediatedeath-western-123bpm4-4_L3M\immediatedeath-western-123bpm4-4_L3M		344260
+	965656042	comp-western-123bpm4-4_L4M	Y:\Documents\Code\Unity\StampedeRepo\Stampede\WWise\firstproject\.cache\Windows\SFX\Buffaloids\comp-western-123bpm4-4_L4M_D79FB2B7.wem		\Interactive Music Hierarchy\WesternMusic\BuffaloidsTheme\comp-western-123bpm4-4_L4M\comp-western-123bpm4-4_L4M		1376844
+	1057512923	intro-western-123bpm4-4_L5M	Y:\Documents\Code\Unity\StampedeRepo\Stampede\WWise\firstproject\.cache\Windows\SFX\Buffaloids\intro-western-123bpm4-4_L5M_D79FB2B7.wem		\Interactive Music Hierarchy\WesternMusic\BuffaloidsTheme\intro-western-123bpm4-4_L5M\intro-western-123bpm4-4_L5M		1721040
 

@@ -21,6 +21,7 @@
 				<SoundBank Name="Main" ID="{36D4D336-74AF-4BA3-83A6-4F0239EE184E}">
 					<ObjectInclusionList>
 						<ObjectRef Name="MainWithTheme" ID="{65737A8A-A756-408A-8A1C-F9D9FB96351C}" WorkUnitID="{64D3AE78-43F5-4897-848B-FA493D11A502}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Death" ID="{D06A3346-1AC0-4C9E-8BB3-7442360271FE}" WorkUnitID="{64D3AE78-43F5-4897-848B-FA493D11A502}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="Buffaloids" ID="{37F070E7-069B-4E89-84C3-AE739C965BF2}" WorkUnitID="{64D3AE78-43F5-4897-848B-FA493D11A502}" Filter="7" Origin="Manual"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>

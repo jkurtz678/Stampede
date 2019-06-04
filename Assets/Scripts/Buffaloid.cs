@@ -23,6 +23,7 @@ public class Buffaloid : MonoBehaviour
     public float cohesionBoidWeight;
     public float chargeSpeed;
 
+    public float matchSpeedDotAngle;
 
     //state stuff
     //public bool switchState = false;
@@ -452,7 +453,7 @@ public class Buffaloid : MonoBehaviour
 
         //if ( rb.velocity.magnitude < targetSpeed || (friendSpeed > targetSpeed + .15f && rb.velocity.magnitude < friendSpeed + 0.4f &) )
         if ( rb.velocity.magnitude < targetSpeed || 
-            (friendSpeed > targetSpeed + .1f && Vector2.Dot(transform.up, friendDir ) > 0 && rb.velocity.magnitude < friendSpeed + 0.2f ) )
+            (friendSpeed > targetSpeed + .1f && Vector2.Dot(transform.up, friendDir.normalized ) > matchSpeedDotAngle && rb.velocity.magnitude < friendSpeed + 0.15f ) )
         {
             rb.AddForce(speed);
         }

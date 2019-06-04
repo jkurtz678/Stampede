@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="11" SoundbankVersion="134">
 	<RootPaths>
-		<ProjectRoot>/Users/jacksonkurtz/Library/Application Support/Wwise2019/Bottles/wwise/dosdevices/y:/Documents/WwiseProjects/firstproject/</ProjectRoot>
-		<SourceFilesRoot>/Users/jacksonkurtz/Library/Application Support/Wwise2019/Bottles/wwise/dosdevices/y:/Documents/WwiseProjects/firstproject/.cache/Mac/</SourceFilesRoot>
-		<SoundBanksRoot>/Users/jacksonkurtz/Library/Application Support/Wwise2019/Bottles/wwise/dosdevices/y:/Documents/WwiseProjects/firstproject/GeneratedSoundBanks/Mac/</SoundBanksRoot>
+		<ProjectRoot>/Users/jacksonkurtz/Library/Application Support/Wwise2019/Bottles/wwise/dosdevices/y:/Documents/Code/Unity/StampedeRepo/Stampede/WWise/firstproject/</ProjectRoot>
+		<SourceFilesRoot>/Users/jacksonkurtz/Library/Application Support/Wwise2019/Bottles/wwise/dosdevices/y:/Documents/Code/Unity/StampedeRepo/Stampede/WWise/firstproject/.cache/Mac/</SourceFilesRoot>
+		<SoundBanksRoot>/Users/jacksonkurtz/Library/Application Support/Wwise2019/Bottles/wwise/dosdevices/y:/Documents/Code/Unity/StampedeRepo/Stampede/WWise/firstproject/GeneratedSoundBanks/Mac/</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>/Users/jacksonkurtz/Library/Application Support/Wwise2019/Bottles/wwise/dosdevices/y:/Documents/WwiseProjects/firstproject/GeneratedSoundBanks/Mac</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>/Users/jacksonkurtz/Library/Application Support/Wwise2019/Bottles/wwise/dosdevices/y:/Documents/Code/Unity/StampedeRepo/Stampede/WWise/firstproject/GeneratedSoundBanks/Mac</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -19,10 +19,6 @@
 				<Event Id="3592640110" Name="Buffaloids" ObjectPath="\Events\Default Work Unit\Buffaloids" DurationType="Infinite"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
-				<File Id="530778008" Language="SFX">
-					<ShortName>Buffaloids\theme1-western-123bpm4-4_L14M.wav</ShortName>
-					<Path>SFX/Buffaloids/theme1-western-123bpm4-4_L14M_D79FB2B7.wem</Path>
-				</File>
 				<File Id="965656042" Language="SFX">
 					<ShortName>Buffaloids\comp-western-123bpm4-4_L4M.wav</ShortName>
 					<Path>SFX/Buffaloids/comp-western-123bpm4-4_L4M_D79FB2B7.wem</Path>
@@ -67,12 +63,21 @@
 			<Path>Main.bnk</Path>
 			<IncludedEvents>
 				<Event Id="3592640110" Name="Buffaloids" ObjectPath="\Events\Default Work Unit\Buffaloids" DurationType="Infinite"/>
+				<Event Id="779278001" Name="Death" ObjectPath="\Events\Default Work Unit\Death" DurationType="OneShot" DurationMin="1.951224" DurationMax="1.951224"/>
 				<Event Id="2267222025" Name="MainWithTheme" ObjectPath="\Events\Default Work Unit\MainWithTheme" DurationType="Infinite"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
 				<File Id="530778008" Language="SFX">
 					<ShortName>Buffaloids\theme1-western-123bpm4-4_L14M.wav</ShortName>
 					<Path>SFX/Buffaloids/theme1-western-123bpm4-4_L14M_D79FB2B7.wem</Path>
+				</File>
+				<File Id="609543544" Language="SFX">
+					<ShortName>deathstinger-western-123bpm4-4_L3M.wav</ShortName>
+					<Path>SFX/deathstinger-western-123bpm4-4_L3M_D79FB2B7.wem</Path>
+				</File>
+				<File Id="920181282" Language="SFX">
+					<ShortName>immediatedeath-western-123bpm4-4_L3M.wav</ShortName>
+					<Path>SFX/immediatedeath-western-123bpm4-4_L3M_D79FB2B7.wem</Path>
 				</File>
 				<File Id="965656042" Language="SFX">
 					<ShortName>Buffaloids\comp-western-123bpm4-4_L4M.wav</ShortName>

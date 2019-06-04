@@ -28,5 +28,7 @@ public class WWiseBankManager : MonoBehaviour
         AkSoundEngine.StopAll();
         AkSoundEngine.PostEvent("MainWithTheme", gameObject);
     }
+
+    public static void PlayerDeath(GameObject gameObject) => AkSoundEngine.PostEvent("Death", gameObject);
     public static void RidingMusic(GameObject gameObject) => AkSoundEngine.PostEvent("Riding_Music", gameObject);
 }

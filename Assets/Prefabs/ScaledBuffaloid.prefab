@@ -123,7 +123,7 @@ MonoBehaviour:
   rotationSpeed: 3.6
   separation_radius: 0.7
   edge_separation: 180
-  friend_radius: 2
+  friend_radius: 2.2
   forwardVelocity: 0
   avoidObstacleWeight: 8
   avoidFriendsWeight: 1
@@ -131,7 +131,8 @@ MonoBehaviour:
   alignBoidWeight: 0.6
   cohesionRiderWeight: 0.08
   cohesionBoidWeight: 0.05
-  chargeSpeed: 2
+  chargeSpeed: 2.1
+  matchSpeedDotAngle: 0.3
   currentMove: {x: 0, y: 0}
   friendDir: {x: 0, y: 0}
 --- !u!60 &8628774108898105816

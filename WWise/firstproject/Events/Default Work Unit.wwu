@@ -69,6 +69,30 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Death" ID="{D06A3346-1AC0-4C9E-8BB3-7442360271FE}">
+					<ChildrenList>
+						<Action Name="" ID="{169F1997-B35F-43FE-9EB8-2AA745D86E7B}" ShortID="693395982">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="immediatedeath-western-123bpm4-4_L3M" ID="{F08B17B6-0582-485C-B5EF-861B72A62997}" WorkUnitID="{176CC457-C403-4752-BEE0-F036176FAB13}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{13162929-524C-4AA1-AF30-A95E9B532AC7}" ShortID="1028681988">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="35"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Tom_Hit" ID="{9782F601-B25C-4216-9990-A31CDD182440}" WorkUnitID="{713ED9A2-79B4-4DFF-B569-1A7ED9155E3E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

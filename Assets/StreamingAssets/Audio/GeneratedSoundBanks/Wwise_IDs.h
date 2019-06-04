@@ -15,6 +15,7 @@ namespace AK
     {
         static const AkUniqueID ADD_TO_PACK = 713614430U;
         static const AkUniqueID BUFFALOIDS = 3592640110U;
+        static const AkUniqueID DEATH = 779278001U;
         static const AkUniqueID MAINWITHTHEME = 2267222025U;
         static const AkUniqueID RIDING_MUSIC = 3046425890U;
     } // namespace EVENTS
@@ -49,6 +50,11 @@ namespace AK
         static const AkUniqueID SS_AIR_TIMEOFDAY = 3203397129U;
         static const AkUniqueID SS_AIR_TURBULENCE = 4160247818U;
     } // namespace GAME_PARAMETERS
+
+    namespace TRIGGERS
+    {
+        static const AkUniqueID TOM_HIT = 3904529349U;
+    } // namespace TRIGGERS
 
     namespace BANKS
     {

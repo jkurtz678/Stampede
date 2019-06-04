@@ -191,7 +191,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 32c085bab373af47b189bce452cecd57
     GuidInternal: 
-    m_lastTime: -8586426120714775808
+    m_lastTime: -8586419359854775808
     List:
     - name: BaseBank
       guid: a1d3f48f769baa479e45f7b0779a7536
@@ -225,7 +225,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 78aed364f5439748848bfa493d11a502
     GuidInternal: 
-    m_lastTime: -8586426120714775808
+    m_lastTime: -8586419359854775808
     List:
     - name: Add_To_Pack
       guid: 236163eb305d47479912cd46040084c8
@@ -251,6 +251,18 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: Death
+      guid: 46336ad0c01a9e4c8bb37442360271fe
+      id: 779278001
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Death
+        ObjectType: 3
+      Path: Default Work Unit/Death
+      maxAttenuation: 0
+      maxDuration: 1.951224
+      minDuration: 1.951224
     - name: MainWithTheme
       guid: 8a7a736556a78a408a1cf9d9fb96351c
       id: 2267222025
@@ -448,8 +460,25 @@ MonoBehaviour:
     GuidInternal: 
     m_lastTime: -8586472507614775808
     List: []
+  - PhysicalPath: Triggers/Music.wwu
+    ParentPhysicalPath: 
+    guid: a2d93e71b479ff4db5691a7ed9155e3e
+    GuidInternal: 
+    m_lastTime: -8586419374204775808
+    List:
+    - name: Tom_Hit
+      guid: 01f682975cb216429990a31cdd182440
+      id: 3904529349
+      PathAndIcons:
+      - ElementName: Music
+        ObjectType: 12
+      - ElementName: Tom_Hit
+        ObjectType: 14
+      Path: Music/Tom_Hit
   ExpandedItems:
   - /firstproject
+  - /firstproject/Events
+  - /firstproject/Events/Default Work Unit
   - /firstproject/SoundBanks
   - /firstproject/SoundBanks/Default Work Unit
   autoPopulateEnabled: 1
