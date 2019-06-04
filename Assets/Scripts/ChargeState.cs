@@ -5,9 +5,8 @@ using BuffaloidState;
 
 public class ChargeState : State<Buffaloid>
 {
-
     public float minSpeed = 1f;
-    public float chargeSpeed = 4f;
+    public float chargeSpeed = 10f;
     private float timer;
     private Vector2 chargeDir;
 

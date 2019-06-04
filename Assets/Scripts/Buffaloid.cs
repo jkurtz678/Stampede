@@ -33,7 +33,7 @@ public class Buffaloid : MonoBehaviour
 
     private float friendSpeed;
     private BuffaloDebugger debugger;
-    private List<Collider2D> current_colliders;
+    //private List<Collider2D> current_colliders;
     private List<Vector2> closestColliderPoints;
     private List<Collider2D> myColliders;
     private Rect avoidBounds;
@@ -71,10 +71,6 @@ public class Buffaloid : MonoBehaviour
         stateMachine = new StateMachine<Buffaloid>(this);
         stateMachine.ChangeState(new IdleState());
 
-        //Physics2D.IgnoreCollision(GetComponent<PolygonCollider2D>(), GetComponent<BoxCollider2D>());
-        //Physics2D.IgnoreCollision(GetComponent<PolygonCollider2D>(), GetComponent<CircleCollider2D>());
-        //Physics2D.IgnoreCollision(GetComponent<CircleCollider2D>(), GetComponent<BoxCollider2D>());
-
     }
 
     List<Vector2> getClosestPoints(Collider2D col, List<string> avoidTags)
@@ -84,8 +80,8 @@ public class Buffaloid : MonoBehaviour
 
         //Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, separation_radius);
 
-        List<Collider2D> avoidColliders = new List<Collider2D>();
-        current_colliders = avoidColliders;
+        //List<Collider2D> avoidColliders = new List<Collider2D>();
+        //current_colliders = avoidColliders;
         List<Vector2> closest = new List<Vector2>();
 
         //list of my colliders
@@ -102,7 +98,7 @@ public class Buffaloid : MonoBehaviour
             if (avoidTags.Contains(hitColliders[i].tag) && !myColliders.Contains(hitColliders[i]))
             {
                 Collider2D currentCol = hitColliders[i];
-                avoidColliders.Add(currentCol);
+                //avoidColliders.Add(currentCol);
                 closest.Add(currentCol.ClosestPoint(transform.position + transform.up * 0.15f));
             }
         }
@@ -188,7 +184,7 @@ public class Buffaloid : MonoBehaviour
         for (int i = 0; i < friendColliders.Length; i++)
         {
             string friendTag = friendColliders[i].gameObject.tag;
-            if ((friendTag == "Boids" || friendTag == "Rider1" || friendTag == "Rider2") && friendColliders[i].gameObject.transform.root != transform)
+            if ((friendTag == "Boids" || friendTag == "Rider1" || friendTag == "Rider2") && !myColliders.Contains(friendColliders[i]))
             //if( friendColliders[i].gameObject.transform.root != transform)
             {
                 friends.Add(friendColliders[i].gameObject);
@@ -219,6 +215,11 @@ public class Buffaloid : MonoBehaviour
 
     private Vector2 getAlignment(List<GameObject> friends)
     {
+        if(friends.Count == 0)
+        {
+            return Vector2.zero;
+        }
+
         List<Transform> positions = new List<Transform>();
         for (int i = 0; i < friends.Count; i++)
         {
@@ -296,7 +297,7 @@ public class Buffaloid : MonoBehaviour
         //float step = maxSpeed * Time.deltaTime;
         //Debug.Log("accel: " + acceleration);
         //Debug.Log("forwardVelocity: " + forwardVelocity);
-        Debug.DrawRay(transform.position, mv.normalized*2, Color.blue);
+        //Debug.DrawRay(transform.position, mv.normalized*2, Color.blue);
 
         //if buffaloid is moving to a point
         if (mv != Vector2.zero)
@@ -470,6 +471,33 @@ public class Buffaloid : MonoBehaviour
         rb.AddForce(backwardsForce * speed);
     }
 
+    public void preyCheck()
+    {
+        List<GameObject> players = new List<GameObject>();
+        players.Add(GameObject.Find("Player1"));
+        players.Add(GameObject.Find("Player2"));
+
+        foreach (GameObject player in players)
+        {
+            if (player)
+            {
+                var heading = player.transform.position - transform.position;
+                var distance = heading.magnitude;
+                /*Debug.Log("distance: " + distance);
+                Debug.Log("heading: " + heading);
+                Debug.Log("forward: " + _owner.transform.forward);*/
+
+                float dot = Vector2.Dot(heading.normalized, transform.up);
+                //Debug.Log("dot: " + dot);
+
+                if (dot > 0.85f && distance < 5f)
+                {
+                    stateMachine.ChangeState(new ChaseState(player));
+                }
+            }
+        }
+    }
+
     /*public Vector2 findMove()
     {
 
@@ -478,13 +506,14 @@ public class Buffaloid : MonoBehaviour
     {
 
 
-        if( current_colliders != null && current_colliders.Count > 0)
+        if(closestColliderPoints != null && closestColliderPoints.Count > 0)
         {
+            /*
             Gizmos.color = Color.magenta;
             foreach (Collider2D c in current_colliders)
             {
                 Gizmos.DrawSphere(c.gameObject.transform.position, 0.2f);
-            }
+            }*/
             Gizmos.color = Color.cyan;
             foreach (Vector2 v in closestColliderPoints )
             {

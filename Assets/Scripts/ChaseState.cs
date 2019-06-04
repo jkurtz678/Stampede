@@ -5,13 +5,18 @@ using BuffaloidState;
 
 public class ChaseState : State<Buffaloid>
 {
-    public float chaseSpeed = 2.2f;
+    public float chaseSpeed = 10f;
     private float timer;
     private GameObject prey;
+
+    private float stuckTimer;
+    private bool stuck;
+    private float timeStuck;
 
     public ChaseState(GameObject prey)
     {
         this.prey = prey;
+        timer = 4f;
     }
 
     public override void EnterState(Buffaloid _owner)
@@ -36,7 +41,6 @@ public class ChaseState : State<Buffaloid>
     }
 
 
-
     public override void UpdateState(Buffaloid _owner)
     {
         //Debug.Log("Chase state stuff...");
@@ -44,5 +48,11 @@ public class ChaseState : State<Buffaloid>
         _owner.currentMove = heading;
         _owner.moveObject(heading, chaseSpeed);
         chargeCheck(_owner);
+
+        timer -= Time.deltaTime;
+        if( timer <= 0)
+        {
+            _owner.stateMachine.ChangeState(new IdleState());
+        }
     }
 }

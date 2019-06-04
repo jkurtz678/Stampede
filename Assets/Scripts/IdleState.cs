@@ -67,29 +67,7 @@ public class IdleState : State<Buffaloid>
         }
     } 
 
-    void preyCheck(Buffaloid _owner)
-    {
-        List<GameObject> players = new List<GameObject>();
-        players.Add(GameObject.Find("Player1"));
-        players.Add(GameObject.Find("Player2"));
 
-        foreach (GameObject player in players)
-        {
-            var heading = player.transform.position - _owner.transform.position;
-            var distance = heading.magnitude;
-            /*Debug.Log("distance: " + distance);
-            Debug.Log("heading: " + heading);
-            Debug.Log("forward: " + _owner.transform.forward);*/
-
-            float dot = Vector2.Dot(heading.normalized, _owner.transform.up);
-            //Debug.Log("dot: " + dot);
-
-            if( dot > 0.85f && distance < 5f)
-            {
-                _owner.stateMachine.ChangeState(new ChaseState(player));
-            }
-        }
-    }
 
     public override void UpdateState(Buffaloid _owner)
     {
@@ -100,7 +78,7 @@ public class IdleState : State<Buffaloid>
 
         timer -= Time.deltaTime;
 
-        //preyCheck(_owner);
+        _owner.preyCheck();
 
         if(timer < 0f)
         {
