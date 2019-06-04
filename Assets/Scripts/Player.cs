@@ -6,24 +6,19 @@ public class Player : MonoBehaviour
 {
 
     // Normal Movements Variables
-    private float walkSpeed;
     private float curSpeed;
-    private float maxSpeed;
-    private float sprintSpeed;
     private float myAngle;
     private Rigidbody2D rb;
 
     public float speed;
-    public float agility;
+    public bool stunned;
 
     void Start()
     {
-
+        stunned = false;
         myAngle = 0;
         rb = gameObject.GetComponent<Rigidbody2D>();
-        walkSpeed = (float)(speed + (agility / 5));
-        sprintSpeed = walkSpeed + (walkSpeed / 2);
-
+        
     }
     private void Update()
     {
@@ -39,9 +34,14 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        curSpeed = walkSpeed;
-        maxSpeed = curSpeed;
-
+        
+        if (stunned)
+        {
+            curSpeed = speed/2;
+        } else
+        {
+            curSpeed = speed;
+        }
         // Move senteces
         rb.velocity = new Vector2(Mathf.Lerp(0, Input.GetAxis("P1_Horizontal") * curSpeed, 0.8f),
                                              Mathf.Lerp(0, Input.GetAxis("P1_Vertical") * curSpeed, 0.8f));
