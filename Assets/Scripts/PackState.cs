@@ -10,36 +10,13 @@ public class PackState : State<Buffaloid>
     private bool stuck;
     private float idleTimer;
     private bool idling;
-    //private static PackState _instance;
-
-
-    //private constructor called from buffaloid
-    /*private PackState()
-    {
-        if (_instance != null)
-        {
-            return;
-        }
-
-        _instance = this;
-    }
-
-    public static PackState Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                new PackState();
-            }
-            return _instance;
-        }
-    }*/
+    private float timeStuck;
 
     public override void EnterState(Buffaloid _owner)
     {
+        timeStuck = 0.5f;
         //Debug.Log("Entering Pack State");
-        stuckTimer = 1f;
+        stuckTimer = timeStuck;
         stuck = false;
         idling = false;
         idleTimer = 1f;
@@ -76,7 +53,7 @@ public class PackState : State<Buffaloid>
             {
                 //Debug.Log("stuck to true");
 
-                stuckTimer = 1f;
+                stuckTimer = timeStuck;
                 stuck = true;
             }
         }
@@ -121,6 +98,7 @@ public class PackState : State<Buffaloid>
         idleCheck(_owner);
         stuckCheck(_owner);
         chargeCheck(_owner );
+        _owner.preyCheck();
 
         //Debug.Log("forwardVelocity " + _owner.getRBSpeed());
         //Debug.Log("stuck: " + stuck);

@@ -99,7 +99,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 4
-  m_LinearDrag: 0.5
+  m_LinearDrag: 0.2
   m_AngularDrag: 0.4
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: f00b2bbe522034eb8938d0dfce4fe607, type: 2}
@@ -119,8 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49d6782c5b4b463aa6df147f8e27cfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 2
-  rotationSpeed: 5
+  acceleration: 5
+  rotationSpeed: 4
   separation_radius: 0.7
   edge_separation: 180
   friend_radius: 2
@@ -129,7 +129,7 @@ MonoBehaviour:
   avoidFriendsWeight: 5
   alignWeight: 0.6
   cohesionWeight: 0.3
-  chargeSpeed: 2
+  chargeSpeed: 1.8
   currentMove: {x: 0, y: 0}
   friendDir: {x: 0, y: 0}
 --- !u!60 &8628774108898105816
@@ -218,6 +218,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5ca28c423533d7d4a947ef6acca6c4de, type: 3}
   - {fileID: 21300000, guid: 8e8b0d548e33d304fad3ae3614a0ca8d, type: 3}
   spriteNumber: 3
+  spriteChoice: 0
 --- !u!61 &1707915534901395860
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -231,7 +232,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1}
+  m_Offset: {x: 0, y: 1.4}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -242,7 +243,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 2.6}
+  m_Size: {x: 2, y: 3.2}
   m_EdgeRadius: 0
 --- !u!58 &5245745517184907727
 CircleCollider2D:
@@ -257,6 +258,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.5}
+  m_Offset: {x: 0, y: 0.6}
   serializedVersion: 2
   m_Radius: 0.8
