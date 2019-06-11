@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49d6782c5b4b463aa6df147f8e27cfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 4.5
+  acceleration: 4.8
   rotationSpeed: 3.6
   separation_radius: 0.7
   edge_separation: 180
@@ -132,7 +132,7 @@ MonoBehaviour:
   cohesionRiderWeight: 0.08
   cohesionBoidWeight: 0.05
   chargeSpeed: 2.1
-  matchSpeedDotAngle: 0.3
+  matchSpeedDotAngle: 0.2
   currentMove: {x: 0, y: 0}
   friendDir: {x: 0, y: 0}
 --- !u!60 &8628774108898105816

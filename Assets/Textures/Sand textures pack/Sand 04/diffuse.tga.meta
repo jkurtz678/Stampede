@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: bcca06f4a9e7947be975fbb6536b07d5
+guid: c378370027f5a48cea4f8ba030ec88be
 TextureImporter:
-  fileIDToRecycleName: {}
+  internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 9
+  serializedVersion: 10
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -75,11 +75,13 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 2fb993d374fc347528b823ba225a5474
+    spriteID: 9c4be10cbee4b44f7919a518aa83d47d
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
