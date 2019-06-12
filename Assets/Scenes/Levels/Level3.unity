@@ -3491,7 +3491,7 @@ PrefabInstance:
     - target: {fileID: 8091040811441557860, guid: dc56bc155c49e4bf98aa777d230f65e0,
         type: 3}
       propertyPath: maxWins
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8091040811441557860, guid: dc56bc155c49e4bf98aa777d230f65e0,
         type: 3}
