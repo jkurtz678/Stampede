@@ -11,6 +11,7 @@ public class Player_switch : MonoBehaviour
     public Sprite[] Sprites;
     public Sprite[] buffSprites;
 
+    private GameObject shakeCamera;
     private GameObject playerRider;
     private GameObject player_game_obj;
     private GameObject closestBoid;
@@ -24,7 +25,8 @@ public class Player_switch : MonoBehaviour
         stunned = false;
         player_game_obj = GameObject.Find("Player1");
         Sprites = Resources.LoadAll<Sprite>("rider_spritemap");
-        
+        shakeCamera = GameObject.Find("Main Camera");
+
     }
 
     // Update is called once per frame
@@ -112,7 +114,8 @@ public class Player_switch : MonoBehaviour
             player_game_obj.transform.position = playerRider.transform.position + (collisionScript.dir.normalized * -1.5f);
             player_game_obj.transform.rotation = playerRider.transform.rotation;
             player_game_obj.GetComponent<Rigidbody2D>().AddForce(collisionScript.dir.normalized * -bumpForce1);
-            
+
+            shakeCamera.GetComponent<ShakeBehavior>().TriggerShake();
             Destroy(playerRider);
         }
     }

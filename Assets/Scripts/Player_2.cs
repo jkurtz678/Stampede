@@ -61,12 +61,9 @@ public class Player_2 : MonoBehaviour
                 }
                 flashTime = 0;
             } 
-            if (stunTime < 0)
+            if (stunTime < 0 || gameObject.GetComponent<Player_collision>().dead == true)
             {
-                sr.color = Color.white;
-                GameObject.Find("GameManager").GetComponent<Player_2_switch>().stunned = false;
-                stunned = false;
-                stunTime = stunCheck;
+                StunReset();
             }
         }
         else
@@ -77,4 +74,13 @@ public class Player_2 : MonoBehaviour
         rb.velocity = new Vector2(Mathf.Lerp(0, Input.GetAxis("P2_Horizontal") * curSpeed, 0.8f),
                                              Mathf.Lerp(0, Input.GetAxis("P2_Vertical") * curSpeed, 0.8f));
     }
+
+    public void StunReset()
+    {
+        sr.color = Color.white;
+        GameObject.Find("GameManager").GetComponent<Player_switch>().stunned = false;
+        stunned = false;
+        stunTime = stunCheck;
+    }
+
 }

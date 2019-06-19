@@ -6,6 +6,12 @@ public class Player_collision : MonoBehaviour
 {
     public float deathVelocity = 0.7f;
     public bool dead;
+    private GameObject shakeCamera;
+
+    void Start()
+    {
+        shakeCamera = GameObject.Find("Main Camera");
+    }
 
     void OnCollisionStay2D(Collision2D obj)
     {
@@ -18,6 +24,7 @@ public class Player_collision : MonoBehaviour
                 {
                     //DEATH the player died
                     gameObject.SetActive(false);
+                    shakeCamera.GetComponent<ShakeBehavior>().TriggerShake();
                     dead = true;
                 }
             }
